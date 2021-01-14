@@ -8,7 +8,7 @@ import java.util.List;
 @Mapper
 public interface InvitationDao {
 	//发帖子
-	public void publishinvitation(String number,String account,String time,String title,String subtitle,String text);
+	public void publishinvitation(Invitation invitation);
 	//删帖子
 	public void deleteinvitation();
 	//查看帖子

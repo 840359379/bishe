@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper>
-    <select id=""></select>
+<mapper namespace="com.chuanmei.bishe.dao.FollowDao">
+    <insert id="addfollow"></insert>
+    <delete id="deletefollow"></delete>
+    <select id="lookfollow" resultType="com.chuanmei.bishe.model.Follow"></select>
+    <select id="coverlookfollow" resultType="com.chuanmei.bishe.model.Follow"></select>
 </mapper>
