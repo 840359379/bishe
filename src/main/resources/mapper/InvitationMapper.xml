@@ -2,10 +2,45 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chuanmei.bishe.dao.InvitationDao">
 
-    <insert id="publishinvitation"></insert>
+    <insert id="publishinvitation">
+        INSERT INTO invitation
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            number,
+            account,
+            time,
+            title,
+            Subtitle,
+            text,
+            name
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{number, jdbcType=INTEGER},
+            <if test="account != null">#{account, jdbcType=VARCHAR} ,</if>
+            #{time, jdbcType=INTEGER},
+            #{title, jdbcType=INTEGER},
+            #{Subtitle, jdbcType=INTEGER},
+            #{text, jdbcType=INTEGER},
+            #{name, jdbcType=INTEGER}
+        </trim>
+    </insert>
     <delete id="deleteinvitation"></delete>
-    <select id="lookinvitation" resultType="com.chuanmei.bishe.model.Invitation"></select>
-    <select id="lookmyinvitations" resultType="com.chuanmei.bishe.model.Invitation"></select>
-    <select id="seekinvitations" resultType="com.chuanmei.bishe.model.Invitation"></select>
-    <select id="lookinvitations" resultType="com.chuanmei.bishe.model.Invitation"></select>
+    <select id="lookinvitation" resultType="com.chuanmei.bishe.model.Invitation">
+        SELECT *
+        FROM invitation
+        WHERE number = #{number, jdbcType = INTEGER}
+    </select>
+    <select id="lookmyinvitations" resultType="com.chuanmei.bishe.model.Invitation">
+        SELECT *
+        FROM invitation
+        WHERE account = {account, jdbcType = VARCHAR}
+    </select>
+    <select id="seekinvitations" resultType="com.chuanmei.bishe.model.Invitation">
+        SELECT *
+        FROM invitation
+        WHERE title LIKE CONCAT('%',#{title,jdbcType=VARCHAR},'%')
+            or subtitle LIKE CONCAT('%',#{subtitle,jdbcType=VARCHAR},'%')
+    </select>
+    <select id="lookinvitations" resultType="com.chuanmei.bishe.model.Invitation">
+        SELECT * FROM invitation
+    </select>
 </mapper>

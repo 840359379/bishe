@@ -3,6 +3,14 @@
 <mapper namespace="com.chuanmei.bishe.dao.FollowDao">
     <insert id="addfollow"></insert>
     <delete id="deletefollow"></delete>
-    <select id="lookfollow" resultType="com.chuanmei.bishe.model.Follow"></select>
-    <select id="coverlookfollow" resultType="com.chuanmei.bishe.model.Follow"></select>
+    <select id="lookfollow" resultType="com.chuanmei.bishe.model.Follow">
+        SELECT *
+        FROM follow
+        WHERE account = #{account, jdbcType = VARCHAR}
+    </select>
+    <select id="coverlookfollow" resultType="com.chuanmei.bishe.model.Follow">
+        SELECT *
+        FROM follow
+        WHERE coveraccount = #{coveraccount, jdbcType = VARCHAR}
+    </select>
 </mapper>

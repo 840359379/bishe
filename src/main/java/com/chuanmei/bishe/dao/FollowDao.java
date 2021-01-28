@@ -8,9 +8,9 @@ import java.util.List;
 @Mapper
 public interface FollowDao {
 	//添加关注
-	public void addfollow(String account,String coveraccount,String name,String covername);
+	public boolean addfollow(Follow follow);
 	//删除关注
-	public void deletefollow(String account,String coveraccount);
+	public boolean deletefollow(String account,String coveraccount);
 	//查看关注
 	public List<Follow> lookfollow(String account);
 	//查看粉丝

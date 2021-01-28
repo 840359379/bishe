@@ -4,6 +4,14 @@
 
     <insert id="addgood"></insert>
     <delete id="deletegood"></delete>
-    <select id="lookgoodat" resultType="com.chuanmei.bishe.model.Good"></select>
-    <select id="lookgoodnr" resultType="com.chuanmei.bishe.model.Good"></select>
+    <select id="lookgoodat" resultType="com.chuanmei.bishe.model.Good">
+        SELECT *
+        FROM good
+        WHERE account = #{account, jdbcType = VARCHAR}
+    </select>
+    <select id="lookgoodnr" resultType="com.chuanmei.bishe.model.Good">
+        SELECT *
+        FROM good
+        WHERE number = #{number, jdbcType = VARCHAR}
+    </select>
 </mapper>

@@ -10,7 +10,7 @@ public interface UserDao {
 	//注册
 	public boolean register(User user);
 	//修改
-	public void modify(User user);
+	public boolean modify(User user);
 	//用户名查找
 	public User chaname(String id);
 }

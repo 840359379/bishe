@@ -6,9 +6,9 @@ import java.util.List;
 
 public interface InvitationService {
     //发帖子
-    public void publishinvitation(String number,String account,String time,String title,String subtitle,String text);
+    public boolean publishinvitation(Invitation invitation);
     //删帖子
-    public void deleteinvitation();
+    public boolean deleteinvitation();
     //查看帖子
     public Invitation lookinvitation(String number);
     //查看我的帖子

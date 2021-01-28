@@ -2,8 +2,27 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chuanmei.bishe.dao.UserDao">
     <insert id="register"></insert>
-    <update id="modify"></update>
-    <select id="record" resultType="com.chuanmei.bishe.model.User"></select>
-    <select id="chaname" resultType="com.chuanmei.bishe.model.User"></select>
+    <update id="modify">
+        UPDATE user
+        <trim prefix="set" suffixOverrides=",">
+            <if test="name != null">name = #{name, jdbcType=VARCHAR}</if>
+            <if test="gender != null">gender = #{gender, jdbcType=VARCHAR}</if>
+            <if test="birthday != null">birthday = #{birthday, jdbcType=VARCHAR}</if>
+            <if test="mailbox != null">mailbox = #{mailbox, jdbcType=VARCHAR}</if>
+            <if test="personality != null">personality = #{personality, jdbcType=VARCHAR}</if>
+            <if test="portrait != null">portrait = #{portrait, jdbcType=VARCHAR}</if>
+        </trim>
+        WHERE account = #{account, jdbcType=VARCHAR} LIMIT 1
+    </update>
+    <select id="record" resultType="com.chuanmei.bishe.model.User">
+        SELECT *
+        FROM user
+        WHERE account = #{id, jdbcType=VARCHAR} AND password = #{pw, jdbcType=VARCHAR} LIMIT 1
+    </select>
+    <select id="chaname" resultType="com.chuanmei.bishe.model.User">
+        SELECT *
+        FROM user
+        WHERE account = #{id, jdbcType=VARCHAR} LIMIT 1
+    </select>
 
 </mapper>

@@ -1,38 +1,46 @@
 package com.chuanmei.bishe.service.Impl;
 
+import com.chuanmei.bishe.dao.InvitationDao;
 import com.chuanmei.bishe.model.Invitation;
 import com.chuanmei.bishe.service.InvitationService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class InvitationServiceImpl implements InvitationService {
-    @Override
-    public void publishinvitation(String number, String account, String time, String title, String subtitle, String text) {
 
+    @Autowired
+    private InvitationDao invitationDao;
+
+    @Override
+    public boolean publishinvitation(Invitation invitation) {
+        return invitationDao.publishinvitation(invitation);
     }
 
     @Override
-    public void deleteinvitation() {
-
+    public boolean deleteinvitation() {
+        return invitationDao.deleteinvitation();
     }
 
     @Override
     public Invitation lookinvitation(String number) {
-        return null;
+        return invitationDao.lookinvitation(number);
     }
 
     @Override
     public List<Invitation> lookmyinvitations(String account) {
-        return null;
+        return invitationDao.lookmyinvitations(account);
     }
 
     @Override
     public List<Invitation> seekinvitations(String name) {
-        return null;
+        return invitationDao.seekinvitations(name);
     }
 
     @Override
     public List<Invitation> lookinvitations() {
-        return null;
+        return invitationDao.lookinvitations();
     }
 }
