@@ -13,7 +13,7 @@
   </head>
   <body onload="onloads()">
     <div class="denglu">
-      <form onsubmit="return verification()" autocomplete="off" method="POST">
+      <form id="form" onsubmit="return verification()" autocomplete="off" method="POST">
         <div class="tou"></div>
         <div class="field">
           <svg
@@ -68,10 +68,10 @@
         <input
           type="button"
           onclick="ajax_user()"
-          class="btn btn-success field"
+          class="btn btn-success"
           value="登陆"
         />
-        <button type="button" class="btn btn-secondary field">注册</button>
+        <button type="button" class="btn btn-secondary">注册</button>
         <p id="warning" class="wa dis">密码有误或者账号不存在！</p>
       </form>
     </div>

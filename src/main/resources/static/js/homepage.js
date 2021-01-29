@@ -37,29 +37,7 @@ function lookinvitation() {
   window.open(url);
 }
 
-//关于账号的属性注入
-function data_uesr(data) {
-  if (data != null) {
-    //		 	console.log(data);
-    document.getElementById("name").innerHTML = data["name"];
-    document.getElementById("personality").innerHTML = data["personality"];
-    document.getElementById("state").innerHTML = data["name"];
-    document.getElementById("state_enroll").innerHTML = "退出登录";
-  } else {
-    document.getElementById("name").innerHTML = "未登录";
-    document.getElementById("personality").innerHTML = "";
-    document.getElementById("state").innerHTML = "未登录";
-    document.getElementById("state_enroll").innerHTML = "登录";
-  }
-}
 
-//关于粉丝和关注的注入
-function data_follow(follow, coverfollow) {
-  if (follow) {
-    document.getElementById("follow").innerHTML = follow;
-    document.getElementById("fans").innerHTML = coverfollow;
-  }
-}
 //
 function data_myinvitation(myinvitations) {
   if (myinvitations) {
@@ -72,24 +50,19 @@ function data_myinvitation(myinvitations) {
       );
       newp(li, "my_0_name", item.title);
       newp(li, "my_0_data", item.time);
-      //	        if(indes>5)break;
     });
   }
 }
 
 function ajax_invitation() {
   $.ajax({
-    tyep: "post",
-    url: "http://localhost:8080/maven/operation/invitations",
-    contentType: "application/json;charset=UTF-8",
-    data: {},
+    type: "POST",
+    url: "http://127.0.0.1:8080/blog/homepage/invitations",
     dataType: "json", //返回的数据类型格式
     success: function (data) {
-      //    	console.log(data);
-      data_uesr(data["user"]);
-      post_area_entity(data["invitation"]);
-      data_follow(data["follow"], data["coverfollows"]);
-      data_myinvitation(data["myinvitations"]);
+      // console.log(data);
+      post_area_entity(data.data);
+      // data_myinvitation(data["myinvitations"]);
     },
     error: function () {
       //请求出错处理

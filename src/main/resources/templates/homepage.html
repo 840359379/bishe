@@ -13,11 +13,9 @@
     <script th:src="@{/static/js/newborn.js}"></script>
     <script th:src="@{/static/js/homepage.js}" defer></script>
   </head>
-  <body>
-    <nav
-      class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark"
-    >
-      <a class="navbar-brand" href="#" id="state">;/;</a>
+  <body id="body">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
+      <a class="navbar-brand" href="#" id="state"></a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
@@ -80,55 +78,54 @@
       </div>
     </nav>
 
-    <!-- Stack the columns on mobile by making one full-width and the other half-width -->
-    <div class="da">
-      <div class="row">
-        <div class="col-md-7" id="post_area">
+    <div class="container" id="core_container">
+      <div class="row" id="core">
+        <div class="col-md-8">
           <div class="card">
             <h5 class="card-header">最新热帖</h5>
             <div class="card-body" id="invitation_area"></div>
           </div>
         </div>
 
-        <div class="col-md-4 lift">
+        <div class="col-md-4 ">
           <div class="Userfa">
             <div class="User" id="uesr">
               <div class="img">
-                <a><img src="../picture/tou.jpg" class="User_img_1" /></a>
+                <a><img th:src="${user.portrait}" class="User_img_1" /></a>
               </div>
               <div class="Username">
-                <b id="name"></b>
-                <p id="personality"></p>
+                <b id="name" th:text="${user.name}"></b>
+                <p id="personality" th:text="${user.personality}"></p>
               </div>
               <div class="Line"></div>
               <div class="basic">
                 <div class="basics">
                   <p class="basics_zi">贴数</p>
                   <div class="line_2"></div>
-                  <a href="personal_1.html"
-                    ><p class="basics_ge" id="invitation">0</p></a
-                  >
+                  <a href="personal_1.html">
+                    <p class="basics_ge" id="invitation">0</p>
+                  </a>
                 </div>
                 <div class="basics">
                   <p class="basics_zi">关注</p>
                   <div class="line_2"></div>
-                  <a href="personal_follow.html"
-                    ><p class="basics_ge" id="follow">0</p></a
-                  >
+                  <a href="personal_follow.html">
+                    <p class="basics_ge" th:text="${follow}" id="follow">0</p>
+                  </a>
                 </div>
                 <div class="basics">
                   <p class="basics_zi">粉丝</p>
                   <div class="line_2"></div>
-                  <a href="personal_fans.html"
-                    ><p class="basics_ge" id="fans">0</p></a
-                  >
+                  <a href="personal_fans.html">
+                    <p class="basics_ge" th:text="${coverfollow}" id="fans">0</p>
+                  </a>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="card data">
-            <img src="../picture/data.jpg" class="card-img-top" alt="日期" />
+            <img th:src="@{/static/picture/niu.jpg}" class="card-img-top" alt="日期" />
             <div class="card-body">
               <p class="card-text data_rili">
                 2020-4-26 13:00:00

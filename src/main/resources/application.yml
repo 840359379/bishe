@@ -16,7 +16,7 @@ spring:
 
   # 不拦截静态资源
   mvc:
-    static-path-pattern: classpath:/static/**
+    static-path-pattern: /static/**
 
   #数据库的配置
   datasource:

@@ -33,21 +33,19 @@ function p_onclick() {
 }
 
 function ajax_user() {
-  var id = document.getElementById("sid").value;
-  var pw = document.getElementById("spw").value;
+  let id = document.getElementById("sid").value;
+  let pw = document.getElementById("spw").value;
   //	  console.log(id);
   $.ajax({
-    tyep: "POST",
-    url: "http://localhost:8080/maven/operation/enroll",
-    //	    contentType:"application/x-www-form-urlencoded",
+    type: "POST",
+    url: "http://127.0.0.1:8080/blog/landing/enroll",
     data: { id: id, pw: pw },
     dataType: "json", //返回的数据类型格式
     success: function (data) {
-      if (data) {
-        window.location.href = "http://localhost:8080/maven/core/homepage.jsp";
+      if (data.code == 200) {
+        window.location.href = "/blog/homepage/index";
       } else {
-        var warning = document.getElementById("warning");
-        warning.className = "wa";
+        $("#warning").removeClass("dis");
       }
     },
     error: function (data) {
