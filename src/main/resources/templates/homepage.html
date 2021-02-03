@@ -19,17 +19,16 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="homepage.jsp"
-              >首页<span class="sr-only">(current)</span></a
+            <a class="nav-link" href="/blog/homepage/index">首页<span class="sr-only">(current)</span></a
             >
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="personal.html">个人中心</a>
+            <a class="nav-link" href="/blog/personal/index">个人中心</a>
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="personal_invitation.html">发帖</a>
+            <a class="nav-link" href="/blog/personal/invitation">发帖</a>
           </li>
 
           <li class="nav-item dropdown">
@@ -102,8 +101,8 @@
                 <div class="basics">
                   <p class="basics_zi">贴数</p>
                   <div class="line_2"></div>
-                  <a href="personal_1.html">
-                    <p class="basics_ge" id="invitation">0</p>
+                  <a href="personal_myinvitation.html">
+                    <p class="basics_ge" th:text="${myinvitation.size()}">0</p>
                   </a>
                 </div>
                 <div class="basics">
@@ -137,7 +136,12 @@
             <div class="card-header">
               近期发帖
             </div>
-            <ul class="list-group list-group-flush" id="myinvitations"></ul>
+            <ul class="list-group list-group-flush" th:each="invitation:${myinvitation}">
+              <li class="list-group-item" >
+                <p th:text="${invitation.title}" class="my_0_name"></p>
+                <p th:text="${invitation.time.substring(0,10)}" class="my_0_data"></p>
+              </li>
+            </ul>
           </div>
         </div>
       </div>

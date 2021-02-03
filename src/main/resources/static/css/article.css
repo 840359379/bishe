@@ -1,11 +1,12 @@
-#da {
-  /* width: 1319px; */
-  height: 1200px;
-  /* text-align: center; */
-  background-image: url("../picture/chun.jpg");
-  background-repeat: repeat;
-  background-size: 100% 100%;
+#body{
+  background-image: url("/static/picture/chun.jpg");
+  width: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
   background-attachment: fixed;
+  background-size: cover;
+  z-index: -1;
+  transition: unset;
 }
 
 /* 鎴戞槸涓�鏉＄嚎 */

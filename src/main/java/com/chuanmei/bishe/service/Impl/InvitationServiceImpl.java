@@ -15,7 +15,7 @@ public class InvitationServiceImpl implements InvitationService {
     private InvitationDao invitationDao;
 
     @Override
-    public boolean publishinvitation(Invitation invitation) {
+    public int publishinvitation(Invitation invitation) {
         return invitationDao.publishinvitation(invitation);
     }
 
@@ -25,7 +25,7 @@ public class InvitationServiceImpl implements InvitationService {
     }
 
     @Override
-    public Invitation lookinvitation(String number) {
+    public Invitation lookinvitation(int number) {
         return invitationDao.lookinvitation(number);
     }
 
@@ -42,5 +42,10 @@ public class InvitationServiceImpl implements InvitationService {
     @Override
     public List<Invitation> lookinvitations() {
         return invitationDao.lookinvitations();
+    }
+
+    @Override
+    public void updataText(String text, int number) {
+        invitationDao.updataText(text,number);
     }
 }

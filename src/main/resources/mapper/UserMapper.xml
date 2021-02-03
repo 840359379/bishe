@@ -5,11 +5,11 @@
     <update id="modify">
         UPDATE user
         <trim prefix="set" suffixOverrides=",">
-            <if test="name != null">name = #{name, jdbcType=VARCHAR}</if>
-            <if test="gender != null">gender = #{gender, jdbcType=VARCHAR}</if>
-            <if test="birthday != null">birthday = #{birthday, jdbcType=VARCHAR}</if>
-            <if test="mailbox != null">mailbox = #{mailbox, jdbcType=VARCHAR}</if>
-            <if test="personality != null">personality = #{personality, jdbcType=VARCHAR}</if>
+            <if test="name != null">name = #{name, jdbcType=VARCHAR} ,</if>
+            <if test="gender != null">gender = #{gender, jdbcType=VARCHAR} ,</if>
+            <if test="birthday != null">birthday = #{birthday, jdbcType=VARCHAR} ,</if>
+            <if test="mailbox != null">mailbox = #{mailbox, jdbcType=VARCHAR} ,</if>
+            <if test="personality != null">personality = #{personality, jdbcType=VARCHAR} ,</if>
             <if test="portrait != null">portrait = #{portrait, jdbcType=VARCHAR}</if>
         </trim>
         WHERE account = #{account, jdbcType=VARCHAR} LIMIT 1

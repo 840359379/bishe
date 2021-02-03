@@ -36,6 +36,7 @@ public class HomepageController {
         model.addAttribute("user",user);
         model.addAttribute("follow",followService.lookfollow(user.getAccount()).size());
         model.addAttribute("coverfollow",followService.coverlookfollow(user.getAccount()).size());
+        model.addAttribute("myinvitation",invitationService.lookmyinvitations(user.getAccount()));
         return "homepage";
     }
 

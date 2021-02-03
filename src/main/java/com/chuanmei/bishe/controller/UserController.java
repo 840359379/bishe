@@ -35,4 +35,18 @@ public class UserController {
         user.setPassword("******");
         return new CommonResult(200,"登录成功", user);
     }
+
+    @PostMapping(value = "updateuser")
+    public @ResponseBody CommonResult updateuser(User user,HttpServletRequest request){
+        User old = (User) request.getSession().getAttribute("user");
+        user.setAccount(old.getAccount());
+        boolean post = userService.modify(user);
+        if(!post){
+            return new CommonResult(404,"修改失败",post);
+        }
+        User newUser= userService.chaname(user.getAccount());
+        newUser.setPassword("******");
+        request.getSession().setAttribute("user", newUser);
+        return new CommonResult(200,"修改成功",post);
+    }
 }

@@ -1,17 +1,22 @@
+#body{
+  background-image: url("../picture/dong_3.jpg");
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  z-index: -1;
+  transition: unset;
+}
+
 #top {
   width: 100%;
   height: 100px;
 }
 
-.da {
-  /* width: 1319px; */
-  height: 1200px;
-  /* text-align: center; */
-  background-image: url("../picture/dong_3.jpg");
-  background-size: 100% 100%;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+.da{
+  position: relative;
 }
+
 /* 标题 */
 .peak {
   /* text-align: center; */
@@ -95,33 +100,38 @@ ul {
 .subject {
   display: inline-block;
 }
+/*图像框*/
 .horn {
-  position: relative;
+  vertical-align: top;
+  display: inline-block;
   bottom: 250px;
   left: 450px;
   width: 200px;
+  margin: 0 0 0 20%;
 }
+/*文字框*/
+important_ul{
+  display: inline-block;
+}
+
 .portrait {
   width: 180px;
   height: 180px;
 }
+
 .personality {
   font-size: 13px;
 }
-.change {
-  position: relative;
-  bottom: 230px;
-  left: 650px;
-}
+
 .unconventional {
-  position: relative;
-  bottom: 527px;
+  position: absolute;
+  bottom: -260%;
 }
 
 .cancel {
   position: relative;
-  bottom: 290px;
-  left: 557px;
+  bottom: 30%;
+  left: 85%;
 }
 
 /* 我的帖子的区域 */

@@ -1,17 +1,17 @@
 package com.chuanmei.bishe.model;
 
 public class Invitation {
-	private String number;
+	private int number;
 	private String account;
 	private String time;
 	private String title;
-	private String Subtitle;
+	private String subtitle;
 	private String text;
 	private String name;
-	public String getNumber() {
+	public int getNumber() {
 		return number;
 	}
-	public void setNumber(String number) {
+	public void setNumber(int number) {
 		this.number = number;
 	}
 	public String getAccount() {
@@ -33,10 +33,10 @@ public class Invitation {
 		this.title = title;
 	}
 	public String getSubtitle() {
-		return Subtitle;
+		return subtitle;
 	}
 	public void setSubtitle(String subtitle) {
-		Subtitle = subtitle;
+		this.subtitle = subtitle;
 	}
 	public String getText() {
 		return text;
@@ -50,14 +50,14 @@ public class Invitation {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Invitation(String number, String account, String time, String title, String subtitle, String text,
+	public Invitation(int number, String account, String time, String title, String subtitle, String text,
                       String name) {
 		super();
 		this.number = number;
 		this.account = account;
 		this.time = time;
 		this.title = title;
-		Subtitle = subtitle;
+		this.subtitle = subtitle;
 		this.text = text;
 		this.name = name;
 	}
@@ -68,7 +68,7 @@ public class Invitation {
 	@Override
 	public String toString() {
 		return "Invitation [number=" + number + ", account=" + account + ", time=" + time + ", title=" + title
-				+ ", Subtitle=" + Subtitle + ", text=" + text + ", name=" + name + "]";
+				+ ", subtitle=" + subtitle + ", text=" + text + ", name=" + name + "]";
 	}
 	
 	

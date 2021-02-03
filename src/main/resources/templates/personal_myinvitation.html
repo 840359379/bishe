@@ -10,7 +10,7 @@
     <script th:src="@{/static/js/jquery-3.5.0.min.js}" defer></script>
     <script th:src="@{/static/bootstrap-4.4.1-dist/js/bootstrap.js}" defer></script>
     <script th:src="@{/static/js/newborn.js}"></script>
-    <script th:src="@{/static/js/personal_fans.js}"></script>
+    <script th:src="@{/static/js/personal_myinvitation.js}"></script>
     <link rel="stylesheet" th:href="@{/static/css/personal.css}" />
   </head>
   <body id="body">
@@ -110,19 +110,46 @@
       </div>
 
       <div class="container">
-        <div class="row">
-          <div class="col-md-3 important_invitation_id0">
-            <div class="user">
-              <img class="portrait" th:src="${user.portrait}" />
-              <p class="name" th:text="${user.name}"></p>
-              <p class="personality" th:text="${user.personality}"></p>
+          <div class="row">
+            <div class="col-md-3 important_invitation_id0">
+              <div class="user">
+                <img class="portrait" th:src="${user.portrait}" />
+                <p class="name" th:text="${user.name}"></p>
+                <p class="personality" th:text="${user.personality}"></p>
+              </div>
+
+              <div class="basic user">
+                <div class="basics">
+                  <p class="basics_zi">贴数</p>
+                  <div class="line_2"></div>
+                  <p class="basics_ge" id="invitation" th:text="${myinvitation.size()}">0</p>
+                </div>
+                <div class="basics">
+                  <p class="basics_zi">关注</p>
+                  <div class="line_2"></div>
+                  <p class="basics_ge" th:text="${follow}">0</p>
+                </div>
+                <div class="basics">
+                  <p class="basics_zi">粉丝</p>
+                  <div class="line_2"></div>
+                  <p class="basics_ge" th:text="${coverfollow}">0</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 important_invitation_id1" id="invitation_area" >
+              <div class="number" id="number" onclick="lookinvitation()" th:each="invitation:${myinvitation}">
+                <img th:src="${user.portrait}" class="portrait format"/>
+                <div class="user_1">
+                  <div class="name" th:text="${user.name}"></div>
+                  <div class="time" th:text="${invitation.time}"></div>
+                </div>
+                <h3 th:text="${invitation.title}"></h3>
+                <p th:text="${invitation.subtitle}"></p>
+              </div>
             </div>
           </div>
-
-          <div class="col-md-6 important_invitation_id1" id="invitation_area">
-          </div>
         </div>
-      </div>
     </div>
   </body>
 </html>

@@ -2,19 +2,6 @@ window.onload = function () {
   ajax_invitation();
 };
 
-//填充用户数据
-function data_uesr(uesr, my) {
-  //	console.log(uesr);
-  var changes = document.getElementsByName("changes");
-  if (uesr) {
-    document.getElementById("state").innerHTML = my.name;
-    document.getElementById("state_enroll").innerHTML = "退出登录";
-    document.getElementById("name").innerHTML = uesr.name;
-    document.getElementById("portrait").src = uesr.portrait;
-    document.getElementById("personality").innerHTML = uesr.personality;
-  }
-}
-
 //文章注入
 function data_invittation(data) {
   //  console.log(data);
@@ -52,7 +39,6 @@ function ajax_invitation() {
       success: function (data) {
         //       console.log(data);
         data_invittation(data.invitation);
-        data_uesr(data.user, data.my);
         data_good(data.goods, data.my);
       },
       error: function () {

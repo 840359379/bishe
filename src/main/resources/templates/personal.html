@@ -14,33 +14,31 @@
     <script th:src="@{/static/js/personal.js}"></script>
     <link rel="stylesheet" th:href="@{/static/css/personal.css}" />
   </head>
-  <body>
-    <nav
-      class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark"
-    >
-      <a class="navbar-brand" href="#" id="state">未登录</a>
+  <body id="body">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
+      <a class="navbar-brand" href="#" th:text="${user.name}">未登录</a>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="homepage.jsp"
-              >首页<span class="sr-only">(current)</span></a
-            >
+            <a class="nav-link" href="/blog/homepage/index">
+              首页<span class="sr-only">(current)</span>
+            </a>
           </li>
           <li class="nav-item active">
-            <a class="nav-link" href="personal.html">个人中心</a>
+            <a class="nav-link" href="/blog/personal/index">个人中心</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="personal_invitation.html">发帖</a>
+            <a class="nav-link" href="/blog/personal/invitation">发帖</a>
           </li>
           <li class="nav-item dropdown">
             <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="navbarDropdown"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
             >
               其他
             </a>
@@ -48,9 +46,7 @@
               <a class="dropdown-item" href="#">收藏</a>
               <a class="dropdown-item" href="#">留言板</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" id="state_enroll" href="../state"
-                >登录</a
-              >
+              <a class="dropdown-item" id="state_enroll" href="#">退出登录</a>
             </div>
           </li>
           <!-- <li class="nav-item">
@@ -65,11 +61,11 @@
         </ul>
         <form class="form-inline my-2 my-lg-0" action="search.html">
           <input
-            class="form-control mr-sm-2"
-            name="search"
-            type="search"
-            placeholder="查找帖子"
-            aria-label="查找帖子"
+                  class="form-control mr-sm-2"
+                  name="search"
+                  type="search"
+                  placeholder="查找帖子"
+                  aria-label="查找帖子"
           />
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
             搜索
@@ -80,71 +76,70 @@
 
     <div class="da">
       <div class="peak">
-        <h4 class="name"></h4>
-        <p class="personality"></p>
+        <h4 class="name" th:text="${user.name}"></h4>
+        <p class="personality" th:text="${user.personality}"></p>
         <svg
-          class="bi bi-house-door-fill tu"
-          width="4em"
-          height="4em"
-          viewBox="0 0 20 20"
-          fill="currentColor"
-          xmlns="http://www.w3.org/2000/svg"
+                class="bi bi-house-door-fill tu"
+                width="4em"
+                height="4em"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                xmlns="http://www.w3.org/2000/svg"
         >
           <path
-            d="M6.5 10.995V14.5a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5V11c0-.25-.25-.5-.5-.5H7c-.25 0-.5.25-.5.495z"
+                  d="M6.5 10.995V14.5a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5h-4a.5.5 0 0 1-.5-.5V11c0-.25-.25-.5-.5-.5H7c-.25 0-.5.25-.5.495z"
           />
           <path
-            fill-rule="evenodd"
-            d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"
-            clip-rule="evenodd"
+                  fill-rule="evenodd"
+                  d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"
+                  clip-rule="evenodd"
           />
         </svg>
       </div>
 
       <div class="navigation">
         <ul class="navigation_ul">
-          <li class="navigations"><a href="personal.html">个人信息</a></li>
-          <li class="navigations"><a href="personal_1.html">我的帖子</a></li>
+          <li class="navigations"><a href="/blog/personal/index">个人信息</a></li>
+          <li class="navigations"><a href="/blog/personal/my/invitation">我的帖子</a></li>
           <li class="navigations"><a>我的收藏</a></li>
           <li class="navigations">
-            <a href="personal_invitation.html">发帖子</a>
+            <a href="/blog/personal/invitation">发帖子</a>
           </li>
-          <li class="navigations"><a href="personal_follow.html">关注</a></li>
-          <li class="navigations"><a href="personal_fans.html">粉丝</a></li>
+          <li class="navigations"><a href="/blog/personal/fans">关注</a></li>
+          <li class="navigations"><a href="/blog/personal/follow">粉丝</a></li>
         </ul>
       </div>
 
-      <div class="important">
+      <div class="important unconventional">
         <p class="wodexinxi">我的信息</p>
         <div class="line"></div>
         <ul class="important_ul">
           <li class="important_li">
             <p class="subject">称昵:</p>
-            <p class="name subject"></p>
+            <p class="name subject" th:text="${user.name}"></p>
           </li>
           <li class="important_li">
             <p class="subject">邮箱:</p>
-            <p class="subject" id="mailbox"></p>
+            <p class="subject" id="mailbox" th:text="${user.mailbox}"></p>
           </li>
           <li class="important_li">
             <p class="subject">性别:</p>
-            <p class="subject" id="gender"></p>
+            <p class="subject" id="gender" th:text="${user.gender}"></p>
           </li>
           <li class="important_li">
             <p class="subject">生日:</p>
-            <p class="subject" id="birthday"></p>
+            <p class="subject" id="birthday" th:text="${user.birthday.substring(0,10)}"></p>
           </li>
         </ul>
 
         <div class="horn">
-          <img class="portrait" src="" />
-          <p class="personality"></p>
+          <img class="portrait" th:src="${user.portrait}" />
+          <p class="personality" th:text="${user.personality}"></p>
         </div>
         <button
           type="button"
-          class="btn btn-secondary change"
-          onclick="modify()"
-        >
+          class="btn btn-secondary"
+          onclick="modify()">
           修改信息
         </button>
       </div>
@@ -155,44 +150,38 @@
         <ul class="important_ul">
           <li class="important_li">
             <p class="subject">称昵:</p>
-            <input type="text" name="changes" id="change_1" />
+            <input type="text" name="changes" id="change_1" th:value="${user.name}"/>
             <p class="change_vice visibility_none">称昵填写不符合规范</p>
           </li>
           <li class="important_li">
             <p class="subject">邮箱:</p>
-            <input type="text" name="changes" id="change_2" />
+            <input type="text" name="changes" id="change_2" th:value="${user.mailbox}"/>
             <p class="change_vice visibility_none">邮箱填写不符合规范</p>
           </li>
           <li class="important_li">
             <p class="subject">性别:</p>
-            <input type="text" name="changes" id="change_3" />
+            <input type="text" name="changes" id="change_3" th:value="${user.gender}"/>
             <p class="change_vice visibility_none">性别填写不符合规范</p>
           </li>
           <li class="important_li">
             <p class="subject">生日:</p>
-            <input type="text" name="changes" id="change_4" />
+            <input type="text" name="changes" id="change_4" th:value="${user.birthday.substring(0,10)}"/>
             <p class="change_vice visibility_none">生日填写不符合规范</p>
           </li>
         </ul>
 
         <div class="horn">
-          <img class="portrait" src="" />
-          <input type="text" name="changes" />
+          <img class="portrait" th:src="${user.portrait}" />
+          <input type="text" name="changes" th:value="${user.personality}"/>
         </div>
         <button
           type="button"
-          class="btn btn-secondary change"
-          onclick="submission()"
-        >
-          确认修改
-        </button>
+          class="btn btn-secondary"
+          onclick="submission()">确认修改</button>
         <button
           type="button"
           class="btn btn-primary cancel"
-          onclick="invisible()"
-        >
-          取消
-        </button>
+          onclick="invisible()">取消</button>
       </div>
     </div>
   </body>

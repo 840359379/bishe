@@ -33,26 +33,10 @@ function post_area_entity(data) {
 
 //看帖子转发连接
 function lookinvitation() {
-  var url = `http://localhost:8080/maven/core/article.html?id=${this.id}`;
+  var url = `http://127.0.0.1:8080/blog/invitation/look/invitation?number=${this.id}`;
   window.open(url);
 }
 
-
-//
-function data_myinvitation(myinvitations) {
-  if (myinvitations) {
-    //		  console.log(myinvitations);
-    document.getElementById("invitation").innerHTML = myinvitations.length;
-    myinvitations.forEach((item, indes) => {
-      var li = newli(
-        document.getElementById("myinvitations"),
-        "list-group-item"
-      );
-      newp(li, "my_0_name", item.title);
-      newp(li, "my_0_data", item.time);
-    });
-  }
-}
 
 function ajax_invitation() {
   $.ajax({
@@ -62,7 +46,6 @@ function ajax_invitation() {
     success: function (data) {
       // console.log(data);
       post_area_entity(data.data);
-      // data_myinvitation(data["myinvitations"]);
     },
     error: function () {
       //请求出错处理
