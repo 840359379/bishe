@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/static/bootstrap-4.4.1-dist/css/bootstrap.css}" type="text/css"/>
+    <script th:src="@{/static/js/jquery-3.5.0.min.js}" defer type="text/javascript"></script>
+    <script th:src="@{/static/bootstrap-4.4.1-dist/js/bootstrap.js}" defer type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/collection.css}">
+    <script th:src="@{/static/js/collection.js}" defer type="text/javascript"></script>
+</head>
+<body id="body">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
+    <a class="navbar-brand" href="#" id="state"></a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/blog/homepage/index">首页<span class="sr-only">(current)</span></a
+                >
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/blog/personal/index">个人中心</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="/blog/personal/invitation">发帖</a>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a
+                        class="nav-link dropdown-toggle"
+                        href="#"
+                        id="navbarDropdown"
+                        role="button"
+                        data-toggle="dropdown"
+                        aria-haspopup="true"
+                        aria-expanded="false"
+                >
+                    其他
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="/blog/collection/index">收藏</a>
+                    <a class="dropdown-item" href="#">留言板</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" id="state_enroll" href="../state"
+                    >退出登录</a
+                    >
+                </div>
+            </li>
+            <!-- <li class="nav-item">
+              <a
+                class="nav-link disabled"
+                href="#"
+                tabindex="-1"
+                aria-disabled="true"
+                >Disabled</a
+              >
+            </li> -->
+        </ul>
+        <form class="form-inline my-2 my-lg-0" action="search.html">
+            <input
+                    class="form-control mr-sm-2"
+                    name="search"
+                    type="search"
+                    placeholder="查找帖子"
+                    aria-label="查找帖子"
+            />
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                搜索
+            </button>
+        </form>
+    </div>
+</nav>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-7 invitation_main">
+                2 of 3 (wider)
+            </div>
+            <div class="col-3 user_main">
+                <!--       图边框         -->
+                <div class="card group">
+                    <div class="card-body">
+                        <div class="card-div">
+                            <img th:src="@{/static/picture/840359379.jpg}" class="card-img">
+                            <p>发表文章</p>
+                        </div>
+                        <div class="card-div">
+                            <img th:src="@{/static/picture/840359379.jpg}" class="card-img">
+                            <p>发表随想</p>
+                        </div>
+                        <div class="card-div">
+                            <img th:src="@{/static/picture/840359379.jpg}" class="card-img">
+                            <p>我的贴子</p>
+                        </div>
+                        <div class="boring">
+                            <p>萌萌哒</p>
+                            <p>愚蠢哒</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card group">
+                    <div class="card-body">
+                        <div class="capricio">
+                            <p>随想等级</p>
+                            <p style="color: #117a8b">lv
+                                <p th:text="5" style="color: #117a8b"></p>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="yesterday" style="text-align: center;">
+                        <div class="">
+                            <p>昨日被点赞数</p>
+                            <b>2</b>
+                        </div>
+                        <div class="line "></div>
+                        <div class="">
+                            <p>昨日新增粉丝</p>
+                            <b>2</b>
+                        </div>
+                    </div>
+
+                    <p id="shield">铠甲勇士刑天为你提供持续保护</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

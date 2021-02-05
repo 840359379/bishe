@@ -33,4 +33,9 @@ public class FollowServiceImpl implements FollowService {
     public List<Follow> coverlookfollow(String account) {
         return followDao.coverlookfollow(account);
     }
+
+    @Override
+    public boolean selectFollow(Follow follow) {
+        return followDao.selectFollow(follow);
+    }
 }

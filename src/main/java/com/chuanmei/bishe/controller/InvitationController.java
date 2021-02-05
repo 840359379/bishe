@@ -6,17 +6,18 @@ import com.chuanmei.bishe.model.Invitation;
 import com.chuanmei.bishe.model.User;
 import com.chuanmei.bishe.service.InvitationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ClassUtils;
+import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 
 @Controller
@@ -26,6 +27,13 @@ public class InvitationController {
     @Autowired
     private InvitationService invitationService;
 
+    /**
+     *  发一个帖子
+     * @param invitation
+     * @param request
+     * @return
+     * @throws IOException
+     */
     @PostMapping(value = "/addInvitation")
     public @ResponseBody CommonResult addInvitation(Invitation invitation, HttpServletRequest request) throws IOException {
         User user = (User) request.getSession().getAttribute("user");
@@ -37,20 +45,43 @@ public class InvitationController {
 //        String fileDirPath = new String("src/main/resources/" + 111);
 //        File fileDir = new File(fileDirPath);
 //        String absolutePath = fileDir.getAbsolutePath();
+        String basePath = ResourceUtils.getURL("classpath:").getPath() + "static/upload/";
         String filepath = ClassUtils.getDefaultClassLoader().getResource("static/txt/").getPath() + invitation.getNumber() + ".txt";
         File file = new File(filepath);
         FileWriter fw = new FileWriter(file);
         fw.write(text);
         fw.close();
         invitationService.updataText(filepath,invitation.getNumber());
-        return new CommonResult(200,"成功",true);
+        return new CommonResult(200,"成功",invitation.getNumber());
     }
 
+    /**
+     * 查看一个文章
+     * @param request
+     * @param model
+     * @param number
+     * @return
+     * @throws IOException
+     */
     @GetMapping(value = "look/invitation")
-    public String lookInvitation(HttpServletRequest request, Model model, int number){
+    public String lookInvitation(HttpServletRequest request, Model model, int number) throws IOException {
         User user = (User) request.getSession().getAttribute("user");
+        Invitation invitation = invitationService.lookinvitation(number);
+        //读出文章
+        FileInputStream fileInputStream = new FileInputStream(invitation.getText());
+        InputStreamReader reader = new InputStreamReader(fileInputStream, StandardCharsets.UTF_8);
+        BufferedReader buffReader = new BufferedReader(reader);
+        String strTmp = "";
+        String count = "";
+        while((strTmp = buffReader.readLine()) != null){
+            count  += strTmp;
+        }
+        buffReader.close();
+        fileInputStream.close();
+        //返回值
+        invitation.setText(count);
         model.addAttribute("user",user);
-        model.addAttribute("invitation",invitationService.lookinvitation(number));
+        model.addAttribute("invitation",invitation);
         return "article";
     }
 }

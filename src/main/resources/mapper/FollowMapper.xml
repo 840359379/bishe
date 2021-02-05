@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chuanmei.bishe.dao.FollowDao">
-    <insert id="addfollow"></insert>
-    <delete id="deletefollow"></delete>
+    <insert id="addfollow">
+        INSERT INTO follow
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            account,
+            coveraccount,
+            <if test="name != null">name,</if>
+            <if test="covername != null">covername</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{account, jdbcType=VARCHAR} ,
+            #{coveraccount, jdbcType=VARCHAR},
+            <if test="name != null">#{name, jdbcType=VARCHAR},</if>
+            <if test="covername != null">#{covername, jdbcType=VARCHAR}</if>
+        </trim>
+    </insert>
+    <delete id="deletefollow">
+        DELETE
+        FROM follow
+        WHERE account = #{account, jdbcType = VARCHAR} AND
+              coveraccount = #{coveraccount, jdbcType = VARCHAR} LIMIT 1
+    </delete>
     <select id="lookfollow" resultType="com.chuanmei.bishe.model.Follow">
         SELECT *
         FROM follow
@@ -12,5 +31,11 @@
         SELECT *
         FROM follow
         WHERE coveraccount = #{coveraccount, jdbcType = VARCHAR}
+    </select>
+    <select id="selectFollow" resultType="java.lang.Boolean">
+        SELECT count(*)
+        FROM follow
+        WHERE account = #{account, jdbcType = VARCHAR} AND
+            coveraccount = #{coveraccount, jdbcType = VARCHAR} LIMIT 1
     </select>
 </mapper>

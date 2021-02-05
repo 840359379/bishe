@@ -5,7 +5,7 @@ window.onload = function () {
 function send() {
   var title = document.getElementById("title").value;
   var subtitle = document.getElementById("subtitle").value;
-  var content = document.getElementById("content").innerHTML;
+  var content = document.getElementById("content").innerHTML.replace(/<[^>]+>/g," ");
   console.log(content);
   $.ajax({
     type: "POST",
@@ -13,8 +13,8 @@ function send() {
     data: { title: title, subtitle: subtitle, text: content },
     dataType: "json", //返回的数据类型格式
     success: function (data) {
-      if (data.data) {
-        alert("提交成功");
+      if (data.code === 200) {
+        window.open(`http://127.0.0.1:8080/blog/invitation/look/invitation?number=${data.data}`);
       } else {
         alert("提交失败");
       }

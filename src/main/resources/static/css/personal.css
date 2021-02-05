@@ -157,6 +157,26 @@ important_ul{
   margin: 7px;
 }
 
+#move{}
+
+.shape{
+  padding: 5%;
+}
+
+.shape .col-6{
+  padding: 1%;
+}
+
+.shape .col-6 div{
+  padding: 5% 0;
+  height: 50%;
+}
+
+.jiu{
+  width: 100%;
+  height: 100%;
+}
+
 /* 粉丝去 */
 .basic {
   height: 90px;
@@ -260,6 +280,6 @@ important_ul{
   margin: 0 30% 0 0;
   display: inline-block;
 }
-/* .follow_button {
-  border-radius: 10px;
-} */
+.follow_button {
+  margin: 0 2%;
+}

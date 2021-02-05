@@ -2,14 +2,6 @@ window.onload = function () {
   ajax_invitation();
 };
 
-//文章注入
-function data_invittation(data) {
-  //  console.log(data);
-  document.getElementById("number").innerHTML = `【标题】${data.title}`;
-  document.getElementById("time").innerHTML = `发表于 ${data.time}`;
-  document.getElementById("text").innerHTML = data.text;
-}
-
 function data_good(data, my) {
   document.getElementById("good").innerHTML = `${data.length} 人赞同`;
   data.forEach((element) => {
@@ -19,32 +11,4 @@ function data_good(data, my) {
       );
     }
   });
-}
-
-function ajax_invitation() {
-  var id = window
-    .decodeURIComponent(window.location.search)
-    .slice(1)
-    .split("&")[0]
-    .split("=")[1];
-  //  console.log(id);
-  if (id) {
-    $.ajax({
-      tyep: "get",
-      url: "http://localhost:8080/maven/article/look",
-      //    contentType: "application/x-www-form-urlencoded",
-      contentType: "application/json;charset=UTF-8",
-      data: { id: id },
-      dataType: "json", //返回的数据类型格式
-      success: function (data) {
-        //       console.log(data);
-        data_invittation(data.invitation);
-        data_good(data.goods, data.my);
-      },
-      error: function () {
-        //未登录的时候
-        alert("未登录，或则登录已过期");
-      },
-    });
-  }
 }

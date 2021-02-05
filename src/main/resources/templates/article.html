@@ -86,19 +86,19 @@
             </div>
 
             <div id="user">
-              <img src="../picture/tou.jpg" id="portrait" />
-              <p id="name"></p>
-              <p id="personality"></p>
+              <img th:src="${user.portrait}" id="portrait" />
+              <p id="name" th:text="${user.name}"></p>
+              <p id="personality" th:text="${user.personality}"></p>
             </div>
 
             <div id="invittation">
-              <h3 id="number"></h3>
+              <h3 id="number" th:text="${invitation.title}"></h3>
               <div class="xian"></div>
               <div id="time_fa">
                 <span>楼主</span>
-                <p id="time"></p>
+                <p th:text="${invitation.time}"></p>
               </div>
-              <p id="text"></p>
+              <p th:text="${invitation.text}"></p>
               <div class="good_fa">
                 <svg
                   class="bi bi-heart-fill"

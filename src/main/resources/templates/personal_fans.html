@@ -104,17 +104,17 @@
           <li class="navigations">
             <a href="/blog/personal/invitation">发帖子</a>
           </li>
-          <li class="navigations"><a href="/blog/personal/fans">关注</a></li>
-          <li class="navigations"><a href="/blog/personal/follow">粉丝</a></li>
+          <li class="navigations"><a href="/blog/personal/follow">关注</a></li>
+          <li class="navigations"><a href="/blog/personal/fans">粉丝</a></li>
         </ul>
       </div>
 
       <div class="container">
         <div class="row">
           <div class="col-md-3 important_invitation_id0">
-            <div class="user">
+            <div class="user" id="material" th:account="${user.account}">
               <img class="portrait" th:src="${user.portrait}" />
-              <p class="name" th:text="${user.name}"></p>
+              <p class="name" id="name" th:text="${user.name}"></p>
               <p class="personality" th:text="${user.personality}"></p>
             </div>
           </div>

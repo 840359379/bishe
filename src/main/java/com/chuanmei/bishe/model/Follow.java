@@ -34,5 +34,11 @@ public class Follow {
 		return "Follow [account=" + account + ", coveraccount=" + coveraccount + ", name=" + name + ", covername="
 				+ covername + "]";
 	}
-	
+
+	public Follow(String account, String coveraccount, String name, String covername) {
+		this.account = account;
+		this.coveraccount = coveraccount;
+		this.name = name;
+		this.covername = covername;
+	}
 }

@@ -104,8 +104,8 @@
           <li class="navigations">
             <a href="/blog/personal/invitation">发帖子</a>
           </li>
-          <li class="navigations"><a href="/blog/personal/fans">关注</a></li>
-          <li class="navigations"><a href="/blog/personal/follow">粉丝</a></li>
+          <li class="navigations"><a href="/blog/personal/follow">关注</a></li>
+          <li class="navigations"><a href="/blog/personal/fans">粉丝</a></li>
         </ul>
       </div>
 
@@ -135,10 +135,32 @@
                   <p class="basics_ge" th:text="${coverfollow}">0</p>
                 </div>
               </div>
+
+
+              <div class="container card">
+                <div class="row shape card-body">
+                  <div class="col-6">
+                    <div class="bg-primary">难过</div>
+                    <div class="bg-warning">幸福</div>
+                  </div>
+                  <div class="col-4">
+                    <div class="bg-info jiu"></div>
+                  </div>
+
+                  <div class="col-4">
+                    <div class="bg-secondary jiu"></div>
+                  </div>
+                  <div class="col-6">
+                    <div class="bg-dark">旅行</div>
+                    <div class="bg-danger">耍宝</div>
+                  </div>
+                </div>
+              </div>
+
             </div>
 
             <div class="col-md-6 important_invitation_id1" id="invitation_area" >
-              <div class="number" id="number" onclick="lookinvitation()" th:each="invitation:${myinvitation}">
+              <div class="number" th:id="${invitation.number}" onclick="lookinvitation(this)" th:each="invitation:${myinvitation}">
                 <img th:src="${user.portrait}" class="portrait format"/>
                 <div class="user_1">
                   <div class="name" th:text="${user.name}"></div>

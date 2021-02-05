@@ -4,16 +4,36 @@ window.onload = function () {
 
 // 关注的人的属性注入
 function data_follow(follow) {
-  // console.log(follow);
   if (follow) {
     follow.forEach((element) => {
-      var fa = newdiv(document.getElementById("invitation_area"), "follow");
-      fa.id = follow.a
+      let fa = newdiv(document.getElementById("invitation_area"), "follow");
+      fa.id = element.coveraccount;
       newimg(fa, "follow_format", "/static/picture/zhang.jpg");
       newp(fa, "follow_name", element.covername);
-      newbutton(fa, "btn btn-success follow_button", "回关");
+      let button_follow = newbutton(fa, "btn btn-success follow_button", "取关");
+      button_follow.onclick = ajaxDeleteFollow;
     });
   }
+}
+//取关操作
+function ajaxDeleteFollow(){
+  let id = this.parentNode.id;
+  $.ajax({
+    type: "POSt",
+    url: "http://127.0.0.1:8080/blog/follow/delete/follow",
+    data: {coveraccount:id,account:$("#material").attr("account")},
+    dataType: "json",
+    success:function (data){
+      if(data.code === 200){
+        location.reload()
+      }else {
+        alert("修改失败");
+      }
+    },error: function () {
+      //请求出错处理
+      alert("数据请求失败");
+    }
+  })
 }
 
 function ajax_invitation() {

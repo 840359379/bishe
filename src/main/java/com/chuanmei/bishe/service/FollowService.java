@@ -13,4 +13,6 @@ public interface FollowService {
     public List<Follow> lookfollow(String account);
     //查看粉丝
     public List<Follow> coverlookfollow(String account);
+    //查看是否存在此关注
+    public boolean selectFollow(Follow follow);
 }

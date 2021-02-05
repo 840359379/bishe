@@ -1,0 +1,75 @@
+.invitation_main{
+    margin: 5% 1% 0 5%;
+    background: #0c5460;
+}
+
+.user_main{
+    margin: 5% 5% 0 1%;
+}
+
+/*竖线*/
+.line{
+    height: 50px;
+
+    border: #ADD8E6 1px solid;
+}
+
+
+/*资料组的样式*/
+.group{
+    margin: 0 0 15% 0;
+}
+
+
+/*图标区的样式*/
+.card-div{
+    text-align: center;
+    margin: 2.5%;
+    width: 25%;
+    display:inline-block;
+}
+
+.card-div p{
+    color: #222222;
+    font-size: 5%;
+    margin: 20% 0 0 0;
+}
+
+.card-img{
+    width: 100%;
+    height: 100%;
+}
+
+/*关于无聊的央视*/
+.boring{
+    text-align: center;
+}
+
+.boring p{
+    color: #4682B4;
+    font-size: 100%;
+    margin: 10% 10% 0 10%;
+    display:inline-block;
+}
+
+.capricio p{
+    margin: 0 2% 0 0;
+    display:inline-block;
+}
+
+/*昨日的样式*/
+.yesterday div{
+    margin: 0 3%;
+    display:inline-block;
+}
+
+.yesterday div p{
+    color: #5F9EA0;
+    font-size: 80%;
+}
+
+#shield{
+    color: #5F9EA0;
+    margin: 10% 10% 3% 10%;
+    font-size: 80%;
+}
