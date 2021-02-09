@@ -6,6 +6,9 @@ import com.chuanmei.bishe.service.GoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -15,22 +18,37 @@ public class GoodServiceImpl implements GoodService {
     private GoodDao goodDao;
 
     @Override
-    public boolean addgood(String number, String account) {
-        return goodDao.addgood(number,account);
+    public boolean addgood(Good good) {
+        return goodDao.addGood(good);
     }
 
     @Override
-    public boolean deletegood(String number, String account) {
-        return goodDao.deletegood(number,account);
+    public boolean updategood(Good good) {
+        return goodDao.updataGood(good);
     }
 
     @Override
     public List<Good> lookgoodat(String account) {
-        return goodDao.lookgoodat(account);
+        return goodDao.lookGoodat(account);
     }
 
     @Override
     public List<Good> lookgoodnr(String number) {
-        return goodDao.lookgoodnr(number);
+        return goodDao.lookGoodnr(number);
+    }
+
+    @Override
+    public Good selectGood(int number, String account) {
+        return goodDao.selectGood(number,account);
+    }
+
+    @Override
+    public int yesterdayGood(String account) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE, -1); //得到前一天
+        Date date = calendar.getTime();
+        String startTime = new SimpleDateFormat("yyyy-MM-dd 00:00:00").format(date);
+        String endTime = new SimpleDateFormat("yyyy-MM-dd 23:59:59").format(date);
+        return goodDao.yesterdayGood(account,startTime,endTime);
     }
 }

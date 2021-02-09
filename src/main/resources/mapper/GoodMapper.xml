@@ -2,16 +2,39 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chuanmei.bishe.dao.GoodDao">
 
-    <insert id="addgood"></insert>
-    <delete id="deletegood"></delete>
-    <select id="lookgoodat" resultType="com.chuanmei.bishe.model.Good">
+    <insert id="addGood">
+        INSERT INTO good(number,account,situation)
+        values (#{number, jdbcType = INTEGER},#{account, jdbcType = VARCHAR},#{situation, jdbcType = INTEGER})
+    </insert>
+
+    <update id="updataGood">
+        UPDATE good
+        SET situation = #{situation, jdbcType = INTEGER}
+        WHERE account = #{account, jdbcType = VARCHAR} AND number = #{number, jdbcType = INTEGER}
+    </update>
+
+    <select id="lookGoodat" resultType="com.chuanmei.bishe.model.Good">
         SELECT *
         FROM good
-        WHERE account = #{account, jdbcType = VARCHAR}
+        WHERE account = #{account, jdbcType = VARCHAR} and situation = 1
     </select>
-    <select id="lookgoodnr" resultType="com.chuanmei.bishe.model.Good">
+
+    <select id="lookGoodnr" resultType="com.chuanmei.bishe.model.Good">
         SELECT *
         FROM good
-        WHERE number = #{number, jdbcType = VARCHAR}
+        WHERE number = #{number, jdbcType = INTEGER} and situation = 1
+    </select>
+
+    <select id="selectGood" resultType="com.chuanmei.bishe.model.Good">
+        SELECT *
+        FROM good
+        WHERE number = #{number, jdbcType = INTEGER} and account = #{account, jdbcType = VARCHAR}
+    </select>
+
+    <select id="yesterdayGood" resultType="java.lang.Integer">
+        SELECT COUNT(*)
+        FROM good g,invitation i
+        WHERE g.number = i.number AND i.account = #{account, jdbcType = VARCHAR} AND
+              g.start_time >= #{startTime,jdbcType = VARCHAR} AND  #{endTime,jdbcType = VARCHAR} >= g.start_time
     </select>
 </mapper>

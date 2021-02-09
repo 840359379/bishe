@@ -8,91 +8,135 @@
     <script th:src="@{/static/bootstrap-4.4.1-dist/js/bootstrap.js}" defer type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/static/css/collection.css}">
     <script th:src="@{/static/js/collection.js}" defer type="text/javascript"></script>
+    <script th:src="@{/static/js/confetti.js}" defer type="text/javascript"></script>
 </head>
 <body id="body">
+
+    <canvas id="canvas">
+    </canvas>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
-    <a class="navbar-brand" href="#" id="state"></a>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/blog/homepage/index">首页<span class="sr-only">(current)</span></a
-                >
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="/blog/personal/index">个人中心</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="/blog/personal/invitation">发帖</a>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a
-                        class="nav-link dropdown-toggle"
-                        href="#"
-                        id="navbarDropdown"
-                        role="button"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                >
-                    其他
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/blog/collection/index">收藏</a>
-                    <a class="dropdown-item" href="#">留言板</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" id="state_enroll" href="../state"
-                    >退出登录</a
+        <a class="navbar-brand" href="#" id="state"></a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/blog/homepage/index">首页<span class="sr-only">(current)</span></a
                     >
-                </div>
-            </li>
-            <!-- <li class="nav-item">
-              <a
-                class="nav-link disabled"
-                href="#"
-                tabindex="-1"
-                aria-disabled="true"
-                >Disabled</a
-              >
-            </li> -->
-        </ul>
-        <form class="form-inline my-2 my-lg-0" action="search.html">
-            <input
-                    class="form-control mr-sm-2"
-                    name="search"
-                    type="search"
-                    placeholder="查找帖子"
-                    aria-label="查找帖子"
-            />
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                搜索
-            </button>
-        </form>
-    </div>
-</nav>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog/personal/index">个人中心</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog/personal/invitation">发帖</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            id="navbarDropdown"
+                            role="button"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                    >
+                        其他
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/blog/collection/index">收藏</a>
+                        <a class="dropdown-item" href="/blog/message/index">留言板</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" id="state_enroll" href="../state"
+                        >退出登录</a
+                        >
+                    </div>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" action="search.html">
+                <input
+                        class="form-control mr-sm-2"
+                        name="search"
+                        type="search"
+                        placeholder="查找帖子"
+                        aria-label="查找帖子"
+                />
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                    搜索
+                </button>
+            </form>
+        </div>
+    </nav>
 
     <div class="container">
         <div class="row">
             <div class="col-7 invitation_main">
-                2 of 3 (wider)
+                <div class="card invitation-group" >
+                    <div class="card-body" id="invitation-time">
+                        <b>我的收藏</b>
+                        <p>创建时于</p>
+                        <p id="lookTime">2020-03-09</p>
+                    </div>
+                </div>
+                <div class="card invitation-group">
+                    <div class="card-body">
+                        <b th:text="${list.size()}"></b>
+                        <b>个收藏</b>
+                        <div th:id="${list.number}" class="invitation-list" th:each="list:${list}">
+                            <a onclick="lookinvitation(this)">
+                                <b th:text="${list.title}"></b>
+                                <p th:text="${list.subtitle}"></p>
+                            </a>
+                            <button type="button" class="btn btn-danger invitation-good" onclick="operationGood(this)" id="1">
+                                <img th:src="@{/static/picture/caret-up-fill.svg}">
+                                <p th:text="${list.good}"></p>
+                                <p th:text="${list.situation == 1 ? '已赞同' : '赞同'}"></p>
+                            </button>
+                            <button type="button" class="btn btn-secondary invitation-good" onclick="operationGood(this)" id="2">
+                                <img th:src="@{/static/picture/caret-down-fill.svg}">
+                                <p th:text="${list.situation == 2 ? '已反对' : '反对'}"></p>
+                            </button>
+                            <button type="button" class="btn btn-light grey invitation-good" onclick="lookinvitation(this)">
+                                <img th:src="@{/static/picture/chat-fill.svg}">
+                                <p style="color: #888888" th:text="${list.content}"></p>
+                                <p style="color: #888888">条评论</p>
+                            </button>
+                            <button type="button" class="btn btn-light grey invitation-good" onclick="collection(this)">
+                                <img th:src="@{/static/picture/star-fill.svg}">
+                                <p>取消收藏</p>
+                            </button>
+                            <button type="button" class="btn btn-light grey invitation-good" >
+                                <img th:src="@{/static/picture/flag-fill.svg}">
+                                <p>举报</p>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
             <div class="col-3 user_main">
                 <!--       图边框         -->
                 <div class="card group">
                     <div class="card-body">
                         <div class="card-div">
-                            <img th:src="@{/static/picture/840359379.jpg}" class="card-img">
-                            <p>发表文章</p>
+                            <a class="navbar-brand" href="/blog/personal/invitation">
+                                <img th:src="@{/static/picture/pencil.svg}"  class="card-img-user">
+                                <p>发表文章</p>
+                            </a>
                         </div>
                         <div class="card-div">
-                            <img th:src="@{/static/picture/840359379.jpg}" class="card-img">
-                            <p>发表随想</p>
+                            <a class="navbar-brand">
+                                <img th:src="@{/static/picture/slack.svg}" class="card-img-user">
+                                <p>发表随想</p>
+                            </a>
                         </div>
                         <div class="card-div">
-                            <img th:src="@{/static/picture/840359379.jpg}" class="card-img">
-                            <p>我的贴子</p>
+                            <a class="navbar-brand" href="/blog/personal/my/invitation">
+                                <img th:src="@{/static/picture/file-earmark-text.svg}" class="card-img-user">
+                                <p>我的贴子</p>
+                            </a>
                         </div>
                         <div class="boring">
                             <p>萌萌哒</p>
@@ -105,25 +149,90 @@
                     <div class="card-body">
                         <div class="capricio">
                             <p>随想等级</p>
-                            <p style="color: #117a8b">lv
-                                <p th:text="5" style="color: #117a8b"></p>
-                            </p>
+                            <p style="color: #117a8b">lv</p>
+                            <p th:text="5" style="color: #117a8b"></p>
+                            <img th:src="@{/static/picture/play.svg}">
                         </div>
                     </div>
 
                     <div class="yesterday" style="text-align: center;">
-                        <div class="">
+                        <div>
                             <p>昨日被点赞数</p>
-                            <b>2</b>
+                            <b id="yesterdayGood">2</b>
                         </div>
-                        <div class="line "></div>
-                        <div class="">
-                            <p>昨日新增粉丝</p>
-                            <b>2</b>
+                        <div class="line"></div>
+                        <div>
+                            <a href="/blog/personal/fans">
+                                <p>昨日新增粉丝</p>
+                                <b id="yesterdayAdd">2</b>
+                            </a>
                         </div>
                     </div>
 
-                    <p id="shield">铠甲勇士刑天为你提供持续保护</p>
+                    <div id="shield">
+                        <img th:src="@{/static/picture/shield-check.svg}">
+                        <p>铠甲勇士刑天为你提供持续保护</p>
+                    </div>
+                </div>
+
+                <div class="card group">
+                    <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img th:src="@{/static/picture/niu_2.jpg}" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img th:src="@{/static/picture/niu_3.jpg}" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img th:src="@{/static/picture/niu_4.jpg}" class="d-block w-100" alt="...">
+                            </div>
+                        </div>
+                        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Next</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="card group">
+                    <div class="card-body">
+                        <div class="card-end">
+                            <img th:src="@{/static/picture/star-fill.svg}">
+                            <p>我的收藏</p>
+                            <p class="card-right" th:text="${list.size()}"></p>
+                        </div>
+                        <div class="card-end">
+                            <a href="/blog/personal/my/invitation">
+                                <img th:src="@{/static/picture/file-earmark-text.svg}">
+                                <p>我的贴子</p>
+                                <p class="card-right" id="myCount">4</p>
+                            </a>
+                        </div>
+                        <div class="card-end">
+                            <a>
+                                <img th:src="@{/static/picture/slack.svg}">
+                                <p>我的随想</p>
+                                <p class="card-right">4</p>
+                            </a>
+                        </div>
+                        <div class="card-end">
+                            <a>
+                                <img th:src="@{/static/picture/terminal.svg}">
+                                <p>帮助中心</p>
+                            </a>
+                        </div>
+                        <div class="card-end">
+                            <a>
+                                <img th:src="@{/static/picture/signpost-2.svg}">
+                                <p>吧务中心</p>
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

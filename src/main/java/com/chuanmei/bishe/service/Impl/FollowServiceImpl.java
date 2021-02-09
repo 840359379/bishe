@@ -6,6 +6,9 @@ import com.chuanmei.bishe.service.FollowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -37,5 +40,15 @@ public class FollowServiceImpl implements FollowService {
     @Override
     public boolean selectFollow(Follow follow) {
         return followDao.selectFollow(follow);
+    }
+
+    @Override
+    public int yesterdayFollow(String coveraccount) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.add(Calendar.DATE, -1); //得到前一天
+        Date date = calendar.getTime();
+        String startTime = new SimpleDateFormat("yyyy-MM-dd 00:00:00").format(date);
+        String endTime = new SimpleDateFormat("yyyy-MM-dd 23:59:59").format(date);
+        return followDao.yesterdayFollow(coveraccount,startTime,endTime);
     }
 }

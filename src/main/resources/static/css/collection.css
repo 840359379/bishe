@@ -1,6 +1,23 @@
+#body{
+}
+#canvas{
+    position:fixed;
+    z-index:-2;
+    top: 0;
+    left: 0;
+}
+
+a:visited{
+    text-decoration: none;
+    color: black;
+}
+a:hover{
+    text-decoration: none;
+    color: black;
+}
+
 .invitation_main{
     margin: 5% 1% 0 5%;
-    background: #0c5460;
 }
 
 .user_main{
@@ -20,7 +37,6 @@
     margin: 0 0 15% 0;
 }
 
-
 /*图标区的样式*/
 .card-div{
     text-align: center;
@@ -35,9 +51,10 @@
     margin: 20% 0 0 0;
 }
 
-.card-img{
+.card-img-user{
     width: 100%;
     height: 100%;
+    fill:#FFFF00;
 }
 
 /*关于无聊的央视*/
@@ -50,6 +67,12 @@
     font-size: 100%;
     margin: 10% 10% 0 10%;
     display:inline-block;
+}
+
+.capricio img{
+    position: absolute;
+    width: 10%;
+    right: 15%;
 }
 
 .capricio p{
@@ -69,7 +92,105 @@
 }
 
 #shield{
+    margin: 10% 5% 3% 10%;
+}
+
+#shield img{
+    display:inline-block;
     color: #5F9EA0;
-    margin: 10% 10% 3% 10%;
+}
+
+#shield p{
+    display:inline-block;
+    color: #5F9EA0;
     font-size: 80%;
+}
+
+/*最后的资料栏*/
+.card-end img{
+    width: 10%;
+    height: 10%;
+    display:inline-block;
+    margin: 5% 4% 5% 2%;
+}
+
+.card-end p{
+    margin: 5% 10% 5% 2%;
+    display:inline-block;
+    font-size: 90%;
+    color: #99BBFF;
+}
+
+.card-right{
+    position: absolute;
+    right: 0px;
+}
+
+/*贴子栏的首栏*/
+#invitation-time b{
+    display:block;
+    font-size: 200%;
+    margin: 2%;
+}
+#invitation-time p{
+    margin: 2%;
+    display:inline-block;
+    color: #5a6268;
+    font-size: 90%;
+}
+
+.invitation-group{
+    margin: 0 0 5% 0;
+}
+
+/*帖子区的文章*/
+.invitation-list{
+    margin: 5% 0;
+}
+
+.invitation-list b{
+    font-size: 200%;
+}
+
+.invitation-list p{
+    font-size: 90%;
+    margin: 2% 0;
+}
+
+/*贴子点赞*/
+.invitation-good img{
+    display:inline-block;
+}
+
+.invitation-good p{
+    margin: 0;
+    display:inline-block;
+}
+
+.grey p{
+    color: #888888;
+}
+
+/*留言区的样式*/
+.message{
+    margin: 3%;
+}
+
+.message-list{
+    margin: 4% 0;
+}
+
+.message-list b{
+    margin: 0 0 0 2%;
+    display: block;
+    font-size: 125%;
+}
+.message-list .invitation-good{
+    display:inline-block;
+
+}
+
+.message-list .invitation-good p{
+    display:inline-block;
+    font-size: 90%;
 }

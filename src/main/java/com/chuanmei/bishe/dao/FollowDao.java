@@ -17,4 +17,6 @@ public interface FollowDao {
 	public List<Follow> coverlookfollow(String account);
 	//查看是否存在此关注
 	public boolean selectFollow(Follow follow);
+	//查看昨日新增粉丝
+	public int yesterdayFollow(String coveraccount,String startTime,String endTime);
 }

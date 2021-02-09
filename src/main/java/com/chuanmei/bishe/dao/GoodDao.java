@@ -8,11 +8,22 @@ import java.util.List;
 @Mapper
 public interface GoodDao {
 	//点赞
-	public boolean addgood(String number,String account);
+	public boolean addGood(Good good);
 	//取消点赞
-	public boolean deletegood(String number,String account);
+	public boolean updataGood(Good good);
 	//根据用户查看点赞
-	public List<Good> lookgoodat(String account);
+	public List<Good> lookGoodat(String account);
 	//根据帖子查看点赞
-	public List<Good> lookgoodnr(String number);
+	public List<Good> lookGoodnr(String number);
+	//寻找一个赞是否存在
+	public Good selectGood(int number,String account);
+
+	/**
+	 * 昨天获得的点赞
+	 * @param account
+	 * @param startTime
+	 * @param endTime
+	 * @return
+	 */
+	public int yesterdayGood(String account,String startTime,String endTime);
 }

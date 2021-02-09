@@ -38,4 +38,11 @@
         WHERE account = #{account, jdbcType = VARCHAR} AND
             coveraccount = #{coveraccount, jdbcType = VARCHAR} LIMIT 1
     </select>
+
+    <select id="yesterdayFollow" resultType="java.lang.Integer">
+        SELECT count(*)
+        FROM follow
+        WHERE coveraccount = #{coveraccount, jdbcType = VARCHAR} And start_time >= #{startTime,jdbcType = VARCHAR}
+            AND #{endTime,jdbcType = VARCHAR} >= start_time
+    </select>
 </mapper>

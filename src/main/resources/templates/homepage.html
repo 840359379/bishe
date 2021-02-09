@@ -14,7 +14,7 @@
     <script th:src="@{/static/js/homepage.js}" defer></script>
   </head>
   <body id="body">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
     <a class="navbar-brand" href="#" id="state"></a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
@@ -39,28 +39,18 @@
                   role="button"
                   data-toggle="dropdown"
                   aria-haspopup="true"
-                  aria-expanded="false"
-          >
+                  aria-expanded="false">
             其他
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
             <a class="dropdown-item" href="/blog/collection/index">收藏</a>
-            <a class="dropdown-item" href="#">留言板</a>
+            <a class="dropdown-item" href="/blog/message/index">留言板</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" id="state_enroll" href="../state"
             >退出登录</a
             >
           </div>
         </li>
-        <!-- <li class="nav-item">
-          <a
-            class="nav-link disabled"
-            href="#"
-            tabindex="-1"
-            aria-disabled="true"
-            >Disabled</a
-          >
-        </li> -->
       </ul>
       <form class="form-inline my-2 my-lg-0" action="search.html">
         <input
