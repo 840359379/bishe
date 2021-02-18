@@ -4,15 +4,15 @@
 
     <insert id="addMessage">
         INSERT INTO message(account,cover_account,substance)
-        VALUES(#{account,jsbcType = VARCHAR},#{coverAccount,jdbcType = VARCHAR},#{substance,jdbcType = substance})
+        VALUES(#{account,jdbcType = VARCHAR},#{coverAccount,jdbcType = VARCHAR},#{substance,jdbcType = VARCHAR})
     </insert>
     <delete id="deleteMessage">
         DELETE FROM message
         WHERE id = #{id,jdbcType = INTEGER}
     </delete>
     <select id="selectMessages" resultType="com.chuanmei.bishe.model.Message">
-        SELECT m.id,m.start_time,m.substance,m.account,u.`name`
+        SELECT m.id,m.start_time AS startTime,m.substance,m.account,u.`name`
         FROM message m,user u
-        WHERE m.account = u.account AND m.cover_account = #{coverAccount,jdbcType = VAECHAR}
+        WHERE m.account = u.account AND m.cover_account = #{coverAccount,jdbcType = VARCHAR}
     </select>
 </mapper>

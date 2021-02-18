@@ -4,6 +4,7 @@ package com.chuanmei.bishe.controller;
 import com.chuanmei.bishe.configure.CommonResult;
 import com.chuanmei.bishe.model.Invitation;
 import com.chuanmei.bishe.model.User;
+import com.chuanmei.bishe.service.ContentService;
 import com.chuanmei.bishe.service.InvitationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
@@ -27,6 +28,9 @@ public class InvitationController {
     @Autowired
     private InvitationService invitationService;
 
+    @Autowired
+    private ContentService contentService;
+
     /**
      *  发一个帖子
      * @param invitation
@@ -42,9 +46,6 @@ public class InvitationController {
         String text = invitation.getText();
         invitation.setText(null);
         invitationService.publishinvitation(invitation);
-//        String fileDirPath = new String("src/main/resources/" + 111);
-//        File fileDir = new File(fileDirPath);
-//        String absolutePath = fileDir.getAbsolutePath();
         String basePath = ResourceUtils.getURL("classpath:").getPath() + "static/upload/";
         String filepath = ClassUtils.getDefaultClassLoader().getResource("static/txt/").getPath() + invitation.getNumber() + ".txt";
         File file = new File(filepath);
@@ -82,6 +83,7 @@ public class InvitationController {
         invitation.setText(count);
         model.addAttribute("user",user);
         model.addAttribute("invitation",invitation);
+        model.addAttribute("content",contentService.selectList(invitation.getNumber()));
         return "article";
     }
 }

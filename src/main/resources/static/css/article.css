@@ -1,12 +1,39 @@
+/*粉红色的样式*/
 #body{
-  background-image: url("/static/picture/chun.jpg");
-  width: 100%;
-  background-position: center center;
-  background-repeat: no-repeat;
+  background: radial-gradient(200% 100% at bottom center, #f7f7b6, #e96f92, #75517d, #1b2947);
+  background: radial-gradient(220% 105% at top center, #1b2947 10%, #75517d 40%, #e96f92 65%, #f7f7b6);
   background-attachment: fixed;
-  background-size: cover;
-  z-index: -1;
-  transition: unset;
+}
+
+@keyframes rotate {
+  0% {
+    transform: perspective(400px) rotateZ(20deg) rotateX(-40deg) rotateY(0);
+  }
+  100% {
+    transform: perspective(400px) rotateZ(20deg) rotateX(-40deg) rotateY(-360deg);
+  }
+}
+
+.stars {
+  transform: perspective(500px);
+  transform-style: preserve-3d;
+  position: fixed;
+  bottom: 0;
+  perspective-origin: 50% 100%;
+  left: 50%;
+  animation: rotate 90s infinite linear;
+}
+
+.star {
+  width: 2px;
+  height: 2px;
+  background: #F7F7B6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: 0 0 -300px;
+  transform: translate3d(0, 0, -300px);
+  backface-visibility: hidden;
 }
 
 /* 鎴戞槸涓�鏉＄嚎 */
@@ -91,4 +118,23 @@
 #good {
   font-size: 20px;
   display: inline-block;
+}
+
+/*评论区的样式*/
+.content-name{
+  display: inline-block;
+  margin: 1% 2%;
+}
+
+.content-p{
+  margin: 0 2%;
+}
+
+.delete{
+  float:right;
+  margin: 0 4%;
+}
+
+#content-main{
+  margin: 2%;
 }

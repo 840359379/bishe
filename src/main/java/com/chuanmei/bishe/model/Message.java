@@ -6,6 +6,7 @@ public class Message {
     private String name;
     private String coverAccount;
     private String startTime;
+    private String substance;
 
     public int getId() {
         return id;
@@ -47,25 +48,35 @@ public class Message {
         this.startTime = startTime;
     }
 
-    public Message(int id, String account, String name, String coverAccount, String startTime) {
+    public Message() {
+    }
+
+    public Message(int id, String account, String name, String coverAccount, String startTime, String substance) {
         this.id = id;
         this.account = account;
         this.name = name;
         this.coverAccount = coverAccount;
         this.startTime = startTime;
+        this.substance = substance;
     }
 
-    public Message() {
+    public String getSubstance() {
+        return substance;
+    }
+
+    public void setSubstance(String substance) {
+        this.substance = substance;
     }
 
     @Override
     public String toString() {
-        return "message{" +
+        return "Message{" +
                 "id=" + id +
                 ", account='" + account + '\'' +
                 ", name='" + name + '\'' +
                 ", coverAccount='" + coverAccount + '\'' +
                 ", startTime='" + startTime + '\'' +
+                ", substance='" + substance + '\'' +
                 '}';
     }
 }

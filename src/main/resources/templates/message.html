@@ -7,7 +7,7 @@
     <script th:src="@{/static/js/jquery-3.5.0.min.js}" defer type="text/javascript"></script>
     <script th:src="@{/static/bootstrap-4.4.1-dist/js/bootstrap.js}" defer type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/static/css/collection.css}">
-    <script th:src="@{/static/js/collection.js}" defer type="text/javascript"></script>
+    <script th:src="@{/static/js/message.js}" defer type="text/javascript"></script>
     <script th:src="@{/static/js/confetti.js}" defer type="text/javascript"></script>
 </head>
 <body id="body">
@@ -70,6 +70,7 @@
 </nav>
 
     <div class="container">
+
     <div class="row">
         <div class="col-7 invitation_main">
             <div class="card invitation-group" >
@@ -80,16 +81,16 @@
             <div class="card invitation-group">
                 <div class="card-body ">
                     <div class="message">
-                        <b>3</b>
+                        <b th:text="${list.size()}"></b>
                         <b>个留言</b>
                     </div>
-                    <div class="message-list">
-                        <b>我要打死你哦</b>
+                    <div class="message-list" th:each="list:${list}" th:id="${list.id}">
+                        <b th:text="${list.substance}"></b>
                         <div class="invitation-good btn btn-light">
-                            <p>叶子明</p>
-                            <p>2021-08-06</p>
+                            <p th:text="${list.name}"></p>
+                            <p th:text="${list.startTime}"></p>
                         </div>
-                        <button type="button" class="btn btn btn-light invitation-good">
+                        <button type="button" class="btn btn btn-light invitation-good" onclick="deleteMessage(this)">
                             <p>删除</p>
                         </button>
                     </div>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chuanmei.bishe.dao.ContentDao">
+    <insert id="addContent">
+        INSERT INTO content(number,account,content)
+        values (#{number,jdbcType = INTEGER},#{account,jdbcType = VARCHAR},#{content,jdbcType = VARCHAR})
+    </insert>
+
+    <delete id="deleteContent">
+        DELETE FROM content
+        WHERE id = #{id,jdbcType = INTEGER}
+    </delete>
+
+    <select id="selectList" resultType="com.chuanmei.bishe.model.Content">
+        SELECT c.id,c.account,c.content,c.number,c.start_time as startTime,u.`name`
+        FROM content c LEFT JOIN user u ON c.account = u.account
+        WHERE c.number = #{number,jdbcType = INTEGER}
+    </select>
+</mapper>
