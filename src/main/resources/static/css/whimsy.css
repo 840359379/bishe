@@ -1,0 +1,23 @@
+#canvas{
+    position:fixed;
+    z-index:-2;
+    top: 0;
+    left: 0;
+}
+
+#row{
+    margin: 5% 0;
+}
+
+.user{
+    margin: 2%;
+    width: 25%;
+    vertical-align: top;
+    display: inline-block;
+}
+
+#picture{
+    width: 20%;
+    /*border: 3px solid white;*/
+    border-radius: 20px;
+}

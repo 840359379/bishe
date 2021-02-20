@@ -8,12 +8,21 @@ function data_follow(follow) {
     follow.forEach((element) => {
       let fa = newdiv(document.getElementById("invitation_area"), "follow");
       fa.id = element.coveraccount;
-      newimg(fa, "follow_format", "/static/picture/zhang.jpg");
+      let img = newimg(fa, "follow_format", `/static/picture/${element.coveraccount}.jpg`);
+      img.id = element.coveraccount;
+      img.onclick = visitThis;
       newp(fa, "follow_name", element.covername);
       let button_follow = newbutton(fa, "btn btn-success follow_button", "取关");
       button_follow.onclick = ajaxDeleteFollow;
     });
   }
+}
+
+/**
+ * 转发到个人主页
+ */
+function visitThis(){
+  window.open(`http://127.0.0.1:8080/blog/visit/index?account=${this.id}`);
 }
 //取关操作
 function ajaxDeleteFollow(){

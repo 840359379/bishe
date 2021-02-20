@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>留言</title>
+    <link rel="stylesheet" th:href="@{/static/bootstrap-4.4.1-dist/css/bootstrap.css}" type="text/css"/>
+    <script th:src="@{/static/js/jquery-3.5.0.min.js}" defer type="text/javascript"></script>
+    <script th:src="@{/static/bootstrap-4.4.1-dist/js/bootstrap.js}" defer type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/collection.css}">
+    <script th:src="@{/static/js/collection.js}" defer type="text/javascript"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="input-group mb-3">
+                    <input type="text" autocomplete="off" class="form-control" placeholder="发表你的评论" aria-label="发表你的评论" aria-describedby="button-addon2" id="content-text">
+                    <div class="input-group-append">
+                        <button class="btn btn-primary" type="button" th:id="${user.account}" onclick="addContent(this)">发表</button>
+                    </div>
+                </div>
+                <div class="card invitation-group">
+                    <div class="card-body ">
+                        <div class="message-this">
+                            <b th:text="${list.size()}"></b>
+                            <b>个留言</b>
+                        </div>
+                        <div class="message-list" th:each="list:${list}" th:id="${list.id}">
+                            <b id="message-substance" th:text="${list.substance}"></b>
+                            <div class="invitation-good btn btn-light">
+                                <p th:text="${list.name}"></p>
+                                <p th:text="${list.startTime}"></p>
+                            </div>
+                            <button type="button" class="btn btn btn-light invitation-good" onclick="deleteMessage(this)">
+                                <p>删除</p>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

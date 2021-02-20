@@ -2,6 +2,18 @@ window.onload = function () {
     ajaxObtain();
 }
 
+/**
+ * 转到个人主页
+ * @param my
+ */
+function visitThis(my){
+    window.open(`http://127.0.0.1:8080/blog/visit/index?account=${my.id}`);
+}
+
+/**
+ * 删除留言的
+ * @param my
+ */
 function deleteMessage(my){
     if (confirm("你确定要删除留言吗")) {
         $.ajax({
@@ -33,6 +45,9 @@ function obtain(data){
     $("#yesterdayGood").html(data.yesterdayGood);
 }
 
+/**
+ * 获取属性填充的
+ */
 function ajaxObtain(){
     $.ajax({
         type:"GET",

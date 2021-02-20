@@ -34,4 +34,11 @@ public class MessageController {
     public @ResponseBody CommonResult deleteMessage(int id){
         return new CommonResult(200,"已删除",messageService.deleteMessage(id));
     }
+
+    @PostMapping(value = "/add/message")
+    public @ResponseBody CommonResult addMessage(HttpServletRequest request,Message message){
+        User user = (User) request.getSession().getAttribute("user");
+        message.setAccount(user.getAccount());
+        return new CommonResult(200,"成功了",messageService.addMessage(message));
+    }
 }

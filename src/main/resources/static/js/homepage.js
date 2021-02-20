@@ -39,17 +39,32 @@ function lookinvitation() {
 
 
 function ajax_invitation() {
-  $.ajax({
-    type: "POST",
-    url: "http://127.0.0.1:8080/blog/homepage/invitations",
-    dataType: "json", //返回的数据类型格式
-    success: function (data) {
-      // console.log(data);
-      post_area_entity(data.data);
-    },
-    error: function () {
-      //请求出错处理
-      alert("请求出现错误，请重新尝试");
-    },
-  });
+  if(($("#hidden").attr("abbr"))===undefined){
+    $.ajax({
+      type: "POST",
+      url: "http://127.0.0.1:8080/blog/homepage/invitations",
+      dataType: "json", //返回的数据类型格式
+      success: function (data) {
+        post_area_entity(data.data);
+      },
+      error: function () {
+        //请求出错处理
+        alert("请求出现错误，请重新尝试");
+      },
+    });
+  }else {
+    $.ajax({
+      type: "POST",
+      url: "http://127.0.0.1:8080/blog/homepage/search/invitations",
+      data:{search:($("#hidden").attr("abbr"))},
+      dataType: "json", //返回的数据类型格式
+      success: function (data) {
+        post_area_entity(data.data);
+      },
+      error: function () {
+        //请求出错处理
+        alert("请求出现错误，请重新尝试");
+      },
+    });
+  }
 }

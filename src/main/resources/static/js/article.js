@@ -1,4 +1,15 @@
+/**
+ * 转到个人主页
+ * @param my
+ */
+function visitThis(my){
+  window.open(`http://127.0.0.1:8080/blog/visit/index?account=${my.parentNode.getAttribute("abbr")}`);
+}
 
+/**
+ * 添加一个评论
+ * @param my
+ */
 function addContent(my){
   $.ajax({
     type: "POST",

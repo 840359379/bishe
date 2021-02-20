@@ -17,67 +17,55 @@
     <div class="stars"></div>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
-    <a class="navbar-brand" href="#" id="state"></a>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/blog/homepage/index">首页<span class="sr-only">(current)</span></a
-          >
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/blog/personal/index">个人中心</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="/blog/personal/invitation">发帖</a>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-          >
-            其他
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">收藏</a>
-            <a class="dropdown-item" href="#">留言板</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" id="state_enroll" href="../state"
-            >退出登录</a
+      <input type="hidden" id="hidden" th:abbr="${submit}">
+      <a class="navbar-brand" href="#" id="state"></a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/blog/homepage/index">首页<span class="sr-only">(current)</span></a
             >
-          </div>
-        </li>
-        <!-- <li class="nav-item">
-          <a
-            class="nav-link disabled"
-            href="#"
-            tabindex="-1"
-            aria-disabled="true"
-            >Disabled</a
-          >
-        </li> -->
-      </ul>
-      <form class="form-inline my-2 my-lg-0" action="search.html">
-        <input
-                class="form-control mr-sm-2"
-                name="search"
-                type="search"
-                placeholder="查找帖子"
-                aria-label="查找帖子"
-        />
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-          搜索
-        </button>
-      </form>
-    </div>
-  </nav>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/blog/personal/index">个人中心</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/blog/personal/invitation">发帖</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="navbarDropdown"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false">
+              其他
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/blog/collection/index">收藏</a>
+              <a class="dropdown-item" href="/blog/message/index">留言板</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" id="state_enroll" href="/blog/homepage/out">退出登录</a>
+            </div>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" action="/blog/homepage/index">
+          <input
+                  class="form-control mr-sm-2"
+                  name="search"
+                  type="search"
+                  placeholder="查找帖子"
+                  aria-label="查找帖子"/>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            搜索
+          </button>
+        </form>
+      </div>
+    </nav>
 
     <div>
       <div class="container">
@@ -87,8 +75,8 @@
               <div>返回</div>
             </div>
 
-            <div id="user">
-              <img th:src="@{/static/picture/{account}.jpg(account=${invitation.account})}" id="portrait" />
+            <div id="user" th:abbr="${invitation.account}">
+              <img th:src="@{/static/picture/{account}.jpg(account=${invitation.account})}" id="portrait" onclick="visitThis(this)" />
               <p id="name" th:text="${invitation.name}"></p>
               <p id="personality" th:text="${invitation.subtitle}"></p>
             </div>
@@ -117,8 +105,8 @@
 
             <div id="content-main">
               <ul class="list-unstyled">
-                <li class="media" th:each="content:${content}" th:id="${content.id}">
-                  <img th:src="@{/static/picture/{account}.jpg(account=${content.account})}" class="mr-3" width="10%">
+                <li class="media" th:each="content:${content}" th:id="${content.id}" th:abbr="${content.account}" >
+                  <img th:src="@{/static/picture/{account}.jpg(account=${content.account})}" class="mr-3" width="10%" onclick="visitThis(this)"                                  >
                   <div class="media-body">
                     <h5 class="content-name" th:text="${content.name}"></h5>
                     <b th:text="${content.startTime}" id="contentStartTime"></b>
@@ -129,7 +117,7 @@
               </ul>
 
               <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="发表你的评论" aria-label="发表你的评论" aria-describedby="button-addon2" id="content-text">
+                <input type="text" class="form-control" placeholder="发表你的评论" aria-label="发表你的评论" aria-describedby="button-addon2" id="content-text" autocomplete="off">
                 <div class="input-group-append">
                   <button class="btn btn-primary" type="button" id="button-addon2" th:id="${user.account}" onclick="addContent(this)">发表</button>
                 </div>

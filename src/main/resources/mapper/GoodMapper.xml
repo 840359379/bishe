@@ -35,6 +35,6 @@
         SELECT COUNT(*)
         FROM good g,invitation i
         WHERE g.number = i.number AND i.account = #{account, jdbcType = VARCHAR} AND
-              g.start_time >= #{startTime,jdbcType = VARCHAR} AND  #{endTime,jdbcType = VARCHAR} >= g.start_time
+              g.start_time >= #{startTime,jdbcType = VARCHAR} AND  #{endTime,jdbcType = VARCHAR} >= g.start_time AND situation = 1
     </select>
 </mapper>

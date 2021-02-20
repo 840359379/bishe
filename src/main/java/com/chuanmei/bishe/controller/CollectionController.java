@@ -65,6 +65,12 @@ public class CollectionController {
         }
     }
 
+
+    /**
+     * 获取属性填充的函数
+     * @param request
+     * @return
+     */
     @GetMapping(value = "/obtain")
     public @ResponseBody CommonResult obtain(HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");

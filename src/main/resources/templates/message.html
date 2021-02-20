@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>留言</title>
     <link rel="stylesheet" th:href="@{/static/bootstrap-4.4.1-dist/css/bootstrap.css}" type="text/css"/>
     <script th:src="@{/static/js/jquery-3.5.0.min.js}" defer type="text/javascript"></script>
     <script th:src="@{/static/bootstrap-4.4.1-dist/js/bootstrap.js}" defer type="text/javascript"></script>
@@ -16,58 +16,55 @@
 </canvas>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
-    <a class="navbar-brand" href="#" id="state"></a>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/blog/homepage/index">首页<span class="sr-only">(current)</span></a
-                >
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="/blog/personal/index">个人中心</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="/blog/personal/invitation">发帖</a>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a
-                        class="nav-link dropdown-toggle"
-                        href="#"
-                        id="navbarDropdown"
-                        role="button"
-                        data-toggle="dropdown"
-                        aria-haspopup="true"
-                        aria-expanded="false"
-                >
-                    其他
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/blog/collection/index">收藏</a>
-                    <a class="dropdown-item" href="/blog/message/index">留言板</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" id="state_enroll" href="../state"
-                    >退出登录</a
+        <input type="hidden" id="hidden" th:abbr="${submit}">
+        <a class="navbar-brand" href="#" id="state"></a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/blog/homepage/index">首页<span class="sr-only">(current)</span></a
                     >
-                </div>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-lg-0" action="search.html">
-            <input
-                    class="form-control mr-sm-2"
-                    name="search"
-                    type="search"
-                    placeholder="查找帖子"
-                    aria-label="查找帖子"
-            />
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-                搜索
-            </button>
-        </form>
-    </div>
-</nav>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog/personal/index">个人中心</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog/personal/invitation">发帖</a>
+                </li>
+
+                <li class="nav-item dropdown">
+                    <a
+                            class="nav-link dropdown-toggle"
+                            href="#"
+                            id="navbarDropdown"
+                            role="button"
+                            data-toggle="dropdown"
+                            aria-haspopup="true"
+                            aria-expanded="false">
+                        其他
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/blog/collection/index">收藏</a>
+                        <a class="dropdown-item" href="/blog/message/index">留言板</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" id="state_enroll" href="/blog/homepage/out">退出登录</a>
+                    </div>
+                </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" action="/blog/homepage/index">
+                <input
+                        class="form-control mr-sm-2"
+                        name="search"
+                        type="search"
+                        placeholder="查找帖子"
+                        aria-label="查找帖子"/>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                    搜索
+                </button>
+            </form>
+        </div>
+    </nav>
 
     <div class="container">
 
@@ -86,7 +83,7 @@
                     </div>
                     <div class="message-list" th:each="list:${list}" th:id="${list.id}">
                         <b th:text="${list.substance}"></b>
-                        <div class="invitation-good btn btn-light">
+                        <div class="invitation-good btn btn-light" th:id="${list.account}" onclick="visitThis(this)">
                             <p th:text="${list.name}"></p>
                             <p th:text="${list.startTime}"></p>
                         </div>

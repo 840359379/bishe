@@ -24,12 +24,12 @@ public class GoodController {
         good.setAccount(user.getAccount());
         Good oldGood = goodService.selectGood(good.getNumber(), good.getAccount());
         if(oldGood==null){
-            return new CommonResult(200,"已",goodService.addgood(good));
+            return new CommonResult(200,"添加成功",goodService.addgood(good));
         }else if(oldGood.getSituation() == good.getSituation()){
             good.setSituation(0);
-            return new CommonResult(201,"",goodService.updategood(good));
+            return new CommonResult(201,"取消",goodService.updategood(good));
         }else {
-            return new CommonResult(200,"已",goodService.updategood(good));
+            return new CommonResult(200,"修改成功",goodService.updategood(good));
         }
     }
 }

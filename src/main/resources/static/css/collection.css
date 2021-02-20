@@ -194,3 +194,13 @@ a:hover{
     display:inline-block;
     font-size: 90%;
 }
+
+/*其他留言区*/
+.message-this{
+    display: block;
+    margin: 0 2%;
+}
+
+#message-substance {
+    margin: 0 1.5%;
+}

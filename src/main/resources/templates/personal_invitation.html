@@ -12,66 +12,61 @@
     <script th:src="@{/static/js/newborn.js}"></script>
     <script th:src="@{/static/js/personal_invitation.js}"></script>
     <link rel="stylesheet" th:href="@{/static/css/personal.css}" />
+    <script th:src="@{/static/js/snow.js}" defer></script>
   </head>
   <body id="body">
+    <canvas id="canvas"></canvas>
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
-      <a class="navbar-brand" href="#" th:text="${user.name}">未登录</a>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="/blog/homepage/index">
-              首页<span class="sr-only">(current)</span>
-            </a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="/blog/personal/index">个人中心</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/blog/personal/invitation">发帖</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a
-                    class="nav-link dropdown-toggle"
-                    href="#"
-                    id="navbarDropdown"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-            >
-              其他
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">收藏</a>
-              <a class="dropdown-item" href="#">留言板</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" id="state_enroll" href="#">退出登录</a>
-            </div>
-          </li>
-          <!-- <li class="nav-item">
-            <a
-              class="nav-link disabled"
-              href="#"
-              tabindex="-1"
-              aria-disabled="true"
-              >Disabled</a
-            >
-          </li> -->
-        </ul>
-        <form class="form-inline my-2 my-lg-0" action="search.html">
-          <input
-                  class="form-control mr-sm-2"
-                  name="search"
-                  type="search"
-                  placeholder="查找帖子"
-                  aria-label="查找帖子"
-          />
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-            搜索
-          </button>
-        </form>
-      </div>
-    </nav>
+    <input type="hidden" id="hidden" th:abbr="${submit}">
+    <a class="navbar-brand" href="#" id="state"></a>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/blog/homepage/index">首页<span class="sr-only">(current)</span></a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/blog/personal/index">个人中心</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/blog/personal/invitation">发帖</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a
+                  class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false">
+            其他
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/blog/collection/index">收藏</a>
+            <a class="dropdown-item" href="/blog/message/index">留言板</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" id="state_enroll" href="/blog/homepage/out">退出登录</a>
+          </div>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0" action="/blog/homepage/index">
+        <input
+                class="form-control mr-sm-2"
+                name="search"
+                type="search"
+                placeholder="查找帖子"
+                aria-label="查找帖子"/>
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+          搜索
+        </button>
+      </form>
+    </div>
+  </nav>
 
     <div class="da">
       <div class="peak">
@@ -100,7 +95,7 @@
         <ul class="navigation_ul">
           <li class="navigations"><a href="/blog/personal/index">个人信息</a></li>
           <li class="navigations"><a href="/blog/personal/my/invitation">我的帖子</a></li>
-          <li class="navigations"><a>我的收藏</a></li>
+          <li class="navigations"><a href="/blog/collection/index">我的收藏</a></li>
           <li class="navigations">
             <a href="/blog/personal/invitation">发帖子</a>
           </li>

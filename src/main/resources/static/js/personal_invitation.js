@@ -14,6 +14,7 @@ function send() {
     dataType: "json", //返回的数据类型格式
     success: function (data) {
       if (data.code === 200) {
+        location.reload();
         window.open(`http://127.0.0.1:8080/blog/invitation/look/invitation?number=${data.data}`);
       } else {
         alert("提交失败");

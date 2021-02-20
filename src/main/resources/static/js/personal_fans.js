@@ -9,7 +9,9 @@ function data_follow(follow) {
     follow.forEach((element) => {
       var fa = newdiv(document.getElementById("invitation_area"), "follow");
       fa.id = element.account;
-      newimg(fa, "follow_format", "/static/picture/timg.jpg");
+      let img = newimg(fa, "follow_format", `/static/picture/${element.account}.jpg`);
+      img.id = element.account;
+      img.onclick = visitThis;
       newp(fa, "follow_name", element.name);
       let button_follow = newbutton(fa, "btn btn-success follow_button", "回关");
       button_follow.onclick = ajax_add_follow;
@@ -17,6 +19,13 @@ function data_follow(follow) {
       button_delete.onclick = ajaxDeleteFollow;
     });
   }
+}
+
+/**
+ * 转发到个人主页
+ */
+function visitThis(){
+  window.open(`http://127.0.0.1:8080/blog/visit/index?account=${this.id}`);
 }
 
 //删除的ajax

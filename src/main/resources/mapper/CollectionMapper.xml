@@ -11,10 +11,10 @@
 
     <select id="lookCollections" resultType="com.chuanmei.bishe.model.Collection">
         SELECT c.number AS number,(SELECT COUNT(*) FROM content WHERE content.account=c.account AND c.number = content.number) AS content,
-               (SELECT COUNT(*) FROM good WHERE good.number = c.number) AS good,(SELECT situation FROM good WHERE good.number = c.number AND good.account = c.account LIMIT 1) AS situation,
+               (SELECT COUNT(*) FROM good WHERE good.number = c.number AND good.situation = 1) AS good,(SELECT situation FROM good WHERE good.number = c.number AND good.account = c.account LIMIT 1) AS situation,
                i.subtitle as subtitle ,i.title AS title
         FROM collection AS c LEFT JOIN invitation as i ON c.number = i.number
-        WHERE c.account = #{account,jdbcType = VARCHAR};
+        WHERE c.account = #{account,jdbcType = VARCHAR}
     </select>
     <select id="seletCollection" resultType="java.lang.Boolean">
         SELECT count(*)

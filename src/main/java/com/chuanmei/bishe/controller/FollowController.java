@@ -36,18 +36,29 @@ public class FollowController {
     }
 
     @PostMapping(value = "/delete/follow")
-    public @ResponseBody CommonResult deleteFollow(HttpServletRequest request,String account,String coveraccount){
-        boolean result = followService.deletefollow(account, coveraccount);
+    public @ResponseBody CommonResult deleteFollow(Follow follow,HttpServletRequest request){
+        User user = (User) request.getSession().getAttribute("user");
+        boolean result = followService.deletefollow(user.getAccount(), follow.getCoveraccount());
         return new CommonResult(200,"成功了",result);
     }
 
     @PostMapping(value = "/add/follow")
-    public @ResponseBody CommonResult addFollow(Follow follow){
+    public @ResponseBody CommonResult addFollow(HttpServletRequest request,Follow follow){
+        User user = (User) request.getSession().getAttribute("user");
+        follow.setAccount(user.getAccount());
+        follow.setName(user.getName());
         boolean existence = followService.selectFollow(follow);
         if(existence){
             return new CommonResult(200,"你已关注此用户",false);
         }
         boolean result = followService.addfollow(follow);
         return new CommonResult(200,"成功了",result);
+    }
+
+    @GetMapping(value = "/existence")
+    public @ResponseBody CommonResult existence(HttpServletRequest request,Follow follow){
+        User user = (User) request.getSession().getAttribute("user");
+        follow.setAccount(user.getAccount());
+        return new CommonResult(200,"成功了",followService.selectFollow(follow));
     }
 }

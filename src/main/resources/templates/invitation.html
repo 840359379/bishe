@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>贴子</title>
+    <link rel="stylesheet" th:href="@{/static/bootstrap-4.4.1-dist/css/bootstrap.css}" type="text/css"/>
+    <script th:src="@{/static/js/jquery-3.5.0.min.js}" defer type="text/javascript"></script>
+    <script th:src="@{/static/bootstrap-4.4.1-dist/js/bootstrap.js}" defer type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/collection.css}">
+    <script th:src="@{/static/js/collection.js}" defer type="text/javascript"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <b th:text="${list.size()}"></b>
+                        <b>个文章</b>
+                        <div th:id="${list.number}" class="invitation-list" th:each="list:${list}">
+                            <div style="margin: 0 1.5%" onclick="lookinvitation(this)">
+                                <b th:text="${list.title}"></b>
+                                <p th:text="${list.subtitle}"></p>
+                            </div>
+                            <button type="button" class="btn btn-light invitation-good">
+                                <p>发表日期</p>
+                                <p th:text="${list.time}"></p>
+                            </button>
+                            <button type="button" class="btn btn-light grey invitation-good" onclick="collection(this)">
+                                <img th:src="@{/static/picture/star-fill.svg}">
+                                <p>取消收藏</p>
+                            </button>
+                            <button type="button" class="btn btn-light grey invitation-good" >
+                                <img th:src="@{/static/picture/flag-fill.svg}">
+                                <p>举报</p>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
