@@ -68,14 +68,45 @@
         </nav>
 
         <div class="container">
-            <div class="row ">
-                <div class="col-12" style="margin: 4% 0">
+            <div class="row" id="row">
+                <div class="col-12">
                     <div class="jumbotron jumbotron-fluid">
                         <div class="container">
-                            <h1 class="display-4">Fluid jumbotron</h1>
-                            <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+                                <img th:src="@{/static/picture/840359379.jpg}" id="picture"/>
+                            <div class="user">
+                                <h1 class="display-4 ">盛建辉</h1>
+                                <p class="lead">确认过眼神，我遇上对的人。我挥剑转身，而鲜血如红唇</p>
+                            </div>
+
+                            <div class="user" id="icon">
+                                <div class="user">
+                                    <img th:src="@{/static/picture/slack.svg}" width="110%">
+                                    <p class="lead">随想</p>
+                                </div>
+                                <div class="user">
+                                    <img th:src="@{/static/picture/box-arrow-in-down.svg}" width="110%">
+                                    <p class="lead">上传</p>
+                                </div>
+                                <div class="user">
+                                    <img th:src="@{/static/picture/calendar-check.svg}" width="110%">
+                                    <p class="lead">签到</p>
+                                </div>
+                                <div class="user">
+                                    <img th:src="@{/static/picture/clipboard-data.svg}" width="110%">
+                                    <p class="lead">任务</p>
+                                </div>
+                            </div>
+
+                            <div id="coin">
+                                <b>硬币数量</b>
+                                <b>8</b>
+                            </div>
                         </div>
                     </div>
+                </div>
+
+                <div class="col-12">
+                    <iframe src="/blog/uploads/index" frameBorder="0" scrolling="yes" width="100%" height="600px"></iframe>
                 </div>
             </div>
         </div>

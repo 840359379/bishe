@@ -46,7 +46,7 @@ public class InvitationController {
         String text = invitation.getText();
         invitation.setText(null);
         invitationService.publishinvitation(invitation);
-        String basePath = ResourceUtils.getURL("classpath:").getPath() + "static/upload/";
+//        String basePath = ResourceUtils.getURL("classpath:").getPath() + "static/upload/";
         String filepath = ClassUtils.getDefaultClassLoader().getResource("static/txt/").getPath() + invitation.getNumber() + ".txt";
         File file = new File(filepath);
         FileWriter fw = new FileWriter(file);

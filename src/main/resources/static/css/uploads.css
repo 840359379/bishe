@@ -1,0 +1,39 @@
+.picture-img{
+    width: 80%;
+    margin: 10%;
+}
+
+.picture-data{
+    text-align: center;
+}
+
+.event{
+    width: 40%;
+    font-size: 40%;
+    display: inline-block;
+    margin: 0 0 2% 0;
+}
+
+#uploads{
+    margin: 0 2% 5% 2%;
+    text-align: center;
+    width: 90%;
+}
+
+.pass{
+    width: 50%;
+    margin: 1%;
+    text-align: center;
+}
+
+#content-text{
+    width: 50%;
+    margin: 1% 0;
+    text-align: center;
+}
+
+#uploads-button{
+    position:absolute;
+    top: 110%;
+    right: 0%;
+}
