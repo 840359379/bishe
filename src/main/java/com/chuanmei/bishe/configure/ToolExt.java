@@ -1,0 +1,32 @@
+package com.chuanmei.bishe.configure;
+
+public class ToolExt {
+
+    public static String suffix(String ext){
+        String type = null;
+        switch (ext){
+            case ".doc":
+            case ".docx":
+                type = "word";
+                break;
+            case ".pptx":
+            case ".ppt":
+                type = "ppt";
+                break;
+            case  ".xls":
+            case  ".xlsx":
+                type = "ruled";
+                break;
+            case "txt":
+                type = "text";
+                break;
+            case ".jpg":
+            case ".jpeg":
+            case ".png":
+            case ".pdf":
+                type = "image";
+                break;
+        }
+        return type;
+    }
+}

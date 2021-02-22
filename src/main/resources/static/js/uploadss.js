@@ -17,9 +17,13 @@ function addUploads(){
         contentType: false, //必须
         url:"http://127.0.0.1:8080/blog/uploads/add/uploads",
         success:function (data){
-
+            if(data.code){
+                location.reload();
+            }else {
+                alert("操作失败");
+            }
         },error:function (){
-
+            alert("获取失败");
         }
     })
 }
