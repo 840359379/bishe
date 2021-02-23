@@ -26,6 +26,11 @@ public class ToolExt {
             case ".pdf":
                 type = "image";
                 break;
+            case ".mp3":
+            case ".flac":
+            case ".ape":
+                type = "music";
+                break;
         }
         return type;
     }

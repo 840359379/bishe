@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>随想集群</title>
+    <link rel="stylesheet" th:href="@{/static/bootstrap-4.4.1-dist/css/bootstrap.css}"/>
+    <script th:src="@{/static/js/jquery-3.5.0.min.js}" defer></script>
+    <script th:src="@{/static/bootstrap-4.4.1-dist/js/bootstrap.js}" defer></script>
+</head>
+<body class="jumbotron jumbotron-fluid">
+    <div class="card-columns">
+        <div class="card" th:each="list:${list}">
+            <img th:src="@{{behind}(behind=${list.behind})}" class="card-img-top" alt="..." th:if="${list.behind}">
+            <blockquote class=" mb-0 card-body">
+                <h5 class="card-title" th:text="${list.title}"></h5>
+                <footer class="blockquote-footer">
+                    <small class="text-muted" th:text="${list.subtitle}"></small>
+                </footer>
+            </blockquote>
+        </div>
+    </div>
+</body>
+</html>

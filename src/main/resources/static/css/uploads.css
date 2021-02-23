@@ -1,3 +1,7 @@
+
+/**
+关于上传区的样式
+ */
 .picture-img{
     width: 80%;
     margin: 10%;
@@ -36,4 +40,15 @@
     position:absolute;
     top: 110%;
     right: 0%;
+}
+
+/**
+    关于写随想区的样式
+ */
+#dataWhimsy{
+    margin: 4% 0;
+}
+
+#text{
+    margin: 2% 0;
 }

@@ -19,7 +19,7 @@
     </select>
 
     <select id="selectUploads" resultType="com.chuanmei.bishe.model.Uploads">
-        SELECT COUNT(*)
+        SELECT *
         FROM uploads
         WHERE account = #{account,jdbcType = VARCHAR} AND name = #{name,jdbcType = VARCHAR}
     </select>

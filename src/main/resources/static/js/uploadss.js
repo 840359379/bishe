@@ -1,9 +1,26 @@
+/**
+ * 关于上传框的样式
+ */
 $(document).ready(function () {
     bsCustomFileInput.init()
 })
 
-function addUploads(){
+/**
+ * 下载文件的
+ * @param my
+ */
+function uploads(my){
+    window.open(`http://127.0.0.1:8080/blog/uploads/select/uploads?name=${my.parentNode.firstElementChild.innerHTML}`);
+}
 
+function deleteUploads(my){
+
+}
+
+/**
+ * 上传文件的ajax
+ */
+function addUploads(){
     let formFile = new FormData();
     formFile.append("action", "UploadVMKImagePath");
     formFile.append("file", $('#inputGroupFile01').get(0).files[0]);
@@ -27,3 +44,4 @@ function addUploads(){
         }
     })
 }
+

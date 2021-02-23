@@ -27,69 +27,14 @@
 
     <div class="container">
         <div class="row row-cols-2 row-cols-md-5 ">
-            <div class="col mb-3">
+            <div class="col mb-3" th:each="list:${list}">
                 <div class="card h-100">
-                    <img th:src="@{/static/picture/file-earmark-word-fill.svg}" class="card-img-top picture-img">
-                    <div class="picture-data">
-                        <h5 class="card-title">毕业设计的神经病打算</h5>
-                        <p class="card-text">2021-05-20</p>
-                        <button type="button" class="btn btn-primary event">下载</button>
-                        <button type="button" class="btn btn-secondary event">删除</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-3">
-                <div class="card h-100">
-                    <img th:src="@{/static/picture/file-earmark-word-fill.svg}" class="card-img-top picture-img">
-                    <div class="picture-data">
-                        <h5 class="card-title">毕业设计的神经病打算</h5>
-                        <p class="card-text">2021-05-20</p>
-                        <button type="button" class="btn btn-primary event">下载</button>
-                        <button type="button" class="btn btn-secondary event">删除</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-3">
-                <div class="card h-100">
-                    <img th:src="@{/static/picture/file-earmark-word-fill.svg}" class="card-img-top picture-img">
-                    <div class="picture-data">
-                        <h5 class="card-title">毕业设计的神经病打算</h5>
-                        <p class="card-text">2021-05-20</p>
-                        <button type="button" class="btn btn-primary event">下载</button>
-                        <button type="button" class="btn btn-secondary event">删除</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-3">
-                <div class="card h-100">
-                    <img th:src="@{/static/picture/file-earmark-word-fill.svg}" class="card-img-top picture-img">
-                    <div class="picture-data">
-                        <h5 class="card-title">毕业设计的神经病打算</h5>
-                        <p class="card-text">2021-05-20</p>
-                        <button type="button" class="btn btn-primary event">下载</button>
-                        <button type="button" class="btn btn-secondary event">删除</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-3">
-                <div class="card h-100">
-                    <img th:src="@{/static/picture/file-earmark-word-fill.svg}" class="card-img-top picture-img">
-                    <div class="picture-data">
-                        <h5 class="card-title">毕业设计的神经病打算</h5>
-                        <p class="card-text">2021-05-20</p>
-                        <button type="button" class="btn btn-primary event">下载</button>
-                        <button type="button" class="btn btn-secondary event">删除</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col mb-3">
-                <div class="card h-100">
-                    <img th:src="@{/static/picture/file-earmark-word-fill.svg}" class="card-img-top picture-img">
-                    <div class="picture-data">
-                        <h5 class="card-title">毕业设计的神经病打算</h5>
-                        <p class="card-text">2021-05-20</p>
-                        <button type="button" class="btn btn-primary event">下载</button>
-                        <button type="button" class="btn btn-secondary event">删除</button>
+                    <img th:src="@{/static/picture/file-earmark-{race}-fill.svg(race=${list.race})}" class="card-img-top picture-img">
+                    <div class="picture-data" th:id="${list.id}">
+                        <h5 class="card-title" th:text="${list.name}"></h5>
+                        <p class="card-text" th:text="${list.startTime}"></p>
+                        <button type="button" class="btn btn-primary event" onclick="uploads(this)">下载</button>
+                        <button type="button" class="btn btn-secondary event" onclick="deleteUploads(this)">删除</button>
                     </div>
                 </div>
             </div>

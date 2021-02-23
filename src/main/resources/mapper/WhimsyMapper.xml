@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chuanmei.bishe.dao.WhimsyDao">
+
+    <insert id="addWhimsy">
+        INSERT INTO whimsy(account,title,subtitle,route,behind)
+        VALUES (#{account,jdbcType=VARCHAR},#{title,jdbcType=VARCHAR},#{subtitle,jdbcType=VARCHAR},#{route,jdbcType=VARCHAR},#{behind,jdbcType=VARCHAR})
+    </insert>
+
+    <update id="updateWhimsy">
+        update whimsy
+        SET series = #{series,jdbcType = VARCHAR}
+        WHERE id = #{id,jdbcType = INTEGER}
+    </update>
+
+    <delete id="deleteWhimsy">
+        DELETE FROM whimsy
+        WHERE id = #{id,jdbcType = INTEGER}
+    </delete>
+
+    <select id="selectList" resultType="com.chuanmei.bishe.model.Whimsy">
+        SELECT *
+        FROM whimsy
+        <where>
+            <if test="account != null">account = #{account,jdbcType = VARCHAR}</if>
+        </where>
+    </select>
+</mapper>
