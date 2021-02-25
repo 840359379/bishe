@@ -3,8 +3,18 @@
 <mapper namespace="com.chuanmei.bishe.dao.UploadsDao">
 
     <insert id="addUploads">
-        INSERT INTO uploads(account,name,race,route)
-        VALUES (#{account,jdbcType = VARCHAR},#{name,jdbcType = VARCHAR},#{race,jdbcType = VARCHAR},#{route,jdbcType = VARCHAR})
+        INSERT INTO uploads
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            account,name,race,route,
+            <if test="geared != null">geared</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            #{account,jdbcType = VARCHAR},
+            #{name,jdbcType = VARCHAR},
+            #{race,jdbcType = VARCHAR},
+            #{route,jdbcType = VARCHAR},
+            <if test="geared != null">#{geared,jdbcType = INTEGER}</if>
+        </trim>
     </insert>
 
     <delete id="deleteUploads">
@@ -15,12 +25,20 @@
     <select id="selectList" resultType="com.chuanmei.bishe.model.Uploads">
         SELECT *
         FROM uploads
-        WHERE account = #{account ,jdbcType = VARCHAR}
+        WHERE account = #{account ,jdbcType = VARCHAR} and geared = 0
     </select>
 
     <select id="selectUploads" resultType="com.chuanmei.bishe.model.Uploads">
         SELECT *
         FROM uploads
-        WHERE account = #{account,jdbcType = VARCHAR} AND name = #{name,jdbcType = VARCHAR}
+        WHERE account = #{account,jdbcType = VARCHAR} AND name = #{name,jdbcType = VARCHAR} and geared = 0
     </select>
+
+    <select id="selectGeared" resultType="com.chuanmei.bishe.model.Uploads">
+        SELECT *
+        FROM uploads
+        WHERE geared = #{geared,jdbcType = INTEGER}
+    </select>
+
+
 </mapper>

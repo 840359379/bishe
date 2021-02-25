@@ -1,5 +1,6 @@
 package com.chuanmei.bishe.service.Impl;
 
+import com.chuanmei.bishe.configure.RedisTool;
 import com.chuanmei.bishe.dao.GoodDao;
 import com.chuanmei.bishe.model.Good;
 import com.chuanmei.bishe.service.GoodService;
@@ -19,11 +20,17 @@ public class GoodServiceImpl implements GoodService {
 
     @Override
     public boolean addgood(Good good) {
+        if(good.getSituation()==1){
+            RedisTool.addStatus(good.getAccount(),"good",1);
+        }
         return goodDao.addGood(good);
     }
 
     @Override
     public boolean updategood(Good good) {
+        if(good.getSituation()==1){
+            RedisTool.addStatus(good.getAccount(),"good",1);
+        }
         return goodDao.updataGood(good);
     }
 

@@ -1,5 +1,6 @@
 package com.chuanmei.bishe.service.Impl;
 
+import com.chuanmei.bishe.configure.RedisTool;
 import com.chuanmei.bishe.dao.ContentDao;
 import com.chuanmei.bishe.model.Content;
 import com.chuanmei.bishe.service.ContentService;
@@ -26,6 +27,7 @@ public class ContentServiceImpl implements ContentService {
 
     @Override
     public boolean addContent(Content content) {
+        RedisTool.addStatus(content.getContent(),"content",1);
         return contentDao.addContent(content);
     }
 }

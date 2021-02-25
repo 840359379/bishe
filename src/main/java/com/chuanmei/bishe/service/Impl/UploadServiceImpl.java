@@ -34,4 +34,9 @@ public class UploadServiceImpl implements UploadService {
     public Uploads selectUploads(String account, String name) {
         return uploadsDao.selectUploads(account,name);
     }
+
+    @Override
+    public List<Uploads> selectGeared(String geared) {
+        return uploadsDao.selectGeared(geared);
+    }
 }

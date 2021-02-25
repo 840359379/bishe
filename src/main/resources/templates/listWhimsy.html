@@ -8,15 +8,17 @@
     <script th:src="@{/static/bootstrap-4.4.1-dist/js/bootstrap.js}" defer></script>
 </head>
 <body class="jumbotron jumbotron-fluid">
-    <div class="card-columns">
-        <div class="card" th:each="list:${list}">
-            <img th:src="@{{behind}(behind=${list.behind})}" class="card-img-top" alt="..." th:if="${list.behind}">
-            <blockquote class=" mb-0 card-body">
-                <h5 class="card-title" th:text="${list.title}"></h5>
-                <footer class="blockquote-footer">
-                    <small class="text-muted" th:text="${list.subtitle}"></small>
-                </footer>
-            </blockquote>
+    <div class="container">
+        <div class="card-columns">
+            <div class="card" th:each="list:${list}">
+                <img th:src="@{{behind}(behind=${list.behind})}" class="card-img-top" alt="..." th:if="${list.behind}">
+                <blockquote class=" mb-0 card-body">
+                    <h5 class="card-title" th:text="${list.title}"></h5>
+                    <footer class="blockquote-footer">
+                        <small class="text-muted" th:text="${list.subtitle}"></small>
+                    </footer>
+                </blockquote>
+            </div>
         </div>
     </div>
 </body>

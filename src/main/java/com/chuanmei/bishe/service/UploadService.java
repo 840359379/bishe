@@ -34,4 +34,11 @@ public interface UploadService {
      * @return
      */
     public Uploads selectUploads(String account,String name);
+
+    /**
+     * 查看一个所属的文件
+     * @param geared
+     * @return
+     */
+    public List<Uploads> selectGeared(String geared);
 }

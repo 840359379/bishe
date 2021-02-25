@@ -11,7 +11,7 @@ public interface WhimsyService {
      * @param whimsy
      * @return
      */
-    public Whimsy addWhimsy(Whimsy whimsy);
+    public boolean addWhimsy(Whimsy whimsy);
 
     /**
      * 删除一个随想

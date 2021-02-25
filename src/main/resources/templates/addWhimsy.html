@@ -6,30 +6,36 @@
     <link rel="stylesheet" th:href="@{/static/bootstrap-4.4.1-dist/css/bootstrap.css}"/>
     <script th:src="@{/static/js/jquery-3.5.0.min.js}" defer></script>
     <script th:src="@{/static/bootstrap-4.4.1-dist/js/bootstrap.js}" defer></script>
+    <script th:src="@{/static/js/newborn.js}" defer></script>
     <link rel="stylesheet" th:href="@{/static/css/uploads.css}"/>
-    <script src="https://cdn.jsdelivr.net/npm/bs-custom-file-input/dist/bs-custom-file-input.js" defer></script>
-    <script th:src="@{/static/js/uploadss.js}" defer></script>
+    <script th:src="@{/static/js/addWhimsy.js}" defer></script>
 </head>
 <body>
 <div class="jumbotron jumbotron-fluid">
     <div class="container">
         <h1 class="display-4">随想计划</h1>
+        <button type="button" class="btn btn-primary" id="addWhimsy" onclick="addWhimsy()">发表</button>
         <div id="dataWhimsy">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">标题</span>
+                    <span class="input-group-text">标题</span>
                 </div>
-                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
+                <input type="text" id="title" autocomplete="off" class="form-control" placeholder="标题" aria-label="Username" aria-describedby="basic-addon1">
             </div>
             <div class="input-group flex-nowrap">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="addon-wrapping">简介</span>
+                    <span class="input-group-text">简介</span>
                 </div>
-                <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="addon-wrapping">
+                <input  id="subtitle" type="text" autocomplete="off" class="form-control" placeholder="简介" aria-label="Username" aria-describedby="addon-wrapping">
             </div>
             <div class="form-group" id="text">
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <textarea class="form-control" autocomplete="off" id="route" placeholder="内容" rows="3"></textarea>
             </div>
+            <div class="input-file-box">
+                <span>点击上传图片</span>
+                <input type="file" id="uploadFile" multiple accept="image/*">
+            </div>
+            <div id="img-box"></div>
         </div>
     </div>
 </div>

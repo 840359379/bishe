@@ -1,5 +1,6 @@
 package com.chuanmei.bishe.service.Impl;
 
+import com.chuanmei.bishe.configure.RedisTool;
 import com.chuanmei.bishe.dao.WhimsyDao;
 import com.chuanmei.bishe.model.Whimsy;
 import com.chuanmei.bishe.service.WhimsyService;
@@ -15,7 +16,8 @@ public class WhimsyServiceImpl implements WhimsyService {
     private WhimsyDao whimsyDao;
 
     @Override
-    public Whimsy addWhimsy(Whimsy whimsy) {
+    public boolean addWhimsy(Whimsy whimsy) {
+        RedisTool.addStatus(whimsy.getAccount(),"whimsy",1);
         return whimsyDao.addWhimsy(whimsy);
     }
 

@@ -45,9 +45,14 @@ public class UploadsController {
     public @ResponseBody CommonResult addUploads(MultipartFile file,String name, HttpServletRequest request) throws Exception {
         User user = (User) request.getSession().getAttribute("user");
         String ext = file.getOriginalFilename().substring(file.getOriginalFilename().lastIndexOf("."));
-        String filepath = ClassUtils.getDefaultClassLoader().getResource("static/txt/").getPath() + name + ext;
-        saveFile(ClassUtils.getDefaultClassLoader().getResource("static/txt/").getPath(), filepath, file);
-        return new CommonResult(200,"成功了",uploadService.addUploads(new Uploads(user.getAccount(),name+ext,suffix(ext),filepath)));
+        if(name.equals("")){
+            name = file.getOriginalFilename();
+        }else {
+            name = name + ext;
+        }
+        String filepath = ClassUtils.getDefaultClassLoader().getResource("static/uploads/").getPath() + name;
+        saveFile(ClassUtils.getDefaultClassLoader().getResource("static/uploads/").getPath(), filepath, file);
+        return new CommonResult(200,"成功了",uploadService.addUploads(new Uploads(user.getAccount(),name,suffix(ext),filepath)));
     }
 
     @GetMapping(value = "/select/uploads")

@@ -7,14 +7,16 @@ public class Uploads {
     public String race;
     public String route;
     public String startTime;
+    public int geared;
 
-    public Uploads(int id, String account, String name, String race, String route, String startTime) {
+    public Uploads(int id, String account, String name, String race, String route, String startTime,int geared) {
         this.id = id;
         this.account = account;
         this.name = name;
         this.race = race;
         this.route = route;
         this.startTime = startTime;
+        this.geared = geared;
     }
 
     public Uploads(String account, String name, String race, String route) {
@@ -75,6 +77,14 @@ public class Uploads {
         this.startTime = startTime;
     }
 
+    public int getGeared() {
+        return geared;
+    }
+
+    public void setGeared(int geared) {
+        this.geared = geared;
+    }
+
     @Override
     public String toString() {
         return "Uploads{" +
@@ -84,6 +94,7 @@ public class Uploads {
                 ", race='" + race + '\'' +
                 ", route='" + route + '\'' +
                 ", startTime='" + startTime + '\'' +
+                ", geared=" + geared +
                 '}';
     }
 }
