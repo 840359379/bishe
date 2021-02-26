@@ -18,6 +18,12 @@ public class GoodController {
     @Autowired
     private GoodService goodService;
 
+    /**
+     * 操作我的点赞
+     * @param good
+     * @param request
+     * @return
+     */
     @PostMapping("/operation/good")
     public @ResponseBody CommonResult operationCollection(Good good, HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");

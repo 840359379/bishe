@@ -18,6 +18,64 @@
     <canvas id="canvas"></canvas>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
+      <input type="hidden" id="hidden" th:abbr="${submit}">
+      <a class="navbar-brand" href="#" id="state"></a>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/blog/homepage/index">首页<span class="sr-only">(current)</span></a
+            >
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/blog/personal/index">个人中心</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/blog/personal/invitation">发帖</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/blog/whimsy/index">随想计划</a>
+          </li>
+
+          <li class="nav-item">
+            <a class="nav-link" href="/blog/uploads/index">我的文件</a>
+          </li>
+
+          <li class="nav-item dropdown">
+            <a
+                    class="nav-link dropdown-toggle"
+                    href="#"
+                    id="navbarDropdown"
+                    role="button"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false">
+              其他
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/blog/collection/index">收藏</a>
+              <a class="dropdown-item" href="/blog/message/index">留言板</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" id="state_enroll" href="/blog/homepage/out">退出登录</a>
+            </div>
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-lg-0" action="/blog/homepage/index">
+          <input
+                  class="form-control mr-sm-2"
+                  name="search"
+                  type="search"
+                  placeholder="查找帖子"
+                  aria-label="查找帖子"/>
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+            搜索
+          </button>
+        </form>
+      </div>
+    </nav>
+
     <input type="hidden" id="hidden" th:abbr="${submit}">
     <a class="navbar-brand" href="#" id="state"></a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">

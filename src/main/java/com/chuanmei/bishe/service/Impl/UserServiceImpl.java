@@ -31,4 +31,9 @@ public class UserServiceImpl implements UserService {
     public User chaname(String id) {
         return userDao.chaname(id);
     }
+
+    @Override
+    public boolean addCoin() {
+        return userDao.addCoin();
+    }
 }

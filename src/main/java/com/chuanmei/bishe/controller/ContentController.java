@@ -16,12 +16,22 @@ public class ContentController {
     @Autowired
     public ContentService contentService;
 
+    /**
+     * 删除一个评论
+     * @param id
+     * @return
+     */
     @PostMapping(value = "/delete/content")
     public @ResponseBody CommonResult deleteContent(int id){
         boolean data = contentService.deleteContent(id);
         return new CommonResult(200,"成功了",data);
     }
 
+    /**
+     * 添加一个评论
+     * @param content
+     * @return
+     */
     @PostMapping(value = "/add/content")
     public @ResponseBody CommonResult addContent(Content content){
         return new CommonResult(200,"成功了",contentService.addContent(content));

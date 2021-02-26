@@ -11,4 +11,9 @@ public interface UserService {
     public boolean modify(User user);
     //用户名
     public User chaname(String id);
+    /**
+     *增加硬币数量
+     * @return
+     */
+    public boolean addCoin();
 }

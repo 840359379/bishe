@@ -9,8 +9,9 @@ public class User {
 	private String personality;
 	private String portrait;
 	private String password;
+	private int coin;
 
-	public User(String account, String name, String gender, String birthday, String mailbox, String personality, String portrait, String password) {
+	public User(String account, String name, String gender, String birthday, String mailbox, String personality, String portrait, String password,int coin) {
 		this.account = account;
 		this.name = name;
 		this.gender = gender;
@@ -19,6 +20,7 @@ public class User {
 		this.personality = personality;
 		this.portrait = portrait;
 		this.password = password;
+		this.coin = coin;
 	}
 
 	public String getAccount() {
@@ -87,5 +89,13 @@ public class User {
 
 	public User() {
 		super();
+	}
+
+	public int getCoin() {
+		return coin;
+	}
+
+	public void setCoin(int coin) {
+		this.coin = coin;
 	}
 }

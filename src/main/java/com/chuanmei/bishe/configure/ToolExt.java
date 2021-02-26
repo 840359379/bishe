@@ -2,6 +2,11 @@ package com.chuanmei.bishe.configure;
 
 public class ToolExt {
 
+    /**
+     * 后缀名转换
+     * @param ext
+     * @return
+     */
     public static String suffix(String ext){
         String type = null;
         switch (ext){

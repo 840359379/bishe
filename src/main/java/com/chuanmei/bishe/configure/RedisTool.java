@@ -5,6 +5,7 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.Calendar;
+import java.util.concurrent.TimeUnit;
 
 @Component
 public class RedisTool {
@@ -18,17 +19,17 @@ public class RedisTool {
 
     public static int testing(String account,String task){
         int status;
-        if(redisTemplate.opsForHash().get(account,task) == null ){
+        if(redisTemplate.opsForValue().get(account+task) == null ){
             status = 0;
         }else {
-            status = (int) redisTemplate.opsForHash().get(account,task);
+            status = (int) redisTemplate.opsForValue().get(account + task);
         }
         return status;
     }
 
     public static void addStatus(String account, String task, int status){
-        if((redisTemplate.opsForHash().get(account,task) == null) || redisTemplate.opsForHash().get(account,task).equals(0)){
-            redisTemplate.opsForHash().put(account,task,status);
+        if((redisTemplate.opsForValue().get(account+task) == null) || redisTemplate.opsForValue().get(account+task).equals(1)){
+            redisTemplate.opsForValue().set(account + task,status,getSecondsNextEarlyMorning(), TimeUnit.SECONDS);
         }
     }
 

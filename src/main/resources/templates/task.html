@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>每日任务</title>
+    <link rel="stylesheet" th:href="@{/static/bootstrap-4.4.1-dist/css/bootstrap.css}"/>
+    <script th:src="@{/static/js/jquery-3.5.0.min.js}" defer></script>
+    <script th:src="@{/static/bootstrap-4.4.1-dist/js/bootstrap.js}" defer></script>
+    <script th:src="@{/static/js/newborn.js}"></script>
+    <link rel="stylesheet" th:href="@{/static/css/task.css}"/>
+    <script th:src="@{/static/js/task.js}" defer></script>
+</head>
+<body>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <div class="card mb-3 task-box" >
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img th:src="@{/static/picture/calendar-check.svg}" width="80%" style="margin: 10%">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">每日签到</h5>
+                            <p class="card-text"><small class="text-muted">每日都会需要的一次签到</small></p>
+                            <button id="signIn" type="button" th:class="${signIn == 1 ? 'btn btn-success task-button' : 'btn btn-secondary task-button'}"
+                            th:text="${signIn == 0 ? '未完成' : (signIn == 1 ? '完成' : '已完成')}" onclick="updateTask(this)">未完成</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 task-box" >
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img th:src="@{/static/picture/bookmark-heart.svg}" width="80%" style="margin: 10%">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">每日点赞</h5>
+                            <p class="card-text"><small class="text-muted">每日给其他随想点赞</small></p>
+                            <button id="good" type="button" th:class="${good == 1 ? 'btn btn-success task-button' : 'btn btn-secondary task-button'}"
+                                    th:text="${good == 0 ? '未完成' : (good == 1 ? '完成' : '已完成')}" onclick="updateTask(this)">未完成</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 task-box" >
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img th:src="@{/static/picture/file-earmark-text.svg}" width="80%" style="margin: 10%">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">每日随想</h5>
+                            <p class="card-text"><small class="text-muted">每日发表一篇随想</small></p>
+                            <button id="whimsy" type="button" th:class="${whimsy == 1 ? 'btn btn-success task-button' : 'btn btn-secondary task-button'}"
+                                    th:text="${whimsy == 0 ? '未完成' : (whimsy == 1 ? '完成' : '已完成')}" onclick="updateTask(this)">未完成</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mb-3 task-box" >
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img th:src="@{/static/picture/terminal.svg}" width="80%" style="margin: 10%">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">每日评论</h5>
+                            <p class="card-text"><small class="text-muted">每日给其他帖子评论一下</small></p>
+                            <button id="content" type="button" th:class="${content == 1 ? 'btn btn-success task-button' : 'btn btn-secondary task-button'}"
+                                    th:text="${content == 0 ? '未完成' : (content == 1 ? '完成' : '已完成')}" onclick="updateTask(this)">未完成</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

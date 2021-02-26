@@ -1,14 +1,10 @@
-function transformation(my){
-    $("#iframe").attr("src",my.id);
-}
-
-function signIn(my){
-    if(my.innerHTML === "签到"){
+function updateTask(my){
+    if (my.innerHTML === "完成"){
         $.ajax({
-            dataType:"json",
-            data:{status:1},
-            url:"http://127.0.0.1:8080/blog/task/signIn",
+            data:{task:my.id,status:2},
+            url:"http://127.0.0.1:8080/blog/task/update/task",
             type:"POST",
+            dataType:"json",
             success:function (data){
                 if(data.code){
                     location.reload();

@@ -1,0 +1,11 @@
+.task-box{
+    display: inline-block;
+    width: 45%;
+    margin: 1%;
+}
+
+.task-button{
+    position:absolute;
+    bottom: 10%;
+    right: 10%;
+}

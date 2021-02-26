@@ -2,6 +2,7 @@ package com.chuanmei.bishe.controller;
 
 import com.chuanmei.bishe.configure.CommonResult;
 import com.chuanmei.bishe.configure.MyTool;
+import com.chuanmei.bishe.configure.RedisTool;
 import com.chuanmei.bishe.configure.ToolExt;
 import com.chuanmei.bishe.model.Uploads;
 import com.chuanmei.bishe.model.User;
@@ -34,9 +35,16 @@ public class WhimsyController {
     public String index(Model model, HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
         model.addAttribute("user",user);
+        model.addAttribute("signIn", 0);
         return "whimsy";
     }
 
+    /**
+     * 转到随想
+     * @param model
+     * @param request
+     * @return
+     */
     @GetMapping(value = "/list/whimsy")
     public String listWhimsy(Model model, HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
@@ -45,11 +53,23 @@ public class WhimsyController {
         return "listWhimsy";
     }
 
+    /**
+     * 转到添加随想
+     * @return
+     */
     @GetMapping(value = "/add/whimsy")
     public String addWhimsy(){
         return "addWhimsy";
     }
 
+    /**
+     * 发表一篇随想
+     * @param file
+     * @param whimsy
+     * @param request
+     * @return
+     * @throws Exception
+     */
     @PostMapping(value = "/increase/whimsy")
     public @ResponseBody CommonResult increaseWhimsy(MultipartFile[] file, Whimsy whimsy, HttpServletRequest request) throws Exception {
         User user = (User) request.getSession().getAttribute("user");

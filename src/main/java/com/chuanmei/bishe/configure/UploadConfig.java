@@ -9,6 +9,11 @@ import javax.servlet.MultipartConfigElement;
 
 @Configuration
 public class UploadConfig {
+
+    /**
+     * 允许上传的最大文件
+     * @return
+     */
     @Bean
     public MultipartConfigElement multipartConfigElement() {
         MultipartConfigFactory factory = new MultipartConfigFactory();

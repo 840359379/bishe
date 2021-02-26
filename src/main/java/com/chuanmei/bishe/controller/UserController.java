@@ -24,6 +24,13 @@ public class UserController {
         return "landing";
     }
 
+    /**
+     * 登录
+     * @param id
+     * @param pw
+     * @param request
+     * @return
+     */
     @PostMapping(value = "/enroll")
     public @ResponseBody CommonResult enroll(String id, String pw, HttpServletRequest request){
         User user = userService.record(id,pw);
@@ -36,6 +43,12 @@ public class UserController {
         return new CommonResult(200,"登录成功", user);
     }
 
+    /**
+     * 更改用户信息
+     * @param user
+     * @param request
+     * @return
+     */
     @PostMapping(value = "updateuser")
     public @ResponseBody CommonResult updateuser(User user,HttpServletRequest request){
         User old = (User) request.getSession().getAttribute("user");

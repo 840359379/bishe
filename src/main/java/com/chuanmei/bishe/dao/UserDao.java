@@ -13,4 +13,10 @@ public interface UserDao {
 	public boolean modify(User user);
 	//用户名查找
 	public User chaname(String id);
+
+	/**
+	 *增加硬币数量
+	 * @return
+	 */
+	public boolean addCoin();
 }

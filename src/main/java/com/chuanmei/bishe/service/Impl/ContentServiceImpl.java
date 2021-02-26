@@ -27,7 +27,7 @@ public class ContentServiceImpl implements ContentService {
 
     @Override
     public boolean addContent(Content content) {
-        RedisTool.addStatus(content.getContent(),"content",1);
+        RedisTool.addStatus(content.getAccount(),"content",1);
         return contentDao.addContent(content);
     }
 }

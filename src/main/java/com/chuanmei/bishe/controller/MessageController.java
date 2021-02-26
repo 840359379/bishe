@@ -30,11 +30,22 @@ public class MessageController {
         return "message";
     }
 
+    /**
+     * 删除一个留言
+     * @param id
+     * @return
+     */
     @PostMapping(value = "/delete/message")
     public @ResponseBody CommonResult deleteMessage(int id){
         return new CommonResult(200,"已删除",messageService.deleteMessage(id));
     }
 
+    /**
+     * 添加一个留言
+     * @param request
+     * @param message
+     * @return
+     */
     @PostMapping(value = "/add/message")
     public @ResponseBody CommonResult addMessage(HttpServletRequest request,Message message){
         User user = (User) request.getSession().getAttribute("user");

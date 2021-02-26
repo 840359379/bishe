@@ -33,4 +33,6 @@ public interface WhimsyDao {
      * @return
      */
     public List<Whimsy> selectList(String account);
+
+
 }

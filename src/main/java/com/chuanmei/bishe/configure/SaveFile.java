@@ -6,6 +6,14 @@ import java.io.*;
 
 public class SaveFile {
 
+    /**
+     * 保存一个文件
+     * @param savePath 路径
+     * @param fileFullName 文件路径
+     * @param file 文件
+     * @return
+     * @throws Exception
+     */
     public static boolean saveFile(final String savePath,final String fileFullName,final MultipartFile file) throws Exception {
         byte[] data = readInputStream(file.getInputStream());
         File uploadFile = new File(fileFullName);
@@ -32,6 +40,13 @@ public class SaveFile {
         return uploadFile.exists();
     }
 
+
+    /**
+     * 输出一个文件
+     * @param inStream
+     * @return
+     * @throws Exception
+     */
     public static byte[] readInputStream(InputStream inStream) throws Exception {
         ByteArrayOutputStream outStream = new ByteArrayOutputStream();
         //创建一个Buffer字符串

@@ -2,6 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chuanmei.bishe.dao.UserDao">
     <insert id="register"></insert>
+
+    <update id="addCoin">
+        UPDATE user
+        SET coin = coin + 2
+        WHERE account = "840359379"
+    </update>
+
     <update id="modify">
         UPDATE user
         <trim prefix="set" suffixOverrides=",">

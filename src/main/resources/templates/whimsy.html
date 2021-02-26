@@ -34,6 +34,14 @@
                         <a class="nav-link" href="/blog/personal/invitation">发帖</a>
                     </li>
 
+                    <li class="nav-item">
+                        <a class="nav-link" href="/blog/whimsy/index">随想计划</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/blog/uploads/index">我的文件</a>
+                    </li>
+
                     <li class="nav-item dropdown">
                         <a
                                 class="nav-link dropdown-toggle"
@@ -91,7 +99,7 @@
                                     <img th:src="@{/static/picture/grid-3x3-gap-fill.svg}" width="110%">
                                     <p class="lead">思想海</p>
                                 </div>
-                                <div class="user" id="asds" onclick="transformation(this)">
+                                <div class="user" id="/blog/task/index" onclick="transformation(this)">
                                     <img th:src="@{/static/picture/clipboard-data.svg}" width="110%">
                                     <p class="lead">任务</p>
                                 </div>
@@ -99,8 +107,11 @@
 
                             <div id="coin">
                                 <b>硬币数量</b>
-                                <b>8</b>
+                                <b th:text="${user.coin}">8</b>
                             </div>
+
+                            <button type="button" id="signIn" th:class="${signIn == 0 ? 'btn btn-info' : 'btn btn-secondary'}" onclick="signIn(this)"
+                            th:text="${signIn == 0 ? '签到' : '已签到'}"></button>
                         </div>
                     </div>
                 </div>

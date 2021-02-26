@@ -41,6 +41,14 @@ public class UploadsController {
         return "uploads";
     }
 
+    /**
+     * 上传一个文件
+     * @param file
+     * @param name
+     * @param request
+     * @return
+     * @throws Exception
+     */
     @PostMapping(value = "/add/uploads")
     public @ResponseBody CommonResult addUploads(MultipartFile file,String name, HttpServletRequest request) throws Exception {
         User user = (User) request.getSession().getAttribute("user");
@@ -55,6 +63,13 @@ public class UploadsController {
         return new CommonResult(200,"成功了",uploadService.addUploads(new Uploads(user.getAccount(),name,suffix(ext),filepath)));
     }
 
+    /**
+     * 下载一个文件
+     * @param request
+     * @param name
+     * @return
+     * @throws IOException
+     */
     @GetMapping(value = "/select/uploads")
     public ResponseEntity<byte[]> selectUploads(HttpServletRequest request,String name) throws IOException {
         User user = (User) request.getSession().getAttribute("user");
