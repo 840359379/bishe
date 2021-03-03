@@ -52,4 +52,9 @@ public class MessageController {
         message.setAccount(user.getAccount());
         return new CommonResult(200,"成功了",messageService.addMessage(message));
     }
+
+    @GetMapping(value = "/socket")
+    public String socket(){
+        return "socket";
+    }
 }
