@@ -1,16 +1,10 @@
 package com.chuanmei.bishe.service;
 
-import com.chuanmei.bishe.model.WhoMessage;
-import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
-
-import javax.websocket.OnError;
-import javax.websocket.OnMessage;
-import javax.websocket.OnOpen;
+import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
-import javax.websocket.Session;
 import javax.websocket.server.PathParam;
-import javax.websocket.server.ServerEndpoint;
 import java.io.IOException;
 import java.util.concurrent.ConcurrentHashMap;
 import com.alibaba.fastjson.JSON;
@@ -19,6 +13,7 @@ import com.alibaba.fastjson.JSONObject;
 
 @ServerEndpoint("/line/{account}")
 @Component
+@Slf4j
 public class WebSocketService {
 
     private static int onlineCount = 0;
@@ -30,7 +25,7 @@ public class WebSocketService {
     private String account="";
 
     @OnOpen
-    public void onOpen(Session session,@PathParam("userId") String account) {
+    public void onOpen(Session session,@PathParam("account") String account) {
         this.session = session;
         this.account=account;
         if(webSocketMap.containsKey(account)){
@@ -42,13 +37,27 @@ public class WebSocketService {
             //加入set中
             addOnlineCount();
             //在线数加1
+            log.info("有新的客户端连接了: {}", session.getId());
         }
-
+        log.info("用户连接:"+account+",当前在线人数为:" + getOnlineCount());
         try {
             sendMessage("连接成功");
         } catch (IOException e) {
-
+            log.error("用户:"+account+",网络异常!!!!!!");
         }
+    }
+
+    /**
+     * 连接关闭调用的方法
+     */
+    @OnClose
+    public void onClose() {
+        if(webSocketMap.containsKey(account)){
+            webSocketMap.remove(account);
+            //从set中删除
+            subOnlineCount();
+        }
+        log.info("用户退出:"+account+",当前在线人数为:" + getOnlineCount());
     }
 
 
@@ -58,20 +67,22 @@ public class WebSocketService {
      * @param message 客户端发送过来的消息*/
     @OnMessage
     public void onMessage(String message, Session session) {
+        log.info("用户消息:"+account+",报文:"+message);
         //可以群发消息
         //消息保存到数据库、redis
-        if(account==""&&account==null){
+        if(account!=""&&account!=null){
             try {
                 //解析发送的报文
                 JSONObject jsonObject = JSON.parseObject(message);
                 //追加发送人(防止串改)
-                jsonObject.put("fromUserId",this.userId);
-                String toUserId=jsonObject.getString("toUserId");
-                //传送给对应toUserId用户的websocket
-                if(account==""&&account==null&&webSocketMap.containsKey(toUserId)){
-                    webSocketMap.get(toUserId).sendMessage(jsonObject.toJSONString());
+                jsonObject.put("fromAccount",this.account);
+                String toAccount = jsonObject.getString("toAccount");
+                //传送给对应toAccount用户的websocket
+                if(toAccount!=""&&toAccount!=null&&webSocketMap.containsKey(toAccount)){
+                    webSocketMap.get(toAccount).sendMessage(jsonObject.toJSONString());
                 }else{
-
+                    log.error("请求的account:"+toAccount+"不在该服务器上");
+                    webSocketMap.get(account).sendMessage("对方不在线");
                     //否则不在这个服务器上，发送到mysql或者redis
                 }
             }catch (Exception e){
@@ -87,6 +98,7 @@ public class WebSocketService {
      */
     @OnError
     public void onError(Session session, Throwable error) {
+        log.error("用户错误:"+this.account+",原因:"+error.getMessage());
         error.printStackTrace();
     }
 
@@ -101,8 +113,11 @@ public class WebSocketService {
      * 发送自定义消息
      * */
     public static void sendInfo(String message,@PathParam("account") String account) throws IOException {
-        if(account==""&&account==null&&webSocketMap.containsKey(account)){
+        log.info("发送消息到:"+account+"，报文:"+message);
+        if(account!=""&&account!=null&&webSocketMap.containsKey(account)){
             webSocketMap.get(account).sendMessage(message);
+        }else{
+            log.error("用户"+account+",不在线！");
         }
     }
 

@@ -1,0 +1,59 @@
+html,body{height:100%}
+
+.unread{
+    position:absolute;
+    right: 6%;
+    bottom: 25%;
+}
+
+.people{
+    border:none;
+    background-color:transparent;
+    border-radius:10px;
+}
+
+/*聊天框的设置*/
+#socket-content{
+    background-color: white;
+    width: 100%;
+    height: 500px;
+    padding: 3%;
+    overflow-y:scroll;
+
+}
+
+#socket-content::-webkit-scrollbar{
+    display:none;/*隐藏滚动条*/
+}
+
+.picture-data{
+    width: 10%;
+    border-radius: 30%;
+}
+
+/*聊天的信息*/
+.socket-data{
+
+}
+
+.time-name{
+    display: inline-block;
+    vertical-align: top;
+    width: 50%;
+}
+
+.time-name p{
+    margin: 2%;
+    font-size: 90%;
+    color: #777777;
+}
+
+.chat{
+    margin: 2% 4% 0 4%;
+    background-color: #DDDDDD;
+    padding: 1.5%;
+    font-size: 90%;
+    color: #666666;
+    display:inline-block;
+    border-radius: 8px;
+}
