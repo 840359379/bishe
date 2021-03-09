@@ -39,7 +39,7 @@ function operationGood(my){
         success:function (data){
             if(data.code >= 200 && data.code < 300){
                 location.reload();
-                // good(my,data);
+                good(my,data);
             }else {
                 alert("操作失败");
             }
@@ -57,7 +57,6 @@ function operationGood(my){
 function good(my,data){
     if(data.message === "取消"){
         my.lastElementChild.innerHTML = my.lastElementChild.innerHTML.replace("已","");
-
         // my.lastElementChild.innerHTML = my.lastElementChild.innerHTML.replace();
     }else if(data.message === "修改成功"){
         $("#1").children().last().html($("#1").children().last().text().replace("已",""));
@@ -75,6 +74,7 @@ function obtain(data){
     $("#myCount").html(data.myCount);
     $("#lookTime").html(data.lookTime);
     $("#yesterdayGood").html(data.yesterdayGood);
+    $("#whimsy").html(data.whimsy);
 }
 
 function lookinvitation(my){

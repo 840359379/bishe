@@ -28,4 +28,9 @@ public class SocketServiceImpl implements SocketService {
     public boolean addSocket(Socket socket) {
         return socketDao.addSocket(socket);
     }
+
+    @Override
+    public boolean updateSocket(String combination, String account,int situation) {
+        return socketDao.updateSocket(combination,account,situation);
+    }
 }

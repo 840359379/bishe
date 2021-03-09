@@ -35,7 +35,8 @@ public class WhimsyController {
     public String index(Model model, HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
         model.addAttribute("user",user);
-        model.addAttribute("signIn", 0);
+//        model.addAttribute("signIn", 0);
+        model.addAttribute("signIn", RedisTool.testing(user.getAccount(),"signIn"));
         return "whimsy";
     }
 

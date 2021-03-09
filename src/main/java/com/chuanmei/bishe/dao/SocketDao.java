@@ -29,4 +29,10 @@ public interface SocketDao {
      */
     public boolean addSocket(Socket socket);
 
+    /**
+     * 改变已读状态
+     * @param combination
+     * @return
+     */
+    public boolean updateSocket(String combination,String account,int situation);
 }

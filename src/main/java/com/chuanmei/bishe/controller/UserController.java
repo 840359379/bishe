@@ -62,4 +62,14 @@ public class UserController {
         request.getSession().setAttribute("user", newUser);
         return new CommonResult(200,"修改成功",post);
     }
+
+    @PostMapping(value = "/register")
+    @ResponseBody
+    public CommonResult register(User user){
+        if(userService.record(user.getAccount(),user.getPassword()) == null){
+            return new CommonResult(200,"成功",userService.register(user));
+        }else {
+            return new CommonResult(404,"失败",false);
+        }
+    }
 }

@@ -28,7 +28,7 @@ public interface WhimsyService {
     public boolean updateWhimsy(Whimsy whimsy);
 
     /**
-     * 找到狠多随想
+     * 找到我的随想
      * @return
      */
     public List<Whimsy> selectList(String account);

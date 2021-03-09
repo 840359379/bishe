@@ -1,6 +1,11 @@
 package com.chuanmei.bishe.service;
 
+import com.chuanmei.bishe.configure.MyTool;
+import com.chuanmei.bishe.configure.RedisTool;
+import com.chuanmei.bishe.model.Socket;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 import javax.websocket.*;
 import javax.websocket.server.ServerEndpoint;
@@ -15,6 +20,12 @@ import com.alibaba.fastjson.JSONObject;
 @Component
 @Slf4j
 public class WebSocketService {
+
+    private static SocketService socketService;
+    @Autowired
+    public void setRedisTemplate(SocketService socketService) {
+        WebSocketService.socketService = socketService;
+    }
 
     private static int onlineCount = 0;
     /**concurrent包的线程安全Set，用来存放每个客户端对应的MyWebSocket对象。*/
@@ -75,14 +86,22 @@ public class WebSocketService {
                 //解析发送的报文
                 JSONObject jsonObject = JSON.parseObject(message);
                 //追加发送人(防止串改)
-                jsonObject.put("fromAccount",this.account);
-                String toAccount = jsonObject.getString("toAccount");
+                jsonObject.put("account",this.account);
+                String cover = jsonObject.getString("cover");
+                String content = jsonObject.getString("content");
                 //传送给对应toAccount用户的websocket
-                if(toAccount!=""&&toAccount!=null&&webSocketMap.containsKey(toAccount)){
-                    webSocketMap.get(toAccount).sendMessage(jsonObject.toJSONString());
+                if(cover!=""&&cover!=null&&webSocketMap.containsKey(cover)){
+                    Socket socket = new Socket(MyTool.combination(cover,account),null,account,cover,
+                            null,0,null,0,content);
+                    socketService.addSocket(socket);
+                    webSocketMap.get(cover).sendMessage(jsonObject.toJSONString());
+                    webSocketMap.get(account).sendMessage(jsonObject.toJSONString());
                 }else{
-                    log.error("请求的account:"+toAccount+"不在该服务器上");
-                    webSocketMap.get(account).sendMessage("对方不在线");
+                    log.error("请求的account:"+cover+"不在该服务器上");
+                    webSocketMap.get(account).sendMessage(jsonObject.toJSONString());
+                    Socket socket = new Socket(MyTool.combination(cover,account),null,account,cover,
+                            null,1,null,0,content);
+                    socketService.addSocket(socket);
                     //否则不在这个服务器上，发送到mysql或者redis
                 }
             }catch (Exception e){

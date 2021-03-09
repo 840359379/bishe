@@ -9,6 +9,12 @@
                 #{content,jdbcType = VARCHAR},
                 #{situation,jdbcType = INTEGER})
     </insert>
+    
+    <update id="updateSocket">
+        UPDATE socket
+        SET situation = #{situation,jdbcType = INTEGER}
+        WHERE combination = #{combination,jdbcType = VARCHAR} AND cover = #{account,jdbcType = VARCHAR}
+    </update>
 
     <select id="selectUnreadList" resultType="com.chuanmei.bishe.model.Socket">
         SELECT a.*,
@@ -19,13 +25,14 @@
              (SELECT combination,s.start_time startTime,s.account,s.cover,s.content,(SELECT u.name FROM `user` u WHERE u.account = s.account ) name,
                      (SELECT u.name FROM `user` u WHERE u.account = s.cover) coverName
              FROM `socket` s
-             WHERE account = #{account,jdbcType = VARCHAR} OR cover = #{account,jdbcType = VARCHAR} ORDER BY start_time DESC LIMIT 1) a
+             WHERE account = #{account,jdbcType = VARCHAR} OR cover = #{account,jdbcType = VARCHAR} ORDER BY start_time DESC) a
         GROUP BY a.combination
     </select>
 
     <select id="selectChatList" resultType="com.chuanmei.bishe.model.Socket">
-        SELECT COUNT(*) 'count' FROM `socket` WHERE situation = 1 and cover = #{account,jdbcType = VARCHAR} AND
-                                                    combination = #{combination,jdbcType = VARCHAR}
+        SELECT combination,start_time startTime,account,cover,content,situation
+        FROM `socket`
+        WHERE combination = #{combination,jdbcType = VARCHAR}
     </select>
 
 </mapper>

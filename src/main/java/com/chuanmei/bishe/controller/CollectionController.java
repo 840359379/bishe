@@ -4,10 +4,7 @@ import com.chuanmei.bishe.configure.CommonResult;
 import com.chuanmei.bishe.model.Collection;
 import com.chuanmei.bishe.model.Follow;
 import com.chuanmei.bishe.model.User;
-import com.chuanmei.bishe.service.CollectionService;
-import com.chuanmei.bishe.service.FollowService;
-import com.chuanmei.bishe.service.GoodService;
-import com.chuanmei.bishe.service.InvitationService;
+import com.chuanmei.bishe.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -40,6 +37,9 @@ public class CollectionController {
 
     @Autowired
     private GoodService goodService;
+
+    @Autowired
+    private WhimsyService whimsyService;
 
     @GetMapping(value = "/index")
     public String index(HttpServletRequest request, Model model){
@@ -79,6 +79,7 @@ public class CollectionController {
         map.put("yesterdayAdd",followService.yesterdayFollow(user.getAccount()) + "");
         map.put("lookTime",collectionService.selectTime(user.getAccount()));
         map.put("yesterdayGood",goodService.yesterdayGood(user.getAccount())+"");
+        map.put("whimsy",whimsyService.selectList(user.getAccount()).size()+"");
         return new CommonResult(200,"操作成功",map);
     }
 }

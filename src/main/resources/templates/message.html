@@ -41,6 +41,11 @@
                     <a class="nav-link" href="/blog/uploads/index">我的文件</a>
                 </li>
 
+                <li class="nav-item">
+                    <a class="nav-link" href="/blog/chat/index">私聊</a>
+                </li>
+
+
                 <li class="nav-item dropdown">
                     <a
                             class="nav-link dropdown-toggle"
@@ -115,7 +120,7 @@
                             </a>
                         </div>
                         <div class="card-div">
-                            <a class="navbar-brand">
+                            <a class="navbar-brand" href="/blog/whimsy/index">
                                 <img th:src="@{/static/picture/slack.svg}" class="card-img-user">
                                 <p>发表随想</p>
                             </a>
@@ -197,10 +202,10 @@
                             </a>
                         </div>
                         <div class="card-end">
-                            <a>
+                            <a href="/blog/whimsy/index">
                                 <img th:src="@{/static/picture/slack.svg}">
                                 <p>我的随想</p>
-                                <p class="card-right">4</p>
+                                <p class="card-right" id="whimsy">4</p>
                             </a>
                         </div>
                         <div class="card-end">

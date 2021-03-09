@@ -9,17 +9,19 @@
     <link rel="stylesheet" type="text/css" th:href="@{/static/css/socket.css}">
     <script th:src="@{/static/js/newborn.js}" defer type="text/javascript"></script>
     <script th:src="@{/static/js/socket.js}" defer type="text/javascript"></script>
+    <script th:src="@{/static/js/confetti.js}" defer type="text/javascript"></script>
 </head>
 <body>
+
+    <canvas id="canvas"></canvas>
 
     <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
     <input type="hidden" id="hidden" th:abbr="${submit}">
     <a class="navbar-brand" href="#" id="state"></a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/blog/homepage/index">首页<span class="sr-only">(current)</span></a
-                >
+            <li class="nav-item">
+                <a class="nav-link" href="/blog/homepage/index">首页<span class="sr-only">(current)</span></a>
             </li>
 
             <li class="nav-item">
@@ -38,7 +40,7 @@
                 <a class="nav-link" href="/blog/uploads/index">我的文件</a>
             </li>
 
-            <li class="nav-item">
+            <li class="nav-item active">
                 <a class="nav-link" href="/blog/chat/index">私聊</a>
             </li>
 
@@ -81,87 +83,36 @@
 
             <div class="col-4">
                 <div class="jumbotron">
-                    <div class="list-group-item list-group-item-action list-group-item-secondary" th:each="list:${list}">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1" th:text="${list.account == user.account ? list.coverName : list.name}"></h5>
-                            <small th:text="${list.startTime}"></small>
+                    <span th:each="list:${list}">
+                        <div class="list-group-item list-group-item-action list-group-item-secondary"
+                             th:id="${list.account == user.account ? list.cover : list.account}" onclick="ajaxData(this)">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1" th:text="${list.account == user.account ? list.coverName : list.name}"></h5>
+                                <small th:text="${list.startTime}"></small>
+                            </div>
+                            <p class="mb-1" th:text="${list.content}"></p>
+                            <small class="unread"><b th:text="${list.count}" id="unread">3</b>条未读</small>
                         </div>
-                        <p class="mb-1" th:text="${list.content}"></p>
-                        <small class="unread"><b th:text="${list.count}">3</b>条未读</small>
-                    </div>
-                    <hr class="my-2">
+                        <hr class="my-2">
+                    </span>
                 </div>
             </div>
 
             <div class="col-8">
-                <div class="jumbotron">
+                <div class="jumbotron" >
                     <div>
-                        <img th:src="@{/static/picture/840359379.jpg}" class="picture-data">
-                        <h3 style="display: inline-block">叶子明</h3>
+                        <img th:src="@{/static/picture/{account}.jpg(account=${user.account})}" class="picture-data" id="coverPicture">
+                        <h3 class="trade" id="coverName" th:text="${user.name}"></h3>
                     </div>
 
                     <hr class="my-4">
 
-                    <div id="socket-content" >
-
-                        <div class="socket-data text-left">
-                            <img th:src="@{/static/picture/840359379.jpg}" class="picture-data">
-                            <div class="time-name">
-                                <p>叶子明</p>
-                                <p>2021-12-03</p>
-                            </div>
-                            <div>
-                                <p class="chat">你好</p>
-                            </div>
-                        </div>
-
-                        <div class="socket-data text-right">
-
-                            <div class="time-name">
-                                <p>叶子明</p>
-                                <p>2021-12-03</p>
-                            </div>
-                            <img th:src="@{/static/picture/840359379.jpg}" class="picture-data">
-                            <div>
-                                <p class="chat">你好</p>
-                            </div>
-                        </div>
-
-                        <div class="socket-data text-right">
-
-                            <div class="time-name">
-                                <p>叶子明</p>
-                                <p>2021-12-03</p>
-                            </div>
-                            <img th:src="@{/static/picture/840359379.jpg}" class="picture-data">
-                            <div>
-                                <p class="chat">你好</p>
-                            </div>
-                        </div>
-
-                        <div class="socket-data text-right">
-                            <div class="time-name">
-                                <p>叶子明</p>
-                                <p>2021-12-03</p>
-                            </div>
-                            <img th:src="@{/static/picture/840359379.jpg}" class="picture-data">
-                            <div>
-                                <p class="chat">你好</p>
-                            </div>
-                        </div>
-
-                        <div class="socket-data text-right">
-                            <div class="time-name">
-                                <p>叶子明</p>
-                                <p>2021-12-03</p>
-                            </div>
-                            <img th:src="@{/static/picture/840359379.jpg}" class="picture-data">
-                            <div>
-                                <p class="chat">你好</p>
-                            </div>
-                        </div>
-
-
+                    <div id="socket-content" th:abbr="${user.account}"><div class="jumbotron">
+                        <h1 class="display-4">Hello! Hello!</h1>
+                        <p class="lead">我跟着唱着唱着就哭了，曾经我也是个单纯懵懂，和朋友家人无话不谈的少女，年龄越大发现我和家人朋友的话越来越少，也许我们还在一起疯，一起玩，但心里还是有种疏远的感觉.对我来说是真的越长大越孤单，少女少年的青春早随岁月消失得无影无踪.</p>
+                        <hr class="my-4">
+                        <p>我少年的时候就是评论里说的那种努力学习的，也不知道算不算没有青春，反正我是觉得没啥青春，没有那些评论里的那么感人，结果现在活的还这么惨，也不敢说什么，质疑什么，那些道貌岸然励志的道理和浪漫不舍的道理好像都跟我无关，三不沾，你说憋屈不憋屈</p>
+                    </div>
                     </div>
 
                     <hr class="my-4">
@@ -169,7 +120,7 @@
                     <div class="input-group mb-3">
                         <input type="text" autocomplete="off" class="form-control" placeholder="发送信息" aria-label="发送信息" aria-describedby="button-addon2" id="content-text">
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="button" onclick="addContent(this)">
+                            <button class="btn btn-primary" type="button" onclick="sendMessage(this)" th:id="${user.name}">
                                 <img th:src="@{/static/picture/cursor-fill.svg}">
                             </button>
                         </div>

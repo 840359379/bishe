@@ -7,7 +7,7 @@ public class Socket {
     private String cover;
     private String coverName;
     private String content;
-    private String situation;
+    private int situation;
     private String startTime;
     private int count;
 
@@ -51,11 +51,11 @@ public class Socket {
         this.coverName = coverName;
     }
 
-    public String getSituation() {
+    public int getSituation() {
         return situation;
     }
 
-    public void setSituation(String situation) {
+    public void setSituation(int situation) {
         this.situation = situation;
     }
 
@@ -82,7 +82,7 @@ public class Socket {
                 '}';
     }
 
-    public Socket(String combination, String name, String account, String cover, String coverName, String situation, String startTime, int count, String content) {
+    public Socket(String combination, String name, String account, String cover, String coverName, int situation, String startTime, int count, String content) {
         this.combination = combination;
         this.name = name;
         this.account = account;

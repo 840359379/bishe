@@ -1,5 +1,12 @@
 html,body{height:100%}
 
+#canvas{
+    position:fixed;
+    z-index:-2;
+    top: 0;
+    left: 0;
+}
+
 .unread{
     position:absolute;
     right: 6%;
@@ -10,6 +17,10 @@ html,body{height:100%}
     border:none;
     background-color:transparent;
     border-radius:10px;
+}
+
+.trade{
+    display: inline-block;
 }
 
 /*聊天框的设置*/
@@ -49,7 +60,7 @@ html,body{height:100%}
 }
 
 .chat{
-    margin: 2% 4% 0 4%;
+    margin: 2% 4% 2% 4%;
     background-color: #DDDDDD;
     padding: 1.5%;
     font-size: 90%;

@@ -43,6 +43,7 @@ function obtain(data){
     $("#myCount").html(data.myCount);
     $("#lookTime").html(data.lookTime);
     $("#yesterdayGood").html(data.yesterdayGood);
+    $("#whimsy").html(data.whimsy);
 }
 
 /**
