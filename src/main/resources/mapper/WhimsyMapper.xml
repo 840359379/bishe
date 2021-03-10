@@ -30,5 +30,11 @@
         </where>
     </select>
 
+    <select id="seriesWhimsy" resultType="com.chuanmei.bishe.model.Whimsy">
+        SELECT *
+        FROM whimsy
+        WHERE series = #{series,jdbcType = VARCHAR}
+    </select>
+
 
 </mapper>

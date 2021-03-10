@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>查看随想</title>
+    <link rel="stylesheet" th:href="@{/static/bootstrap-4.4.1-dist/css/bootstrap.css}"/>
+    <script th:src="@{/static/js/jquery-3.5.0.min.js}" defer></script>
+    <script th:src="@{/static/bootstrap-4.4.1-dist/js/bootstrap.js}" defer></script>
+    <script th:src="@{/static/js/newborn.js}" defer></script>
+    <script th:src="@{/static/js/article.js}" defer></script>
+    <link rel="stylesheet" th:href="@{/static/css/article.css}" />
+</head>
+<body>
+    <div>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12" id="main">
+                    <div id="return_main">
+                        <div>返回</div>
+                    </div>
+
+                    <div id="user" th:abbr="${user.account}">
+                        <img th:src="@{/static/picture/{account}.jpg(account=${user.account})}" id="portrait" onclick="visitThis(this)" />
+                        <p id="name" th:text="${user.name}"></p>
+                        <p id="personality" th:text="${user.personality}"></p>
+                    </div>
+                    <button type="button" class="btn btn-primary" id="slotCoin" onclick="addSlotCoin()">投币</button>
+                    <div id="invittation" th:each="list:${list}">
+                        <h3 id="number" th:abbr="${list.id}" th:text="${list.title}"></h3>
+                        <div class="xian"></div>
+                        <div id="time_fa">
+                            <span>楼主</span>
+                            <p th:text="${list.startTime}"></p>
+                        </div>
+                        <p th:text="${list.route}"></p>
+                        <img th:src="@{{route}(route=${img.route})}" th:each="img:${list.list}" class="rounded mx-auto d-block">
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

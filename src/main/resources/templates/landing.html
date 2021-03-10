@@ -10,28 +10,8 @@
     <script th:src="@{/static/bootstrap-4.4.1-dist/js/bootstrap.js}" defer type="text/javascript"></script>
     <link rel="stylesheet" th:href="@{/static/css/denglu.css}" type="text/css"/>
     <script th:src="@{/static/js/denglu.js}" defer type="text/javascript"></script>
-    <link rel="stylesheet" th:href="@{/static/css/lrtk.css}">
-    <script type="text/javascript" th:src="@{/static/js/yezi.js}"></script>
   </head>
   <body onload="onloads()">
-
-  <div id="botAgregar"></div>
-
-  <script type="text/javascript">
-      $.AutomLeafStart({
-        leafsfolder:"/static/picture/",
-        howmanyimgsare:8,
-        initialleafs:100,
-        maxYposition:-10,
-        multiplyclick:true,
-        multiplynumber:10,
-        infinite:true,
-        fallingsequence:100});
-      $("#botAgregar").on("click",function(){
-        $.AutomLeafAdd({leafsfolder:"yezi/",add:8,
-        })
-      });
-  </script>
 
   <div class="denglu">
       <div class="jq22-container" style="padding-top:100px">
@@ -46,7 +26,7 @@
                   <input id="account" type="text" class="input">
                 </div>
                 <div class="group">
-                  <label for="pass" class="label">密码</label>
+                  <label for="password" class="label">密码</label>
                   <input id="password" type="password" class="input" data-type="password">
                 </div>
 

@@ -35,4 +35,9 @@ public class WhimsyServiceImpl implements WhimsyService {
     public List<Whimsy> selectList(String account) {
         return whimsyDao.selectList(account);
     }
+
+    @Override
+    public List<Whimsy> seriesWhimsy(int series) {
+        return whimsyDao.seriesWhimsy(series);
+    }
 }

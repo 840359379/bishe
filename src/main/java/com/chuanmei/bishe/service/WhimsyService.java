@@ -33,5 +33,12 @@ public interface WhimsyService {
      */
     public List<Whimsy> selectList(String account);
 
+    /**
+     * 找到一系列贴子
+     * @param series
+     * @return
+     */
+    public List<Whimsy> seriesWhimsy(int series);
+
 
 }

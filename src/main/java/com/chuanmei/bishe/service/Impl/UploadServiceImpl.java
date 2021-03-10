@@ -36,7 +36,7 @@ public class UploadServiceImpl implements UploadService {
     }
 
     @Override
-    public List<Uploads> selectGeared(String geared) {
+    public List<Uploads> selectGeared(int geared) {
         return uploadsDao.selectGeared(geared);
     }
 }

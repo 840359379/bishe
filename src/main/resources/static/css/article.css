@@ -138,3 +138,9 @@
 #content-main{
   margin: 2%;
 }
+
+#slotCoin{
+  top: 10%;
+  right: 4%;
+  position: absolute;
+}

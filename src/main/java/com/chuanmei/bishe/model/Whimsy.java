@@ -1,5 +1,7 @@
 package com.chuanmei.bishe.model;
 
+import java.util.List;
+
 public class Whimsy {
     private int id;
     private int series;
@@ -9,6 +11,15 @@ public class Whimsy {
     private String route;
     private String behind;
     private String startTime;
+    private List<Uploads> list;
+
+    public List<Uploads> getList() {
+        return list;
+    }
+
+    public void setList(List<Uploads> list) {
+        this.list = list;
+    }
 
     public Whimsy(int id, int series, String account, String title, String subtitle, String route, String behind, String startTime) {
         this.id = id;

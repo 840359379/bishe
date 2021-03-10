@@ -42,5 +42,5 @@ public interface UploadsDao {
      * @param geared
      * @return
      */
-    public List<Uploads> selectGeared(String geared);
+    public List<Uploads> selectGeared(int geared);
 }

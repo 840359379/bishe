@@ -8,6 +8,7 @@ import com.chuanmei.bishe.model.Uploads;
 import com.chuanmei.bishe.model.User;
 import com.chuanmei.bishe.model.Whimsy;
 import com.chuanmei.bishe.service.UploadService;
+import com.chuanmei.bishe.service.UserService;
 import com.chuanmei.bishe.service.WhimsyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,6 +31,9 @@ public class WhimsyController {
 
     @Autowired
     private UploadService uploadService;
+
+    @Autowired
+    private UserService userService;
 
     @GetMapping(value = "/index")
     public String index(Model model, HttpServletRequest request){
@@ -94,4 +98,17 @@ public class WhimsyController {
         whimsyService.updateWhimsy(whimsy);
         return new CommonResult(200,"成功了",true);
     };
+
+    @GetMapping(value = "/look/whimsy")
+    public String lookWhimsy(Model model,Whimsy whimsy){
+        List<Whimsy> list = whimsyService.seriesWhimsy(whimsy.getSeries());
+        for(Whimsy x : list){
+            x.setList(uploadService.selectGeared(x.getId()));
+        }
+        User user = userService.chaname(whimsy.getAccount());
+        user.setPassword("******");
+        model.addAttribute("list",list);
+        model.addAttribute("user",user);
+        return "lookWhimsy";
+    }
 }
