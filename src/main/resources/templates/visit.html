@@ -13,7 +13,7 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
     <input type="hidden" id="hidden" th:abbr="${submit}">
     <a class="navbar-brand" href="#" id="state"></a>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -33,10 +33,6 @@
 
             <li class="nav-item">
                 <a class="nav-link" href="/blog/whimsy/index">随想计划</a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="/blog/uploads/index">我的文件</a>
             </li>
 
             <li class="nav-item">
@@ -89,6 +85,7 @@
                             <p class="card-text" th:text="${user.personality}">但夏天还是那么短，思念却很长</p>
                         </div>
                         <button type="button" class="btn btn-success" style="float:right;" onclick="addFollow(this)" id="follow">关注</button>
+                        <button type="button" class="btn btn-danger" style="float:right;margin: 0 2%" onclick="privateChat()">私聊</button>
                     </div>
                 </div>
             </div>

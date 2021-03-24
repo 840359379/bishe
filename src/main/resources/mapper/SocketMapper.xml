@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chuanmei.bishe.dao.SocketDao">
-    <insert id="addSocket">
+    <insert id="addSocket" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO socket(combination,account,cover,content,situation)
         VALUES (#{combination,jdbcType = VARCHAR},
                 #{account,jdbcType = VARCHAR},
@@ -14,6 +14,12 @@
         UPDATE socket
         SET situation = #{situation,jdbcType = INTEGER}
         WHERE combination = #{combination,jdbcType = VARCHAR} AND cover = #{account,jdbcType = VARCHAR}
+    </update>
+
+    <update id="updateIdSocket">
+        UPDATE socket
+        SET situation = #{situation,jdbcType = INTEGER}
+        WHERE id = #{id,jdbcType = INTEGER}
     </update>
 
     <select id="selectUnreadList" resultType="com.chuanmei.bishe.model.Socket">

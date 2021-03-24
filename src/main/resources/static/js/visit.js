@@ -2,6 +2,10 @@ window.onload = function () {
     begin();
 }
 
+/**
+ * 转到的函数
+ * @param my
+ */
 function conversion(my){
     $("#conversion").attr("src",my.getAttribute("href"));
 }
@@ -48,6 +52,9 @@ function addFollow(my){
     }
 }
 
+/**
+ * 关注的按钮事件
+ */
 function begin(){
     $.ajax({
         type: "GET",
@@ -63,4 +70,14 @@ function begin(){
             alert("请求出现错误，请重新尝试");
         }
     })
+}
+
+function privateChat(){
+    window.location.href = `/blog/chat/index?account=${$("#account").attr("abbr")}`;
+    // $.ajax({
+    //     type:"POST",
+    //     url:"http://",
+    //     data:{account:},
+    //     dataType:"JSON"
+    // })
 }

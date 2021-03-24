@@ -33,4 +33,12 @@ public interface SocketService {
      * @return
      */
     public boolean updateSocket(String combination,String account,int situation);
+
+    /**
+     * 根据id改变已读状态
+     * @param id
+     * @param situation
+     * @return
+     */
+    public boolean updateIdSocket(int id,int situation);
 }

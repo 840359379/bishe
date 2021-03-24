@@ -116,6 +116,7 @@
 }
 
 #good {
+  vertical-align: top;
   font-size: 20px;
   display: inline-block;
 }
@@ -140,7 +141,30 @@
 }
 
 #slotCoin{
-  top: 10%;
-  right: 4%;
+  top: 20px;
+  right: -20px;
   position: absolute;
+}
+.publish{
+  position: static;
+}
+
+
+/**/
+#content-text{
+  width: 50%;
+  margin: 1% 0;
+  text-align: center;
+  display: inline-block;
+  vertical-align: top;
+}
+#content-text + button{
+  position: absolute;
+  right: 10%;
+}
+
+#addCoin{
+  display: inline-block;
+  vertical-align: top;
+  z-index:10;
 }

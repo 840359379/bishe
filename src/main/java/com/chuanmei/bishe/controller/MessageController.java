@@ -27,6 +27,7 @@ public class MessageController {
         User user = (User) request.getSession().getAttribute("user");
         List<Message> list = messageService.selectMessages(user.getAccount());
         model.addAttribute("list",list);
+        model.addAttribute("user",user);
         return "message";
     }
 

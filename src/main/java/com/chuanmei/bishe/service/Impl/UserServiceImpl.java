@@ -36,4 +36,9 @@ public class UserServiceImpl implements UserService {
     public boolean addCoin() {
         return userDao.addCoin();
     }
+
+    @Override
+    public boolean operatedCoin(String account, String coverAccount, int count, int number) {
+        return userDao.operatedCoin(account, coverAccount, count, number);
+    }
 }

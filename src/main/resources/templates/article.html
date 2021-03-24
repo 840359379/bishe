@@ -39,10 +39,6 @@
           </li>
 
           <li class="nav-item">
-            <a class="nav-link" href="/blog/uploads/index">我的文件</a>
-          </li>
-
-          <li class="nav-item">
             <a class="nav-link" href="/blog/chat/index">私聊</a>
           </li>
 
@@ -102,17 +98,17 @@
                 <p th:text="${invitation.time}"></p>
               </div>
               <p th:text="${invitation.text}"></p>
-              <div class="good_fa">
+              <div class="good_fa" onclick="addGood()">
                 <svg class="bi bi-heart-fill" width="5em"
-                  height="2em"
+                  height="2.5em"
                   viewBox="0 0 20 20"
-                  fill="red"
+                  fill="#696969"
                   xmlns="http://www.w3.org/2000/svg"
                   id="good_img">
                   <path fill-rule="evenodd"
                     d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"
                     clip-rule="evenodd"/></svg>
-                <p id="good"><b>8</b> 人赞同</p>
+                <p id="good"><b id="good-text"></b> 人赞同</p>
               </div>
             </div>
 
@@ -124,16 +120,14 @@
                     <h5 class="content-name" th:text="${content.name}"></h5>
                     <b th:text="${content.startTime}" id="contentStartTime"></b>
                     <p class="content-p" th:text="${content.content}"></p>
-                    <button type="button" class="btn btn-light delete" onclick="deleteContent(this)">删除</button>
+                    <button type="button" th:if="${content.account == user.account || invitation.account == user.account}" class="btn btn-light delete" onclick="deleteContent(this)">删除</button>
                   </div>
                 </li>
               </ul>
 
               <div class="input-group mb-3">
-                <input type="text" class="form-control" placeholder="发表你的评论" aria-label="发表你的评论" aria-describedby="button-addon2" id="content-text" autocomplete="off">
-                <div class="input-group-append">
-                  <button class="btn btn-primary" type="button" id="button-addon2" th:id="${user.account}" onclick="addContent(this)">发表</button>
-                </div>
+                <input type="text" class="form-control" placeholder="发表你的评论" aria-label="发表你的评论" aria-describedby="button-addon2" id="publish-text" autocomplete="off">
+                <button class="btn btn-primary publish" type="button" th:id="${user.account}" onclick="addContent(this)">发表</button>
               </div>
             </div>
           </div>

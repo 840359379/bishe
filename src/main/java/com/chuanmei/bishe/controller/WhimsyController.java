@@ -81,15 +81,17 @@ public class WhimsyController {
         whimsy.setAccount(user.getAccount());
         whimsyService.addWhimsy(whimsy);
         String behind = null;
-        for (int count = 0;count < file.length ;count++){
-            String ext = file[count].getOriginalFilename().substring(file[count].getOriginalFilename().lastIndexOf("."));
-            String name = MyTool.uuid() + ext;
-            if(count == 0){
-                behind = "/static/uploads/"+name;
+        if(file != null){
+            for (int count = 0;count < file.length ;count++){
+                String ext = file[count].getOriginalFilename().substring(file[count].getOriginalFilename().lastIndexOf("."));
+                String name = MyTool.uuid() + ext;
+                if(count == 0){
+                    behind = "/static/uploads/"+name;
+                }
+                String filepath = ClassUtils.getDefaultClassLoader().getResource("static/uploads/").getPath() + name;
+                saveFile(ClassUtils.getDefaultClassLoader().getResource("static/uploads/").getPath(), filepath, file[count]);
+                uploadService.addUploads(new Uploads(0,user.getAccount(),name, ToolExt.suffix(ext),"/static/uploads/"+name,null,whimsy.getId()));
             }
-            String filepath = ClassUtils.getDefaultClassLoader().getResource("static/uploads/").getPath() + name;
-            saveFile(ClassUtils.getDefaultClassLoader().getResource("static/uploads/").getPath(), filepath, file[count]);
-            uploadService.addUploads(new Uploads(0,user.getAccount(),name, ToolExt.suffix(ext),"/static/uploads/"+name,null,whimsy.getId()));
         }
         whimsy.setBehind(behind);
         if (whimsy.getSeries() == 0){
@@ -110,5 +112,19 @@ public class WhimsyController {
         model.addAttribute("list",list);
         model.addAttribute("user",user);
         return "lookWhimsy";
+    }
+
+    @PostMapping(value = "/add/coin")
+    @ResponseBody
+    public CommonResult addCoin(int count,String coverAccount,int number,HttpServletRequest request){
+        User user = (User) request.getSession().getAttribute("user");
+        if(user.getCoin() < count){
+            return new CommonResult(404,"硬币不足",false);
+        }else {
+            userService.operatedCoin(user.getAccount(),coverAccount,count,number);
+            user.setCoin(user.getCoin()-count);
+            request.getSession().setAttribute("user",user);
+            return new CommonResult(200,"成功",true);
+        }
     }
 }

@@ -38,11 +38,13 @@ function socketContent(data){
     let main = document.getElementById("socket-content");
     main.innerHTML = "";
     let account = main.getAttribute("abbr");
-    $("#coverPicture").attr("src",`/static/picture/${data[0].account === account ? data[0].cover : data[0].account}.jpg`);
-    $("#coverName").html(data[0].account === account ? data[0].coverName : data[0].name);
-    data.forEach(function (list){
-        newContent(list);
-    })
+    if(data.size){
+        $("#coverPicture").attr("src",`/static/picture/${data[0].account === account ? data[0].cover : data[0].account}.jpg`);
+        $("#coverName").html(data[0].account === account ? data[0].coverName : data[0].name);
+        data.forEach(function (list){
+            newContent(list);
+        })
+    }
 }
 
 //获取聊天记录的ajax
@@ -72,7 +74,8 @@ function ajaxData(my){
  * @param my
  */
 function change(my){
-    if($("#socket-content").children(':last-child').attr("class").indexOf("text-left") !== -1){
+    let cla = $("#socket-content").children(':last-child').attr("class")
+    if(cla === undefined || cla.indexOf("text-left") !== -1){
         $("#unread").html(0);
     }
     if($(".active").length === 1){
@@ -110,7 +113,12 @@ function openSocket() {
         //获得消息事件
         socket.onmessage = function(msg) {
             if(msg.data !== "连接成功"){
-                newContent(JSON.parse(msg.data));
+                let data =  JSON.parse(msg.data)
+                if(($(".active")[1].id === data.account) || ($(".active")[1].id === data.coveraccount) || (data.account === $("#socket-content").attr("abbr"))){
+                    newContent(data);
+                }else {
+                    offLine(data);
+                }
             }
             console.log(msg.data);
             //发现消息进入    开始处理前端触发逻辑
@@ -126,6 +134,34 @@ function openSocket() {
     }
 }
 
+/**
+ * 离线消息接收
+ * @param data
+ */
+function offLine(data){
+    let coverAccount = data.account;
+    $(`#${coverAccount}`).children(':last-child').children(":first").html(parseInt($(`#${coverAccount}`).children(':last-child').children(":first").html())+1);
+    $.ajax({
+        data:data,
+        type: "POST",
+        dataType: "JSON",
+        url: "http://127.0.0.1:8080/blog/chat/off/line",
+        success:function (data){
+            if(data.code){
+                alert("成功");
+            }else {
+                alert("操作失败");
+            }
+        },error:function (){
+            alert("获取失败");
+        }
+    })
+}
+
+/**
+ * 发送消息的函数
+ * @param my
+ */
 function sendMessage(my) {
     let data = new Date();
     let startTime = `${data.getFullYear()}-${data.getMonth()}-${data.getDate()} ${data.getHours()}:${data.getMinutes()}:${data.getSeconds()}`;

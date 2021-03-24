@@ -1,9 +1,62 @@
+window.onload = function () {
+  initializationAjax();
+};
+
 /**
  * 转到个人主页
  * @param my
  */
 function visitThis(my){
   window.open(`http://127.0.0.1:8080/blog/visit/index?account=${my.parentNode.getAttribute("abbr")}`);
+}
+
+/**
+ * 关于贴子初始化
+ */
+function initializationAjax(){
+  $.ajax({
+    type:"GET",
+    dataType:"JSON",
+    url:"http://127.0.0.1:8080/blog/good/look/goodNumber",
+    data:{number:$("#number").attr("abbr")},
+    success:function (data){
+      if(data.code === 200){
+        $("#good-text").html(data.data.count);
+        if(data.data.situation === 1){
+          $("#good_img").attr("fill","#FF0000")
+        }else {
+          $("#good_img").attr("fill","#696969")
+        }
+        $("#good-text").attr("abbr",data.data.situation);
+      }else {
+        alert("操作失败");
+      }
+    },error:function (){
+      alert("请求出现错误，请重新尝试");
+    }
+  })
+}
+
+/**
+ * 点赞的函数
+ */
+function addGood(){
+  let situation = $("#good-text").attr("abbr") == 0 ? 1 : 0;
+  $.ajax({
+    type: "POST",
+    dataType: "JSON",
+    url: "http://127.0.0.1:8080/blog/good/operation/good",
+    data: {number: $("#number").attr("abbr"),situation:situation},
+    success:function (data){
+      if(data.code >= 200 && data.code < 300){
+        location.reload();
+      }else {
+        alert("操作失败");
+      }
+    },error:function (){
+      alert("获取失败");
+    }
+  })
 }
 
 /**
@@ -15,7 +68,7 @@ function addContent(my){
     type: "POST",
     dataType: "json",
     url: "http://127.0.0.1:8080/blog/content/add/content",
-    data: {number:$("#number").attr("abbr"),account:my.id,content:$("#content-text").val()},
+    data: {number:$("#number").attr("abbr"),account:my.id,content:$("#publish-text").val()},
     success:function (data){
       if(data.code === 200){
         location.reload();
@@ -78,6 +131,45 @@ $(document).ready(function(){
   })
 })
 
-function addSlotCoin(my){
+/**
+ * 关于投币框的显示
+ * @param my
+ */
+function turnOn(my){
+  if($("#addCoin").css("opacity")==0){
+    $("#addCoin").attr('style','opacity:1;');
+  }else {
+    $("#addCoin").attr('style','opacity:0;');
+  }
+}
+/**
+ * 关于投币框的显示
+ */
+function shutOff(){
+  $("#addCoin").attr('style','opacity:0;');
+}
 
+/**
+ * 向后端发送投币的请求
+ * @param my
+ */
+function addCoin(my){
+  let count = $("#publish-text").val();
+  // console.log($("#user").attr("abbr"));
+  $.ajax({
+    type:"POST",
+    url:"http://127.0.0.1:8080/blog/whimsy/add/coin",
+    data:{count:count,coverAccount:$("#user").attr("abbr"),number: $("#number").attr("abbr")},
+    dataType:"JSON",
+    success:function (data){
+      if(data.code === 200){
+        location.reload();
+      }else {
+        alert("操作失败");
+      }
+    },error:function(){
+      //请求出错处理
+      alert("请求出现错误，请重新尝试");
+    }
+  })
 }

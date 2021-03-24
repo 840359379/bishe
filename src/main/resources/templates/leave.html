@@ -8,6 +8,7 @@
     <script th:src="@{/static/bootstrap-4.4.1-dist/js/bootstrap.js}" defer type="text/javascript"></script>
     <link rel="stylesheet" type="text/css" th:href="@{/static/css/collection.css}">
     <script th:src="@{/static/js/collection.js}" defer type="text/javascript"></script>
+    <script th:src="@{/static/js/message.js}" defer type="text/javascript"></script>
 </head>
 <body>
     <div class="container">
@@ -31,7 +32,7 @@
                                 <p th:text="${list.name}"></p>
                                 <p th:text="${list.startTime}"></p>
                             </div>
-                            <button type="button" class="btn btn btn-light invitation-good" onclick="deleteMessage(this)">
+                            <button type="button" th:if="${list.account == my.account || my.account == user.account}" class="btn btn btn-light invitation-good" onclick="deleteMessage(this)">
                                 <p>删除</p>
                             </button>
                         </div>

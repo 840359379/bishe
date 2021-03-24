@@ -16,4 +16,14 @@ public interface UserService {
      * @return
      */
     public boolean addCoin();
+
+    /**
+     * 投币
+     * @param account
+     * @param coverAccount
+     * @param count
+     * @param number
+     * @return
+     */
+    public boolean operatedCoin(String account,String coverAccount,int count,int number);
 }

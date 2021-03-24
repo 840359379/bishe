@@ -91,15 +91,16 @@ public class WebSocketService {
                 String content = jsonObject.getString("content");
                 //传送给对应toAccount用户的websocket
                 if(cover!=""&&cover!=null&&webSocketMap.containsKey(cover)){
-                    Socket socket = new Socket(MyTool.combination(cover,account),null,account,cover,
+                    Socket socket = new Socket(0,MyTool.combination(cover,account),null,account,cover,
                             null,0,null,0,content);
                     socketService.addSocket(socket);
+                    jsonObject.put("id",socket.getId());
                     webSocketMap.get(cover).sendMessage(jsonObject.toJSONString());
                     webSocketMap.get(account).sendMessage(jsonObject.toJSONString());
                 }else{
                     log.error("请求的account:"+cover+"不在该服务器上");
                     webSocketMap.get(account).sendMessage(jsonObject.toJSONString());
-                    Socket socket = new Socket(MyTool.combination(cover,account),null,account,cover,
+                    Socket socket = new Socket(0,MyTool.combination(cover,account),null,account,cover,
                             null,1,null,0,content);
                     socketService.addSocket(socket);
                     //否则不在这个服务器上，发送到mysql或者redis

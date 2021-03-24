@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 
@@ -32,9 +33,22 @@ public class WebSocketController {
     private UserService userService;
 
     @GetMapping("/index")
-    public String index(Model model, HttpServletRequest request) {
+    public String index(Model model, HttpServletRequest request,String account) {
         User user = (User) request.getSession().getAttribute("user");
         List<Socket> list = socketService.selectUnreadList(user.getAccount());
+        if(account != null){
+            int situation = 0;
+            for (Socket socket : list){
+                if(account.equals(socket.getAccount()) || account.equals(socket.getAccount())) {
+                    situation = 1;
+                }else break;
+            }
+            if(situation == 0){
+                User freshUser = userService.chaname(account);
+                list.add(new Socket(0,MyTool.combination(account,user.getAccount()),freshUser.getName(),user.getAccount(),freshUser.getAccount(),freshUser.getName(),
+                        0,null,0,null));
+            }
+        }
         model.addAttribute("user",user);
         model.addAttribute("list",list);
         return "socket";
@@ -63,7 +77,7 @@ public class WebSocketController {
     @GetMapping(value = "/add/socket")
     @ResponseBody
     public CommonResult addSocket(Socket socket){
-        Socket socket2 = new Socket(socket.getCombination(), null,socket.getAccount(),socket.getCover(),
+        Socket socket2 = new Socket(0,socket.getCombination(), null,socket.getAccount(),socket.getCover(),
                 null,1,null,0,socket.getContent());
         return new CommonResult(200,"成功",socketService.addSocket(socket));
     }
@@ -72,5 +86,12 @@ public class WebSocketController {
     public ResponseEntity<String> pushToWeb(String message, @PathVariable String toUserId) throws IOException {
         WebSocketServer.sendInfo(message, toUserId);
         return ResponseEntity.ok("MSG SEND SUCCESS");
+    }
+
+    @PostMapping(value = "off/line")
+    @ResponseBody
+    public CommonResult offLine(Socket socket){
+        socketService.updateIdSocket(socket.getId(),1);
+        return new CommonResult(200,"成功",true);
     }
 }

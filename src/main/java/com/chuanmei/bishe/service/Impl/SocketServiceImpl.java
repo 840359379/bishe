@@ -33,4 +33,9 @@ public class SocketServiceImpl implements SocketService {
     public boolean updateSocket(String combination, String account,int situation) {
         return socketDao.updateSocket(combination,account,situation);
     }
+
+    @Override
+    public boolean updateIdSocket(int id, int situation) {
+        return socketDao.updateIdSocket(id, situation);
+    }
 }

@@ -24,11 +24,19 @@
         </trim>
         WHERE account = #{account, jdbcType=VARCHAR} LIMIT 1
     </update>
+
+    <update id="operatedCoin">
+        UPDATE `user` SET coin = coin - #{count, jdbcType=INTEGER} WHERE account = #{account, jdbcType=VARCHAR};
+        UPDATE `user` SET coin = coin + #{count, jdbcType=INTEGER} WHERE account = #{coverAccount, jdbcType=VARCHAR};
+        UPDATE whimsy SET obtain = obtain + #{count, jdbcType=INTEGER} WHERE id = #{number,jdbcType = INTEGER};
+    </update>
+
     <select id="record" resultType="com.chuanmei.bishe.model.User">
         SELECT *
         FROM user
         WHERE account = #{id, jdbcType=VARCHAR} AND password = #{pw, jdbcType=VARCHAR} LIMIT 1
     </select>
+
     <select id="chaname" resultType="com.chuanmei.bishe.model.User">
         SELECT *
         FROM user

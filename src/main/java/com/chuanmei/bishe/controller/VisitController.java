@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 @RequestMapping(value = "/blog/visit")
 public class VisitController {
@@ -40,10 +42,12 @@ public class VisitController {
     }
 
     @GetMapping(value = "/leave/{account}")
-    public String leave(@PathVariable("account") String account,Model model){
+    public String leave(@PathVariable("account") String account, Model model, HttpServletRequest request){
         User user = userService.chaname(account);
+        User my = (User) request.getSession().getAttribute("user");
         model.addAttribute("user",user);
         model.addAttribute("list",messageService.selectMessages(account));
+        model.addAttribute("my",my);
         return "leave";
     }
 }

@@ -1,6 +1,7 @@
 package com.chuanmei.bishe.model;
 
 public class Socket {
+    private int id;
     private String combination;
     private String name;
     private String account;
@@ -67,22 +68,32 @@ public class Socket {
         this.startTime = startTime;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public String toString() {
         return "Socket{" +
-                "combination='" + combination + '\'' +
+                "id=" + id +
+                ", combination='" + combination + '\'' +
                 ", name='" + name + '\'' +
                 ", account='" + account + '\'' +
                 ", cover='" + cover + '\'' +
                 ", coverName='" + coverName + '\'' +
                 ", content='" + content + '\'' +
-                ", situation='" + situation + '\'' +
+                ", situation=" + situation +
                 ", startTime='" + startTime + '\'' +
                 ", count=" + count +
                 '}';
     }
 
-    public Socket(String combination, String name, String account, String cover, String coverName, int situation, String startTime, int count, String content) {
+    public Socket(int id, String combination, String name, String account, String cover, String coverName, int situation, String startTime, int count, String content) {
+        this.id = id;
         this.combination = combination;
         this.name = name;
         this.account = account;
