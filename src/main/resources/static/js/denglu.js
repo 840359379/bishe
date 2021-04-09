@@ -46,3 +46,26 @@ function ajax_user() {
     },
   });
 }
+
+function ajax_administrators(){
+  let id = document.getElementById("account").value;
+  let pw = document.getElementById("password").value;
+  //	  console.log(id);
+  $.ajax({
+    type: "POST",
+    url: "http://127.0.0.1:8080/blog/landing/Administrators",
+    data: { account: id, password: pw },
+    dataType: "json", //返回的数据类型格式
+    success: function (data) {
+      if (data.code == 200) {
+        window.location.href = "/blog/backstage/index";
+      } else {
+        alert("失败");
+      }
+    },
+    error: function (data) {
+      //请求出错处理
+      alert("请求出现错误，请重新尝试");
+    },
+  });
+}

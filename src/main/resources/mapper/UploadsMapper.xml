@@ -23,9 +23,14 @@
     </delete>
 
     <select id="selectList" resultType="com.chuanmei.bishe.model.Uploads">
-        SELECT *
+        SELECT id,account,name,race,route,geared,start_time as startTime
         FROM uploads
-        WHERE account = #{account ,jdbcType = VARCHAR} and geared = 0
+        <where>
+            <if test="account != null">
+                account = #{account ,jdbcType = VARCHAR} and
+            </if>
+            geared = 0
+        </where>
     </select>
 
     <select id="selectUploads" resultType="com.chuanmei.bishe.model.Uploads">

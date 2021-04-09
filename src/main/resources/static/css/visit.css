@@ -1,3 +1,23 @@
+#body{
+    background: radial-gradient(200% 100% at bottom center, #003366, #006699, #CCCCCC, #336699);
+    background: radial-gradient(220% 105% at top center, #CCCCCC 10%, #3399CC 40%, #336699 65%, #003366);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    z-index: -1;
+    transition: unset;
+}
+
+#canvas{
+    /*margin: auto;*/
+    width: 100% ;
+    position:fixed;
+    z-index:-2;
+    top: 0;
+    left: 0;
+}
+
 .main{
     margin: 2% 0;
 }
@@ -21,6 +41,8 @@
     left: 40px;
     border-radius: 15px;
     display: inline-block;
+    margin: 0;
+    padding: 0;
 }
 
 .exhibition-group div{

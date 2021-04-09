@@ -28,14 +28,14 @@ public class VisitController {
 
     @GetMapping(value = "/index")
     public String index(String account, Model model){
-        User user = userService.chaname(account);
+        User user = userService.chaname(account).get(0);
         model.addAttribute("user",user);
         return "visit";
     }
 
     @GetMapping(value = "/invitation/{account}")
     public String invitation(@PathVariable("account") String account, Model model){
-        User user = userService.chaname(account);
+        User user = userService.chaname(account).get(0);
         model.addAttribute("user",user);
         model.addAttribute("list",invitationService.lookmyinvitations(account));
         return "invitation";
@@ -43,7 +43,7 @@ public class VisitController {
 
     @GetMapping(value = "/leave/{account}")
     public String leave(@PathVariable("account") String account, Model model, HttpServletRequest request){
-        User user = userService.chaname(account);
+        User user = userService.chaname(account).get(0);
         User my = (User) request.getSession().getAttribute("user");
         model.addAttribute("user",user);
         model.addAttribute("list",messageService.selectMessages(account));

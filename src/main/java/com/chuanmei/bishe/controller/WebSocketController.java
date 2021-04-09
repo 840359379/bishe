@@ -39,12 +39,12 @@ public class WebSocketController {
         if(account != null){
             int situation = 0;
             for (Socket socket : list){
-                if(account.equals(socket.getAccount()) || account.equals(socket.getAccount())) {
+                if(account.equals(socket.getAccount()) || account.equals(socket.getCover())) {
                     situation = 1;
                 }else break;
             }
             if(situation == 0){
-                User freshUser = userService.chaname(account);
+                User freshUser = userService.chaname(account).get(0);
                 list.add(new Socket(0,MyTool.combination(account,user.getAccount()),freshUser.getName(),user.getAccount(),freshUser.getAccount(),freshUser.getName(),
                         0,null,0,null));
             }
@@ -59,7 +59,7 @@ public class WebSocketController {
     public CommonResult lookSocket(HttpServletRequest request,String cover){
         User user = (User) request.getSession().getAttribute("user");
         String combination = MyTool.combination(cover,user.getAccount());
-        String coverName = userService.chaname(cover).getName();
+        String coverName = userService.chaname(cover).get(0).getName();
         List<Socket> list = socketService.selectChatList(combination);
         for(Socket socket : list){
             if(socket.getAccount().equals(user.getAccount())){

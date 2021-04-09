@@ -10,8 +10,11 @@
     <script th:src="@{/static/js/newborn.js}"></script>
     <script th:src="@{/static/js/visit.js}"></script>
     <link rel="stylesheet" th:href="@{/static/css/visit.css}"/>
+    <script th:src="@{/static/js/snow.js}" defer></script>
 </head>
-<body>
+<body id="body">
+
+<canvas id="canvas"></canvas>
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-dark bg-dark">
     <input type="hidden" id="hidden" th:abbr="${submit}">

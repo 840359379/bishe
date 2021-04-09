@@ -10,7 +10,7 @@ public interface InvitationDao {
 	//发帖子
 	public int publishinvitation(Invitation invitation);
 	//删帖子
-	public boolean deleteinvitation();
+	public boolean deleteinvitation(int number);
 	//查看帖子
 	public Invitation lookinvitation(int number);
 	//查看我的帖子

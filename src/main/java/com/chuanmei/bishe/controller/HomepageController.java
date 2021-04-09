@@ -5,11 +5,9 @@ import com.chuanmei.bishe.configure.CommonResult;
 import com.chuanmei.bishe.model.Invitation;
 import com.chuanmei.bishe.model.User;
 import com.chuanmei.bishe.service.FollowService;
-
 import com.chuanmei.bishe.service.InvitationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -49,11 +47,10 @@ public class HomepageController {
 
     /**
      * 拿到所有的贴子
-     * @param request
      * @return
      */
     @PostMapping(value = "/invitations")
-    public @ResponseBody CommonResult invitations(HttpServletRequest request){
+    public @ResponseBody CommonResult invitations(){
         List<Invitation> lists = invitationService.lookinvitations();
         return new CommonResult(200,"成功拿到了",lists);
     }
@@ -62,10 +59,11 @@ public class HomepageController {
     public @ResponseBody CommonResult myInvitations(String search){
         List<Invitation> lists = invitationService.seekinvitations(search);
         return new CommonResult(200,"成功拿到了",lists);
+
     }
 
-    /**
-     * 退出登陆的函数
+        /**
+         * 退出登陆的函数
      * @param request
      * @return
      */
@@ -74,4 +72,6 @@ public class HomepageController {
         request.getSession().removeAttribute("user");
         return "landing";
     }
+
+
 }

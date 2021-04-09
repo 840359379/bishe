@@ -3,6 +3,8 @@ package com.chuanmei.bishe.dao;
 import com.chuanmei.bishe.model.User;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 @Mapper
 public interface UserDao {
 	//登录
@@ -12,7 +14,7 @@ public interface UserDao {
 	//修改
 	public boolean modify(User user);
 	//用户名查找
-	public User chaname(String id);
+	public List<User> chaname(String id);
 
 	/**
 	 *增加硬币数量

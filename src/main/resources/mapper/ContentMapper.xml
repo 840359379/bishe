@@ -14,6 +14,10 @@
     <select id="selectList" resultType="com.chuanmei.bishe.model.Content">
         SELECT c.id,c.account,c.content,c.number,c.start_time as startTime,u.`name`
         FROM content c LEFT JOIN user u ON c.account = u.account
-        WHERE c.number = #{number,jdbcType = INTEGER}
+        <where>
+            <if test="number != -1">
+                c.number = #{number,jdbcType = INTEGER}
+            </if>
+        </where>
     </select>
 </mapper>

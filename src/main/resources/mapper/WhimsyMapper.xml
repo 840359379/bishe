@@ -2,6 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chuanmei.bishe.dao.WhimsyDao">
 
+<!--    <resultMap id="BaseResultMap" type="com.chuanmei.bishe.model.Whimsy">-->
+<!--        <result column="start_time" property="startTime" jdbcType="VARCHAR"/>-->
+<!--    </resultMap>-->
+
     <insert id="addWhimsy" useGeneratedKeys="true" keyProperty="id" >
         INSERT INTO whimsy(series,account,title,subtitle,route)
         VALUES (#{series,jdbcType=VARCHAR},
@@ -23,7 +27,7 @@
     </delete>
 
     <select id="selectList" resultType="com.chuanmei.bishe.model.Whimsy">
-        SELECT *
+        SELECT id,series,account,title,subtitle,route,behind,obtain,start_time as startTime
         FROM whimsy
         <where>
             <if test="account != null">account = #{account,jdbcType = VARCHAR}</if>

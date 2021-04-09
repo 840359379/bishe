@@ -20,8 +20,8 @@ public class InvitationServiceImpl implements InvitationService {
     }
 
     @Override
-    public boolean deleteinvitation() {
-        return invitationDao.deleteinvitation();
+    public boolean deleteinvitation(int number) {
+        return invitationDao.deleteinvitation(number);
     }
 
     @Override

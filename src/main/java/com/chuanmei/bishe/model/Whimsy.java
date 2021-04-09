@@ -11,6 +11,7 @@ public class Whimsy {
     private String route;
     private String behind;
     private String startTime;
+    private Integer obtain;
     private List<Uploads> list;
 
     public List<Uploads> getList() {
@@ -21,7 +22,7 @@ public class Whimsy {
         this.list = list;
     }
 
-    public Whimsy(int id, int series, String account, String title, String subtitle, String route, String behind, String startTime) {
+    public Whimsy(int id, int series, String account, String title, String subtitle, String route, String behind, String startTime,int obtain) {
         this.id = id;
         this.series = series;
         this.account = account;
@@ -30,6 +31,7 @@ public class Whimsy {
         this.route = route;
         this.behind = behind;
         this.startTime = startTime;
+        this.obtain = obtain;
     }
 
     public Whimsy() {
@@ -99,6 +101,14 @@ public class Whimsy {
         this.startTime = startTime;
     }
 
+    public Integer getObtain() {
+        return obtain;
+    }
+
+    public void setObtain(Integer obtain) {
+        this.obtain = obtain;
+    }
+
     @Override
     public String toString() {
         return "Whimsy{" +
@@ -110,6 +120,8 @@ public class Whimsy {
                 ", route='" + route + '\'' +
                 ", behind='" + behind + '\'' +
                 ", startTime='" + startTime + '\'' +
+                ", obtain=" + obtain +
+                ", list=" + list +
                 '}';
     }
 }

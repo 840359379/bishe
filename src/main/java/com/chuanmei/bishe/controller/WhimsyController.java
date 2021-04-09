@@ -101,13 +101,19 @@ public class WhimsyController {
         return new CommonResult(200,"成功了",true);
     };
 
+    /**
+     * 转到看随想的页面
+     * @param model
+     * @param whimsy
+     * @return
+     */
     @GetMapping(value = "/look/whimsy")
     public String lookWhimsy(Model model,Whimsy whimsy){
         List<Whimsy> list = whimsyService.seriesWhimsy(whimsy.getSeries());
         for(Whimsy x : list){
             x.setList(uploadService.selectGeared(x.getId()));
         }
-        User user = userService.chaname(whimsy.getAccount());
+        User user = userService.chaname(whimsy.getAccount()).get(0);
         user.setPassword("******");
         model.addAttribute("list",list);
         model.addAttribute("user",user);

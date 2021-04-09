@@ -38,7 +38,7 @@ function socketContent(data){
     let main = document.getElementById("socket-content");
     main.innerHTML = "";
     let account = main.getAttribute("abbr");
-    if(data.size){
+    if(data.length){
         $("#coverPicture").attr("src",`/static/picture/${data[0].account === account ? data[0].cover : data[0].account}.jpg`);
         $("#coverName").html(data[0].account === account ? data[0].coverName : data[0].name);
         data.forEach(function (list){

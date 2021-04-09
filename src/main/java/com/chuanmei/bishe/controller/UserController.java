@@ -1,7 +1,9 @@
 package com.chuanmei.bishe.controller;
 
 import com.chuanmei.bishe.configure.CommonResult;
+import com.chuanmei.bishe.model.Administrators;
 import com.chuanmei.bishe.model.User;
+import com.chuanmei.bishe.service.AdministratorsService;
 import com.chuanmei.bishe.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private AdministratorsService administratorsService;
 
     @GetMapping(value = "index")
     public String landing(){
@@ -44,6 +49,24 @@ public class UserController {
     }
 
     /**
+     * 管理员登录
+     * @param account
+     * @param password
+     * @param request
+     * @return
+     */
+    @PostMapping(value = "/Administrators")
+    public @ResponseBody CommonResult Administrators(String account, String password, HttpServletRequest request){
+        Administrators administrators = administratorsService.selectAdministrators(account,password);
+        if(administrators == null){
+            return new CommonResult(404,"登录失败", null);
+        }else {
+            request.getSession().setAttribute("user", administrators);
+        }
+        return new CommonResult(200,"登录成功", administrators);
+    }
+
+    /**
      * 更改用户信息
      * @param user
      * @param request
@@ -57,7 +80,7 @@ public class UserController {
         if(!post){
             return new CommonResult(404,"修改失败",post);
         }
-        User newUser= userService.chaname(user.getAccount());
+        User newUser= userService.chaname(user.getAccount()).get(0);
         newUser.setPassword("******");
         request.getSession().setAttribute("user", newUser);
         return new CommonResult(200,"修改成功",post);

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.util.List;
 
 
 @Controller
@@ -85,5 +86,11 @@ public class InvitationController {
         model.addAttribute("invitation",invitation);
         model.addAttribute("content",contentService.selectList(invitation.getNumber()));
         return "article";
+    }
+
+    @RequestMapping(value = "/invitations")
+    public @ResponseBody CommonResult invitations(){
+        List<Invitation> lists = invitationService.lookinvitations();
+        return new CommonResult(0,"",lists.size(),lists);
     }
 }

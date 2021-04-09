@@ -2,6 +2,8 @@ package com.chuanmei.bishe.service;
 
 import com.chuanmei.bishe.model.User;
 
+import java.util.List;
+
 public interface UserService {
     //登录
     public User record(String id, String pw);
@@ -10,7 +12,7 @@ public interface UserService {
     //修改
     public boolean modify(User user);
     //用户名
-    public User chaname(String id);
+    public List<User> chaname(String id);
     /**
      *增加硬币数量
      * @return

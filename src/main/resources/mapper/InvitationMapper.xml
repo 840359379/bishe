@@ -27,7 +27,11 @@
     </update>
 
 
-    <delete id="deleteinvitation"></delete>
+    <delete id="deleteinvitation">
+        DELETE FROM invitation
+        WHERE number = #{number, jdbcType = INTEGER}
+    </delete>
+
     <select id="lookinvitation" resultType="com.chuanmei.bishe.model.Invitation">
         SELECT *
         FROM invitation
