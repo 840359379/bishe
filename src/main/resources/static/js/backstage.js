@@ -20,7 +20,7 @@ layui.use(['table',"element"], function(){
 
     table.render({
         elem: '#whimsy'
-        ,url: '/blog/backstage/look/whimsy' //数据接口
+        ,url: '/blog/backstage/look/whimsy' //随想管理
         ,page: true //开启分页
         ,limit: 10
         ,cols: [[ //表头
@@ -29,7 +29,7 @@ layui.use(['table',"element"], function(){
             ,{field: 'series', title: '一系列的贴子',sort: true,}
             ,{field: 'startTime', title: '发表时间', sort: true}
             ,{field: 'title', title: '标题', sort: true}
-            ,{field: 'obtain', title: '硬币数', sort: true}
+            ,{field: 'obtain', title: '硬币数', sort: true,width: 100}
             ,{field: 'option', title: '操作' ,toolbar:'#barDemo',width: 70}
         ]]
     });
@@ -47,7 +47,7 @@ layui.use(['table',"element"], function(){
             ,{field: 'mailbox', title: '邮箱', sort: true}
             ,{field: 'personality', title: '个性签名', sort: true}
             ,{field: 'portrait', title: '头像', sort: true}
-            ,{field: 'coin', title: '随想硬币', sort: true}
+            ,{field: 'coin', title: '随想硬币', sort: true,width: 130}
             ,{field: 'option', title: '操作' ,toolbar:'#barDemo',width: 70}
         ]]
     });
@@ -58,12 +58,12 @@ layui.use(['table',"element"], function(){
         ,page: true //开启分页
         ,limit: 10
         ,cols: [[ //表头
-            {field: 'id', title: '上传编号', sort: true, fixed: 'left',event:4}
+            {field: 'id', title: '上传编号', sort: true, fixed: 'left',event:4,width: 120}
             ,{field: 'account', title: '用户ID'}
             ,{field: 'race', title: '文件类型',sort: true,}
             ,{field: 'name', title: '文件名', sort: true}
             ,{field: 'route', title: '路径', sort: true}
-            ,{field: 'startTime', title: '上传时间', sort: true}
+            ,{field: 'startTime', title: '上传时间', sort: true,width: 210}
             ,{field: 'option', title: '操作' ,toolbar:'#barDemo',width: 70}
         ]]
     });
@@ -74,12 +74,12 @@ layui.use(['table',"element"], function(){
         ,page: true //开启分页
         ,limit: 20
         ,cols: [[ //表头
-            {field: 'id', title: '评论编号', sort: true, fixed: 'left',event:3}
-            ,{field: 'number', title: '所属动态'}
+            {field: 'id', title: '评论编号', sort: true, fixed: 'left',event:3,width: 110}
+            ,{field: 'number', title: '所属动态',width: 110}
             ,{field: 'account', title: '评论者',sort: true,}
-            ,{field: 'name', title: '文件名', sort: true}
+            ,{field: 'name', title: "评论者姓名", sort: true}
             ,{field: 'content', title: '内容', sort: true}
-            ,{field: 'startTime', title: '评论时间', sort: true}
+            ,{field: 'startTime', title: '评论时间', sort: true,width: 210}
             ,{field: 'option', title: '操作' ,toolbar:'#barDemo',width: 70}
         ]]
     });

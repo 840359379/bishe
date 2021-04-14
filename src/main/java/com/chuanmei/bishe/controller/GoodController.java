@@ -1,8 +1,10 @@
 package com.chuanmei.bishe.controller;
 
 import com.chuanmei.bishe.configure.CommonResult;
+import com.chuanmei.bishe.model.Collection;
 import com.chuanmei.bishe.model.Good;
 import com.chuanmei.bishe.model.User;
+import com.chuanmei.bishe.service.CollectionService;
 import com.chuanmei.bishe.service.GoodService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,6 +23,9 @@ import java.util.Map;
 public class GoodController {
     @Autowired
     private GoodService goodService;
+
+    @Autowired
+    private CollectionService collectionService;
 
     /**
      * 操作我的点赞
@@ -50,6 +55,7 @@ public class GoodController {
         User user = (User) request.getSession().getAttribute("user");
         List<Good> goodList = goodService.lookgoodnr(number);
         Map<String,Integer> map = new HashMap<>();
+        boolean collection = collectionService.seletCollection(number, user.getAccount());
         int situation = 0;
         for (Good good : goodList){
             if(good.getAccount().equals(user.getAccount())){
@@ -58,6 +64,7 @@ public class GoodController {
         }
         map.put("count",goodList.size());
         map.put("situation",situation);
+        map.put("collection", collection ? 1 : 0);
         return new CommonResult(200,"成功",map);
     }
 }

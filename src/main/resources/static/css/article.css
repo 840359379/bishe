@@ -168,3 +168,13 @@
   vertical-align: top;
   z-index:10;
 }
+/*收藏按钮*/
+#collection{
+  position: absolute;
+  top: 3%;
+  right: 2%;
+}
+
+#collection p{
+  display: inline-block;
+}

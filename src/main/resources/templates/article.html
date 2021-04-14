@@ -93,6 +93,10 @@
             <div id="invittation">
               <h3 id="number" th:abbr="${invitation.number}" th:text="${invitation.title}"></h3>
               <div class="xian"></div>
+              <button type="button" class="btn btn-light grey" id="collection" onclick="addCollection(this)">
+                <img th:src="@{/static/picture/star-fill.svg}">
+                <p id="collectionDate">收藏</p>
+              </button>
               <div id="time_fa">
                 <span>楼主</span>
                 <p th:text="${invitation.time}"></p>

@@ -19,7 +19,12 @@
     <select id="seletCollection" resultType="java.lang.Boolean">
         SELECT count(*)
         FROM collection
-        WHERE account = #{account,jdbcType = VARCHAR} and number = #{number,jdbcType = VARCHAR} LIMIT 1
+        <where>
+            <if test="account != null">
+                account = #{account,jdbcType = VARCHAR} and
+            </if>
+            number = #{number,jdbcType = VARCHAR} LIMIT 1
+        </where>
     </select>
 
     <select id="selectTime" resultType="java.lang.String">

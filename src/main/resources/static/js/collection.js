@@ -15,7 +15,7 @@ function collection(my){
         dataType: "json",
         success:function (data){
             if(data.code == 200){
-                my.lastElementChild.innerHTML = data.message;
+                my.lastElementChild.innerHTML = data.msg;
             }else {
                 alert("操作失败");
             }

@@ -28,11 +28,30 @@ function initializationAjax(){
           $("#good_img").attr("fill","#696969")
         }
         $("#good-text").attr("abbr",data.data.situation);
+        data.data.collection == 1 ? $("#collectionDate").html("取消收藏") : $("#collectionDate").html("收藏");
       }else {
         alert("操作失败");
       }
     },error:function (){
       alert("请求出现错误，请重新尝试");
+    }
+  })
+}
+
+function addCollection(my){
+  $.ajax({
+    type:"POST",
+    url: "http://127.0.0.1:8080/blog/collection/operation/collection",
+    data: {number:$("#number").attr("abbr")},
+    dataType: "json",
+    success:function (data){
+      if(data.code == 200){
+        my.lastElementChild.innerHTML = data.msg;
+      }else {
+        alert("操作失败");
+      }
+    },error:function (){
+      alert("获取失败");
     }
   })
 }
@@ -154,8 +173,8 @@ function shutOff(){
  * @param my
  */
 function addCoin(my){
-  let count = $("#publish-text").val();
-  // console.log($("#user").attr("abbr"));
+  let count = $("#content-text").val();
+  // console.log(count);
   $.ajax({
     type:"POST",
     url:"http://127.0.0.1:8080/blog/whimsy/add/coin",
