@@ -41,7 +41,7 @@ public class WebSocketController {
             for (Socket socket : list){
                 if(account.equals(socket.getAccount()) || account.equals(socket.getCover())) {
                     situation = 1;
-                }else break;
+                }else continue;
             }
             if(situation == 0){
                 User freshUser = userService.chaname(account).get(0);
