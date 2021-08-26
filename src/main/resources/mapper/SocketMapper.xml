@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!--
+  ~ /*
+  ~  * 盛建辉：毕设
+  ~  *
+  ~  * 版权归本公司所有，不得私自使用、拷贝、修改、删除，否则视为侵权
+  ~  */
+  -->
+
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.chuanmei.bishe.dao.SocketDao">
     <insert id="addSocket" useGeneratedKeys="true" keyProperty="id">

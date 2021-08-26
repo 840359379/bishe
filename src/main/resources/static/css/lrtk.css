@@ -1,3 +1,11 @@
+/*
+ *
+ *  * 盛建辉：毕设
+ *  *
+ *  * 版权归本公司所有，不得私自使用、拷贝、修改、删除，否则视为侵权
+ *
+ */
+
 body,div,p,h3,h4,h5,h6,h1,h2,ul,ol,li,table,tr,td,dl,dt,dd,span,var,em,a,img,input,b,strong,label,select,option,audio,video,textarea{margin:0;padding:0;}
 body {font-family: Georgia, Times, serif;background-color: #EEEEEE;height:1300px;}
 .AutomLeaf { position: fixed; opacity: 0; z-index: 0 }
