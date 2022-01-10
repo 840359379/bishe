@@ -48,5 +48,5 @@ public interface WhimsyService {
      */
     public List<Whimsy> seriesWhimsy(int series);
 
-
+    int test(int id);
 }

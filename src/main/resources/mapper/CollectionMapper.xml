@@ -24,6 +24,7 @@
         FROM collection AS c LEFT JOIN invitation as i ON c.number = i.number
         WHERE c.account = #{account,jdbcType = VARCHAR}
     </select>
+
     <select id="seletCollection" resultType="java.lang.Boolean">
         SELECT count(*)
         FROM collection

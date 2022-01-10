@@ -33,4 +33,6 @@ public interface ContentService {
      * @return
      */
     public boolean addContent(Content content);
+
+    public Integer test(Integer id);
 }

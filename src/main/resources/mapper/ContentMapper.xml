@@ -28,4 +28,12 @@
             </if>
         </where>
     </select>
+
+    <update id="test">
+        <foreach collection="list" item="item" index="index" separator=",">
+        UPDATE content
+        SET content = #{item.content,jdbcType = VARCHAR}
+        WHERE id = #{item.id,jdbcType = INTEGER}
+        </foreach>
+    </update>
 </mapper>

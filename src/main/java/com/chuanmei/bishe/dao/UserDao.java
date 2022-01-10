@@ -39,4 +39,5 @@ public interface UserDao {
 	 * @return
 	 */
 	public boolean operatedCoin(String account,String coverAccount,int count,int number);
+
 }

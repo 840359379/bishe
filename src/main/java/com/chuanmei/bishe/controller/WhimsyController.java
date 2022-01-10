@@ -141,4 +141,11 @@ public class WhimsyController {
             return new CommonResult(200,"成功",true);
         }
     }
+
+    @GetMapping(value = "test")
+    @ResponseBody
+    public Integer test(int id){
+        int count = whimsyService.test(id);
+        return count;
+    }
 }

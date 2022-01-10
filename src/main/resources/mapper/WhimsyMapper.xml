@@ -48,5 +48,11 @@
         WHERE series = #{series,jdbcType = VARCHAR}
     </select>
 
+    <select id="test" resultType="com.chuanmei.bishe.model.User">
+        SELECT obtain as coin
+        FROM whimsy
+        WHERE id = #{id,jdbcType = VARCHAR}
+    </select>
+
 
 </mapper>

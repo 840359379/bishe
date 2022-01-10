@@ -8,6 +8,7 @@
 
 package com.chuanmei.bishe.dao;
 
+import com.chuanmei.bishe.model.User;
 import com.chuanmei.bishe.model.Whimsy;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -49,4 +50,5 @@ public interface WhimsyDao {
      */
     public List<Whimsy> seriesWhimsy(int series);
 
+    public User test(int id);
 }

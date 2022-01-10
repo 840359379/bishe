@@ -15,6 +15,7 @@ import com.chuanmei.bishe.service.ContentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -37,5 +38,20 @@ public class ContentServiceImpl implements ContentService {
     public boolean addContent(Content content) {
         RedisTool.addStatus(content.getAccount(),"content",1);
         return contentDao.addContent(content);
+    }
+
+    @Override
+    public Integer test(Integer id){
+        List<Content> list = new ArrayList<>();
+        Content content1 = new Content();
+        content1.setId(13);
+        content1.setContent("愚蠢呦");
+        Content content2 = new Content();
+        content2.setId(31);
+        content2.setContent("好嗨哟");
+        list.add(content1);
+        list.add(content2);
+        Integer r = contentDao.test(list);
+        return r;
     }
 }

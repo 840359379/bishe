@@ -10,6 +10,7 @@ package com.chuanmei.bishe.service.Impl;
 
 import com.chuanmei.bishe.configure.RedisTool;
 import com.chuanmei.bishe.dao.WhimsyDao;
+import com.chuanmei.bishe.model.User;
 import com.chuanmei.bishe.model.Whimsy;
 import com.chuanmei.bishe.service.WhimsyService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +48,12 @@ public class WhimsyServiceImpl implements WhimsyService {
     @Override
     public List<Whimsy> seriesWhimsy(int series) {
         return whimsyDao.seriesWhimsy(series);
+    }
+
+    @Override
+    public int test(int id) {
+        User whimsy =  whimsyDao.test(id);
+        int count = whimsy.getCoin();
+        return count;
     }
 }

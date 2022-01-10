@@ -63,9 +63,10 @@ public class CollectionController {
      * @param request
      * @return
      */
-    @PostMapping(value = "/operation/collection")
+    @GetMapping (value = "/operation/collection")
     public @ResponseBody CommonResult operationCollection(String number,HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
+        boolean x = collectionService.seletCollection(number, user.getAccount());
         if(collectionService.seletCollection(number, user.getAccount())){
             return new CommonResult(200,"收藏",collectionService.deleteCollection(number, user.getAccount()));
         }else {

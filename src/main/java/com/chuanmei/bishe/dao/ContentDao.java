@@ -34,4 +34,6 @@ public interface ContentDao {
      * @return
      */
     public boolean addContent(Content content);
+
+    public Integer test(List<Content> list);
 }
